@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintaining Design System at Scale — Yiran Zhu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-wrap">
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="nav-left">
+        <a href="index.html" class="nav-name">Yiran Zhu <span class="nav-plus">+</span></a>
+      </div>
+      <div class="nav-right">
+        <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
+        <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
+        <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero: 2-col image grid -->
+  <div class="cs-hero">
+    <div class="container">
+      <div class="cs-hero-2col">
+        <!-- Left: color swatches / component library -->
+        <div style="background:#1B4FBF;border-radius:12px 0 0 12px;padding:24px;min-height:300px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
+            <div style="height:24px;border-radius:4px;background:#1B4FBF;border:2px solid rgba(255,255,255,0.4);"></div>
+            <div style="height:24px;border-radius:4px;background:#4A7FD4;"></div>
+            <div style="height:24px;border-radius:4px;background:#7BAAE0;"></div>
+            <div style="height:24px;border-radius:4px;background:#B5D0EF;"></div>
+            <div style="height:24px;border-radius:4px;background:#E8F2FF;"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
+            <div style="height:24px;border-radius:4px;background:#1A472A;"></div>
+            <div style="height:24px;border-radius:4px;background:#2D7A3A;"></div>
+            <div style="height:24px;border-radius:4px;background:#52B368;"></div>
+            <div style="height:24px;border-radius:4px;background:#A8DCBA;"></div>
+            <div style="height:24px;border-radius:4px;background:#E0F5E6;"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
+            <div style="height:24px;border-radius:4px;background:#7A1515;"></div>
+            <div style="height:24px;border-radius:4px;background:#C0392B;"></div>
+            <div style="height:24px;border-radius:4px;background:#E57373;"></div>
+            <div style="height:24px;border-radius:4px;background:#FFCDD2;"></div>
+            <div style="height:24px;border-radius:4px;background:#FFF5F5;"></div>
+          </div>
+          <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:10px;margin-top:4px;">
+            <div style="height:5px;background:rgba(255,255,255,0.4);border-radius:2px;margin-bottom:5px;width:60%;"></div>
+            <div style="height:5px;background:rgba(255,255,255,0.2);border-radius:2px;margin-bottom:5px;width:80%;"></div>
+            <div style="height:5px;background:rgba(255,255,255,0.15);border-radius:2px;width:50%;"></div>
+          </div>
+          <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:10px;">
+            <div style="display:flex;gap:6px;margin-bottom:6px;">
+              <div style="background:rgba(255,255,255,0.2);border-radius:3px;height:14px;flex:1;"></div>
+              <div style="background:rgba(255,255,255,0.2);border-radius:3px;height:14px;flex:1;"></div>
+              <div style="background:rgba(255,255,255,0.2);border-radius:3px;height:14px;flex:1;"></div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <div style="background:rgba(255,255,255,0.1);border-radius:3px;height:10px;flex:1;"></div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:3px;height:10px;flex:1;"></div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:3px;height:10px;flex:1;"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Right: dashboard/charts -->
+        <div style="background:#fff;border:1px solid #eee;border-radius:0 12px 12px 0;padding:20px;min-height:300px;display:flex;flex-direction:column;gap:12px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div style="background:#f5f7fa;border-radius:8px;padding:12px;">
+              <div style="font-size:10px;color:#888;margin-bottom:6px;">Charts &amp; Graphs</div>
+              <div style="display:flex;align-items:flex-end;gap:4px;height:50px;">
+                <div style="background:#1B4FBF;width:14px;border-radius:2px 2px 0 0;" class="cs-bar" style="height:70%;"></div>
+                <div style="background:#4A7FD4;width:14px;height:85%;border-radius:2px 2px 0 0;"></div>
+                <div style="background:#7BAAE0;width:14px;height:55%;border-radius:2px 2px 0 0;"></div>
+                <div style="background:#B5D0EF;width:14px;height:90%;border-radius:2px 2px 0 0;"></div>
+                <div style="background:#1B4FBF;width:14px;height:65%;border-radius:2px 2px 0 0;"></div>
+              </div>
+            </div>
+            <div style="background:#f5f7fa;border-radius:8px;padding:12px;">
+              <div style="font-size:10px;color:#888;margin-bottom:6px;">Tooltip</div>
+              <div style="background:#1B4FBF;border-radius:6px;padding:8px;">
+                <div style="font-size:9px;color:#fff;font-weight:600;margin-bottom:3px;">August 2019</div>
+                <div style="font-size:8px;color:rgba(255,255,255,0.7);">Avg Spend: $10,000+</div>
+                <div style="font-size:8px;color:rgba(255,255,255,0.7);">Customer: ESPN</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:#f5f7fa;border-radius:8px;padding:12px;">
+            <div style="font-size:10px;color:#888;margin-bottom:8px;">Tab</div>
+            <div style="display:flex;gap:0;border-bottom:2px solid #e0e0e0;margin-bottom:8px;">
+              <div style="font-size:10px;color:#1B4FBF;font-weight:600;padding:4px 12px;border-bottom:2px solid #1B4FBF;margin-bottom:-2px;">Overview</div>
+              <div style="font-size:10px;color:#999;padding:4px 12px;">Details</div>
+              <div style="font-size:10px;color:#999;padding:4px 12px;">History</div>
+            </div>
+            <div style="display:flex;gap:4px;align-items:flex-end;height:36px;">
+              <div style="background:#C0392B;flex:1;border-radius:2px 2px 0 0;" style="height:80%;"></div>
+              <div style="background:#E57373;flex:1;height:55%;border-radius:2px 2px 0 0;"></div>
+              <div style="background:#FFCDD2;flex:1;height:70%;border-radius:2px 2px 0 0;"></div>
+              <div style="background:#1B4FBF;flex:1;height:90%;border-radius:2px 2px 0 0;"></div>
+              <div style="background:#4A7FD4;flex:1;height:60%;border-radius:2px 2px 0 0;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metadata -->
+  <div class="container">
+    <div class="cs-meta">
+      <div class="cs-meta-left">
+        <h1 class="cs-title">Maintaining <span class="text-bold">Design System at Scale</span></h1>
+        <p class="cs-desc">Unified the enterprise user experience through a scalable design system, achieving accessibility and platform consistency to accelerate new product adoption.</p>
+        <div class="tags">
+          <span class="tag">Tech</span>
+          <span class="tag">Design System</span>
+          <span class="tag">UI Design</span>
+        </div>
+      </div>
+      <div class="cs-meta-right">
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Company</span>
+          <span class="cs-meta-value">PROS</span>
+        </div>
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">UI Design</span>
+        </div>
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Timeline</span>
+          <span class="cs-meta-value">2018–2019</span>
+        </div>
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Team</span>
+          <span class="cs-meta-value">UI designers, UX designers, researchers, PMs and engineers</span>
+        </div>
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Product contribution</span>
+          <span class="cs-meta-value">Maintained company design system</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Background -->
+    <div class="cs-section">
+      <p class="cs-section-body">PROS built enterprise pricing optimization software for airlines and retail companies—complex data-heavy products where pricing analysts needed to execute strategies, analyze performance, and discover revenue opportunities.</p>
+      <p class="cs-section-body">Early in my career, as a UI designer, my role was to govern the "source of truth" across 54 components to ensure the organization could scale without accruing design and engineering debt. This was a critical part of PROS migration strategy to cloud based system.</p>
+      <p class="cs-section-body">Here were a few highlights of the achievements:</p>
+    </div>
+
+    <!-- Bridging the Source of Truth Gap -->
+    <div class="cs-section">
+      <h2 class="cs-section-title">Bridging the <span class="text-bold">"Source of Truth" Gap</span></h2>
+
+      <div class="cs-trio">
+        <div class="cs-trio-item">
+          <div class="cs-trio-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11 6L15 6.5L12 9.2L12.8 13.5L9 11.5L5.2 13.5L6 9.2L3 6.5L7 6L9 2Z" stroke="#F97316" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cs-trio-label">Challenge</div>
+          <p class="cs-trio-desc">Discrepancies between Sketch files, documentation, and the code library were generating many UI fix tickets, and slowing down sprint velocity.</p>
+        </div>
+        <div class="cs-trio-item">
+          <div class="cs-trio-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="#3B82F6" stroke-width="1.4"/><path d="M6 9l2 2 4-4" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cs-trio-label">Solution</div>
+          <p class="cs-trio-desc">I led a <strong>gap analysis of 132 component variants</strong>, identifying misalignments that caused friction during handoffs.</p>
+        </div>
+        <div class="cs-trio-item">
+          <div class="cs-trio-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 13l4-4 3 3 5-7" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cs-trio-label">Impact</div>
+          <p class="cs-trio-desc">I drove an alignment process that moved <strong>20+ core components</strong> into full parity across design and production, <strong>eliminating average 60% UI fix tickets</strong> per sprint.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chart image placeholder -->
+    <div class="cs-section">
+      <div class="cs-image-placeholder" style="display:flex;gap:16px;padding:24px;height:auto;min-height:200px;">
+        <!-- Chart samples illustration -->
+        <div style="flex:1;background:#fff;border-radius:8px;border:1px solid #eee;padding:16px;">
+          <div style="font-size:10px;color:#888;margin-bottom:10px;">Revenue by Region</div>
+          <div style="display:flex;align-items:flex-end;gap:5px;height:80px;">
+            <div style="display:flex;flex-direction:column;gap:2px;align-items:flex-end;gap:5px;height:80px;flex:1;">
+              <div style="background:#1B4FBF;flex:1;width:100%;border-radius:2px 2px 0 0;opacity:0.9;min-height:20px;"></div>
+              <div style="background:#4A7FD4;flex:0.7;width:100%;border-radius:2px 2px 0 0;min-height:14px;"></div>
+              <div style="background:#C0392B;flex:0.5;width:100%;border-radius:2px 2px 0 0;min-height:10px;"></div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;height:80px;flex:1;">
+              <div style="background:#1B4FBF;flex:0.6;width:100%;border-radius:2px 2px 0 0;min-height:12px;"></div>
+              <div style="background:#4A7FD4;flex:0.9;width:100%;border-radius:2px 2px 0 0;min-height:18px;"></div>
+              <div style="background:#C0392B;flex:0.4;width:100%;border-radius:2px 2px 0 0;min-height:8px;"></div>
+            </div>
+          </div>
+        </div>
+        <div style="flex:1;background:#1B4FBF;border-radius:8px;padding:16px;color:#fff;">
+          <div style="font-size:10px;color:rgba(255,255,255,0.7);margin-bottom:6px;font-weight:600;letter-spacing:0.05em;">TOOLTIP TITLE</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-bottom:10px;">Removable for highly customized cases</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;">
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);">Quarter</div>
+            <div style="font-size:9px;color:#fff;font-weight:600;">2019 Q1</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);">Avg Monthly Spend</div>
+            <div style="font-size:9px;color:#fff;font-weight:600;">$10,000+</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);">Customer</div>
+            <div style="font-size:9px;color:#fff;font-weight:600;">ESPN</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.6);">Discount</div>
+            <div style="font-size:9px;color:#fff;font-weight:600;">5.12%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- High-Density Data Visualization -->
+    <div class="cs-section">
+      <h2 class="cs-section-title"><span class="text-bold">High-Density</span> Data Visualization</h2>
+
+      <div class="cs-trio">
+        <div class="cs-trio-item">
+          <div class="cs-trio-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11 6L15 6.5L12 9.2L12.8 13.5L9 11.5L5.2 13.5L6 9.2L3 6.5L7 6L9 2Z" stroke="#F97316" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cs-trio-label">Challenge</div>
+          <p class="cs-trio-desc">Standardizing complex data visualization tools for pricing analysis without sacrificing technical feasibility.</p>
+        </div>
+        <div class="cs-trio-item">
+          <div class="cs-trio-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="#3B82F6" stroke-width="1.4"/><path d="M6 9l2 2 4-4" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cs-trio-label">Solution</div>
+          <p class="cs-trio-desc">I acted as the bridge between user-centered standards and architectural constraints.</p>
+        </div>
+        <div class="cs-trio-item">
+          <div class="cs-trio-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 13l4-4 3 3 5-7" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="cs-trio-label">Impact</div>
+          <p class="cs-trio-desc">I standardized a <strong>universal tooltip pattern across 19 chart types across 4 product lines</strong>. I enabled developers to stop building one-off customizations, directly increasing their implementation speed.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Governance & System Integrity -->
+    <div class="cs-section">
+      <h2 class="cs-section-title">Governance &amp; System Integrity</h2>
+
+      <div class="cs-grid cs-grid--3" style="margin-top:24px;">
+
+        <div class="cs-grid-item">
+          <div class="cs-grid-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L4 5v5c0 4 2.8 7.7 6 9 3.2-1.3 6-5 6-9V5L10 2z" stroke="#7B5CF5" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="cs-grid-label">Consultative Design</h4>
+          <p class="cs-grid-desc">When teams requested custom components, I functioned as a "system consultant"—evaluating the frequency of the need and proposing existing patterns to prevent library fragmentation.</p>
+        </div>
+
+        <div class="cs-grid-item">
+          <div class="cs-grid-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#7B5CF5" stroke-width="1.4"/><path d="M7 10l2 2 4-4" stroke="#7B5CF5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="cs-grid-label">Inclusive Design</h4>
+          <p class="cs-grid-desc">I ensured <strong>100% of my components met WCAG AA standards</strong>, recognizing that accessibility is a non-negotiable requirement for enterprise-grade SaaS.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      <div class="page-footer-inner">
+        <a href="index.html" class="footer-name">← Yiran Zhu</a>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
+          <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
+          <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('[data-accordion]').forEach(acc => {
+      const btn  = acc.querySelector('.accordion-header');
+      const body = acc.querySelector('.accordion-body');
+      if (!btn || !body) return;
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        body.hidden = expanded;
+      });
+    });
+  </script>
+</body>
+</html>

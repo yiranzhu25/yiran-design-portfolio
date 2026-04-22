@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automate Cross-Function Operations — Yiran Zhu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Pipeline Animation Styles (scoped to .pipeline-root) -->
+  <style>
+    .pipeline-root * { box-sizing: border-box; margin: 0; padding: 0; }
+    .pipeline-root {
+      background: #0D0F1A;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 24px 48px;
+      width: 100%;
+      min-height: 480px;
+      border-radius: var(--radius-card, 16px);
+    }
+    .pipeline-root .wrapper { width: 100%; max-width: 1380px; }
+    .pipeline-root .team-row,
+    .pipeline-root .headers-row,
+    .pipeline-root .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .pipeline-root .team-row    { margin-bottom: 12px; }
+    .pipeline-root .headers-row { margin-bottom: 12px; }
+    .pipeline-root .team-col { display: flex; align-items: center; gap: 8px; padding: 0 2px; }
+    .pipeline-root .tdot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .pipeline-root .tdot.p { background: #7B5CF5; box-shadow: 0 0 6px rgba(123,92,245,0.65); }
+    .pipeline-root .tdot.g { background: #3EFFA0; box-shadow: 0 0 6px rgba(62,255,160,0.65); }
+    .pipeline-root .tname { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); }
+    .pipeline-root .stage-hdr {
+      background: #252836; border-radius: 8px; text-align: center;
+      padding: 9px 8px; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.82);
+    }
+    .pipeline-root .cards-grid { position: relative; }
+    .pipeline-root .card {
+      background: #1A1D2E; border-radius: 14px; padding: 13px;
+      border: 1px solid rgba(255,255,255,0.065); position: relative;
+    }
+    .pipeline-root .card-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 11px; }
+    .pipeline-root .bar-icon { width: 26px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pipeline-root .bar-btn {
+      background: #1A1D2E; border: 1px solid rgba(255,255,255,0.18); border-radius: 16px;
+      padding: 4px 11px; font-size: 9.5px; font-weight: 600; color: rgba(255,255,255,0.8);
+      display: flex; align-items: center; gap: 5px;
+    }
+    .pipeline-root .s1-inputs { display: flex; flex-direction: column; gap: 10px; padding: 10px 2px 6px; }
+    .pipeline-root .input-field {
+      border: 1px solid rgba(255,255,255,0.14); border-radius: 7px;
+      padding: 9px 12px; font-size: 11px; color: rgba(255,255,255,0.32); background: transparent;
+    }
+    .pipeline-root .s2-body { display: flex; gap: 9px; align-items: stretch; }
+    .pipeline-root .doc-panel {
+      flex: 1.35; background: #20233A; border-radius: 8px; padding: 9px 8px;
+      display: flex; flex-direction: column; gap: 4.5px;
+    }
+    .pipeline-root .dl { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+    .pipeline-root .dl.f { width: 100%; }
+    .pipeline-root .dl.e { width: 85%; }
+    .pipeline-root .dl.m { width: 70%; }
+    .pipeline-root .dl.s { width: 55%; }
+    .pipeline-root .dl.hl { background: rgba(123,92,245,0.42); position: relative; overflow: hidden; }
+    .pipeline-root .dl.hl::after {
+      content: ''; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(160,120,255,0.72), transparent);
+      animation: pipeline-doc-sweep 2.6s ease-in-out infinite;
+    }
+    @keyframes pipeline-doc-sweep {
+      0%  { left: -80%; }
+      55% { left: 130%; }
+      100%{ left: 130%; }
+    }
+    .pipeline-root .pills-col { flex: 1; display: flex; flex-direction: column; gap: 7px; justify-content: space-around; }
+    .pipeline-root .s3-map-area { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
+    .pipeline-root .s3-col { flex: 1; display: flex; flex-direction: column; gap: 7px; }
+    .pipeline-root .s3-table-wrap { background: #20233A; border-radius: 8px; padding: 8px; }
+    .pipeline-root .s3-trow { display: flex; gap: 5px; margin-bottom: 4px; }
+    .pipeline-root .s3-trow:last-child { margin-bottom: 0; }
+    .pipeline-root .s3-th { flex:1; height:12px; border-radius:3px; background:rgba(62,255,160,0.22); }
+    .pipeline-root .s3-td { flex:1; height:9px;  border-radius:2px; background:rgba(255,255,255,0.08); }
+    .pipeline-root .s4-body { padding-top: 2px; }
+    .pipeline-root .select-row { display: flex; gap: 7px; margin-bottom: 10px; }
+    .pipeline-root .select-pill {
+      flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13);
+      border-radius: 7px; padding: 7px 9px; font-size: 9px; font-weight: 500;
+      color: rgba(255,255,255,0.45); letter-spacing: 0.07em;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .pipeline-root .sel-arrow { opacity: 0.5; font-size: 8px; }
+    .pipeline-root .s4-pills { display: flex; flex-direction: column; gap: 7px; }
+    .pipeline-root .s5-usd-block { background: #20233A; border-radius: 8px; padding: 9px 10px; margin-bottom: 10px; }
+    .pipeline-root .usd-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .pipeline-root .usd-row:last-child { margin-bottom: 0; }
+    .pipeline-root .usd-bar {
+      width: 34px; height: 13px; border-radius: 4px; background: rgba(62,255,160,0.28);
+      flex-shrink: 0; position: relative; overflow: hidden;
+    }
+    .pipeline-root .usd-bar::after {
+      content: ''; position: absolute; top: 0; left: -80%; width: 55%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(62,255,160,0.55), transparent);
+      animation: pipeline-usd-sweep 1.9s ease-in-out infinite;
+    }
+    @keyframes pipeline-usd-sweep {
+      0%  { left: -80%; }
+      65% { left: 130%; }
+      100%{ left: 130%; }
+    }
+    .pipeline-root .usd-amt { font-size: 10px; font-weight: 700; font-family: 'SF Mono','Fira Code',monospace; white-space: nowrap; }
+    .pipeline-root .usd-pos { color: #3EFFA0; }
+    .pipeline-root .usd-neg { color: #FF6B6B; }
+    .pipeline-root .s5-pills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+    .pipeline-root .s5-table-wrap { background: #20233A; border-radius: 8px; padding: 8px; }
+    .pipeline-root .s5-trow { display: flex; gap: 5px; margin-bottom: 4px; }
+    .pipeline-root .s5-trow:last-child { margin-bottom: 0; }
+    .pipeline-root .s5-th { flex:1; height:12px; border-radius:3px; background:rgba(62,255,160,0.22); }
+    .pipeline-root .s5-td { flex:1; height:9px;  border-radius:2px; background:rgba(255,255,255,0.08); }
+    .pipeline-root .pill {
+      background: #FFFFFF; border-radius: 6px; padding: 6px 8px;
+      display: flex; align-items: center; gap: 6px; min-height: 26px;
+    }
+    .pipeline-root .pill.g-fill { background: rgba(62,255,160,0.13); border: 1px solid rgba(62,255,160,0.27); }
+    .pipeline-root .pill.g-fill .pill-line { background: rgba(62,255,160,0.38); }
+    .pipeline-root .pill.small { padding: 5px 7px; min-height: 22px; }
+    .pipeline-root .pdot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .pipeline-root .pdot.p { background: #7B5CF5; box-shadow: 0 0 5px rgba(123,92,245,0.8); }
+    .pipeline-root .pdot.g { background: #3EFFA0; box-shadow: 0 0 5px rgba(62,255,160,0.8); }
+    .pipeline-root .pill-line { flex: 1; height: 4px; border-radius: 2px; background: rgba(26,29,46,0.13); }
+    .pipeline-root .conn-svg {
+      position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 20;
+    }
+  </style>
+</head>
+<body class="page-wrap">
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="nav-left">
+        <a href="index.html" class="nav-name">Yiran Zhu <span class="nav-plus">+</span></a>
+      </div>
+      <div class="nav-right">
+        <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
+        <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
+        <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero: Full pipeline animation -->
+  <div class="cs-hero" style="padding-top: 36px; margin-bottom: 48px;">
+    <div class="container">
+      <div class="pipeline-root" id="pipeline-root-cs">
+        <div class="wrapper">
+          <div class="team-row">
+            <div class="team-col"><div class="tdot p"></div><span class="tname">Team A</span></div>
+            <div class="team-col"><div class="tdot p"></div><span class="tname">Team B</span></div>
+            <div class="team-col"><div class="tdot g"></div><span class="tname">Team C</span></div>
+            <div class="team-col"><div class="tdot g"></div><span class="tname">Team C</span></div>
+            <div class="team-col"><div class="tdot g"></div><span class="tname">Team C</span></div>
+          </div>
+          <div class="headers-row">
+            <div class="stage-hdr">Stage 1: Initiate</div>
+            <div class="stage-hdr">Stage 2: Data review</div>
+            <div class="stage-hdr">Stage 3: Map</div>
+            <div class="stage-hdr">Stage 4: New Set up</div>
+            <div class="stage-hdr">Stage 5: Approve all</div>
+          </div>
+          <div class="cards-grid" id="cards-grid">
+            <div class="card" id="s1">
+              <div class="s1-inputs">
+                <div class="input-field">Input</div>
+                <div class="input-field">Input</div>
+                <div class="input-field">Input</div>
+              </div>
+            </div>
+            <div class="card" id="s2">
+              <div class="card-bar">
+                <div class="bar-icon"><img src="pdf_icon.png" width="24" height="24" alt="PDF" style="display:block;image-rendering:auto;"></div>
+                <div class="bar-btn">
+                  Extract
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 0.8L6.12 3.52L9.05 3.9L6.9 5.99L7.48 9.05L5 7.6L2.52 9.05L3.1 5.99L0.95 3.9L3.88 3.52L5 0.8Z" fill="rgba(255,255,255,0.88)" stroke="rgba(255,255,255,0.3)" stroke-width="0.3"/></svg>
+                </div>
+              </div>
+              <div class="s2-body">
+                <div class="doc-panel" id="doc-panel">
+                  <div class="dl f"></div><div class="dl e"></div>
+                  <div class="dl hl f" id="hl0"></div><div class="dl s"></div>
+                  <div class="dl f"></div><div class="dl hl e" id="hl1"></div>
+                  <div class="dl m"></div><div class="dl f"></div>
+                  <div class="dl hl f" id="hl2"></div><div class="dl s"></div>
+                  <div class="dl e"></div><div class="dl f"></div>
+                  <div class="dl hl m" id="hl3"></div><div class="dl f"></div><div class="dl s"></div>
+                </div>
+                <div class="pills-col" id="s2-pills">
+                  <div class="pill" id="s2p0"><div class="pdot p"></div><div class="pill-line"></div></div>
+                  <div class="pill" id="s2p1"><div class="pdot p"></div><div class="pill-line"></div></div>
+                  <div class="pill" id="s2p2"><div class="pdot p"></div><div class="pill-line"></div></div>
+                  <div class="pill" id="s2p3"><div class="pdot p"></div><div class="pill-line"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="card" id="s3">
+              <div class="card-bar">
+                <div class="bar-icon"><img src="excel_icon.png" width="24" height="24" alt="Excel" style="display:block;image-rendering:auto;"></div>
+                <div class="bar-btn">Upload ↑</div>
+              </div>
+              <div class="s3-map-area">
+                <div class="s3-col" id="s3-left">
+                  <div class="pill" id="s3l0"><div class="pdot g"></div><div class="pill-line"></div></div>
+                  <div class="pill" id="s3l1"><div class="pdot g"></div><div class="pill-line"></div></div>
+                  <div class="pill" id="s3l2"><div class="pdot g"></div><div class="pill-line"></div></div>
+                </div>
+                <div class="s3-col" id="s3-right">
+                  <div class="pill g-fill" id="s3r0"><div class="pill-line"></div></div>
+                  <div class="pill g-fill" id="s3r1"><div class="pill-line"></div></div>
+                  <div class="pill g-fill" id="s3r2"><div class="pill-line"></div></div>
+                </div>
+              </div>
+              <div class="s3-table-wrap" id="s3-table">
+                <div class="s3-trow"><div class="s3-th"></div><div class="s3-th"></div><div class="s3-th"></div></div>
+                <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
+                <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
+                <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
+              </div>
+            </div>
+            <div class="card" id="s4">
+              <div class="s4-body">
+                <div class="select-row">
+                  <div class="select-pill">SELECT <span class="sel-arrow">▾</span></div>
+                  <div class="select-pill">SELECT <span class="sel-arrow">▾</span></div>
+                </div>
+                <div class="s4-pills" id="s4-pills">
+                  <div class="pill" id="s4p0"><div class="pdot p"></div><div class="pill-line"></div></div>
+                  <div class="pill" id="s4p1"><div class="pdot p"></div><div class="pill-line"></div></div>
+                  <div class="pill" id="s4p2"><div class="pdot p"></div><div class="pill-line"></div></div>
+                  <div class="pill" id="s4p3"><div class="pdot p"></div><div class="pill-line"></div></div>
+                </div>
+              </div>
+            </div>
+            <div class="card" id="s5">
+              <div class="s5-usd-block">
+                <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+ 20,000.00 USD</span></div>
+                <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+ 14,394.00 USD</span></div>
+                <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">− 9,027.00 USD</span></div>
+              </div>
+              <div class="s5-pills-grid" id="s5-pills">
+                <div class="pill small" id="s5p0"><div class="pdot p"></div><div class="pill-line"></div></div>
+                <div class="pill small" id="s5p1"><div class="pdot p"></div><div class="pill-line"></div></div>
+                <div class="pill small" id="s5p2"><div class="pdot p"></div><div class="pill-line"></div></div>
+                <div class="pill small" id="s5p3"><div class="pdot p"></div><div class="pill-line"></div></div>
+              </div>
+              <div class="s5-table-wrap" id="s5-table">
+                <div class="s5-trow"><div class="s5-th"></div><div class="s5-th"></div><div class="s5-th"></div></div>
+                <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
+                <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
+                <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
+              </div>
+            </div>
+            <svg class="conn-svg" id="conn-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Metadata -->
+  <div class="container">
+    <div class="cs-meta">
+      <div class="cs-meta-left">
+        <h1 class="cs-title"><span class="text-bold">Automate</span> cross-function operations</h1>
+        <p class="cs-desc">Unblocked a critical business bottleneck by reengineering how cross-functional teams, tools, and data handoffs were orchestrated — collapsing fragmented, multi-team processes into one automated workflow.</p>
+        <div class="tags">
+          <span class="tag">Finance</span>
+          <span class="tag">System Thinking</span>
+          <span class="tag">Product Architect</span>
+        </div>
+      </div>
+      <div class="cs-meta-right">
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Company</span>
+          <span class="cs-meta-value">Goldman Sachs</span>
+        </div>
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Role</span>
+          <span class="cs-meta-value">Product Design</span>
+        </div>
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Timeline</span>
+          <span class="cs-meta-value">Jan 2024 – Sep 2024</span>
+        </div>
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Team</span>
+          <span class="cs-meta-value">Designer for research support, PM, engineers and SME</span>
+        </div>
+        <div class="cs-meta-field">
+          <span class="cs-meta-label">Product contribution</span>
+          <span class="cs-meta-value">Led product architect, design vision &amp; execution, and stakeholder buy-in</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Confidentiality Note -->
+    <div class="accordion" data-accordion>
+      <button class="accordion-header" aria-expanded="false" aria-controls="acc-body-1">
+        <span>Confidentiality &amp; Design Note</span>
+        <span class="accordion-arrow">↑</span>
+      </button>
+      <div class="accordion-body" id="acc-body-1" hidden>
+        <p>To comply with NDA requirements, this case study omits proprietary business logic and utilizes a modified design system. The UX logic, information architecture, and business impact represent the actual work delivered. Full case study can be shared privately.</p>
+      </div>
+    </div>
+
+    <!-- A critical scalability bottleneck -->
+    <div class="cs-section">
+      <h2 class="cs-section-title">A critical <span class="text-bold">scalability</span> bottleneck</h2>
+      <p class="cs-section-body">A critical operational process was challenged when handling a sudden surge in client requests triggered by shifting market conditions. Because legacy systems and fragmented processes could not support the increased volume, the business faced a persistent inability to complete requests on time and a high rate of data issues. Business stakeholders turned to our strategic platform for help.</p>
+
+      <div class="cs-problems">
+        <div class="cs-problem-item">
+          <div class="cs-problem-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" stroke="#F97316" stroke-width="1.4"/><rect x="11" y="2" width="7" height="7" rx="1.5" stroke="#F97316" stroke-width="1.4"/><rect x="2" y="11" width="7" height="7" rx="1.5" stroke="#F97316" stroke-width="1.4"/><rect x="11" y="11" width="7" height="7" rx="1.5" stroke="#F97316" stroke-width="1.4"/></svg>
+          </div>
+          <div class="cs-problem-title">Manual complexity and high latency</div>
+          <p class="cs-problem-desc">18 manual touch points and 10 manual data transfers between teams. The end-to-end process typically took 14 days, involving 4 separate teams and 9 different tools.</p>
+        </div>
+        <div class="cs-problem-item">
+          <div class="cs-problem-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" rx="2" stroke="#F97316" stroke-width="1.4"/><line x1="7" y1="10" x2="13" y2="10" stroke="#F97316" stroke-width="1.4" stroke-linecap="round"/><line x1="10" y1="7" x2="10" y2="13" stroke="#F97316" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <div class="cs-problem-title">Nuance in nature</div>
+          <p class="cs-problem-desc">The process is full of nuance. Reflecting and validating complex results is a high-stakes, manual ordeal.</p>
+        </div>
+        <div class="cs-problem-item">
+          <div class="cs-problem-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#F97316" stroke-width="1.4"/><line x1="10" y1="6" x2="10" y2="11" stroke="#F97316" stroke-width="1.6" stroke-linecap="round"/><circle cx="10" cy="13.5" r="1" fill="#F97316"/></svg>
+          </div>
+          <div class="cs-problem-title">Data quality suffered</div>
+          <p class="cs-problem-desc">System not having proper rules governing actions meant data errors were only discovered after committed. It caused long data reconciliation work, leading to high-stakes regulatory and reputation risk.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Strategy -->
+    <div class="cs-section">
+      <h2 class="cs-section-title">The Strategy: <span class="text-bold">Bring one team in earlier</span></h2>
+      <p class="cs-section-body">I led the fundamental rethinking of how these cross-functional teams interacted, moving beyond interface design to redesign the core operational workflow.</p>
+      <p class="cs-section-body">I used service blueprint to identify a critical timing risk, leading to an architectural reversal where one team was brought in earlier.</p>
+
+      <div class="cs-grid cs-grid--5" style="margin-top:32px;">
+
+        <div class="cs-grid-item">
+          <div class="cs-grid-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.6 4H16l-3.4 2.5 1.3 4L10 10.5 6.1 12.5l1.3-4L4 6h4.4L10 2z" stroke="#7B5CF5" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="cs-grid-label">Enabled automation</h4>
+          <p class="cs-grid-desc">Capturing governing rules and data upfront enabled downstream processing automation</p>
+        </div>
+
+        <div class="cs-grid-item">
+          <div class="cs-grid-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 14l4-4 3 3 5-7" stroke="#7B5CF5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="cs-grid-label">Efficiency unlocked</h4>
+          <p class="cs-grid-desc">The reversed order shifted team's priority, which turned a process of 14 days into a one-day timely completion</p>
+        </div>
+
+        <div class="cs-grid-item">
+          <div class="cs-grid-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#7B5CF5" stroke-width="1.4"/><path d="M7 10l2 2 4-4" stroke="#7B5CF5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4 class="cs-grid-label">0 manual data reconciliations</h4>
+          <p class="cs-grid-desc">Front-loaded real time data validation in one system eliminated human errors and after-match data reconciliation</p>
+        </div>
+
+        <div class="cs-grid-item">
+          <div class="cs-grid-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="#7B5CF5" stroke-width="1.4"/><path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#7B5CF5" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </div>
+          <h4 class="cs-grid-label">User instructed automation</h4>
+          <p class="cs-grid-desc">Let users give instructions to system automation to eliminate manual labor while covering nuance cases</p>
+        </div>
+
+        <div class="cs-grid-item">
+          <div class="cs-grid-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 10h14M3 6h14M3 14h10" stroke="#7B5CF5" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h4 class="cs-grid-label">Guided experience in one tool</h4>
+          <p class="cs-grid-desc">Unified a convoluted process into a guided experience in one workflow, removing the needs for tooling and workarounds.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Impact -->
+    <div class="cs-section impact-section">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+        <h2 class="cs-section-title" style="font-weight:700;margin-bottom:0;">Impact</h2>
+        <span class="badge badge--measured">MEASURED</span>
+      </div>
+
+      <div class="impact-grid impact-grid--2x2">
+
+        <div class="impact-card">
+          <div class="impact-sublabel" style="margin-bottom:8px;">Completion Time Reduction</div>
+          <div class="impact-number">14 → 1</div>
+          <div class="impact-sublabel">business days</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-sublabel" style="margin-bottom:8px;">Process Consolidation</div>
+          <div class="impact-number">9 → 1</div>
+          <div class="impact-sublabel">tool used</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-sublabel" style="margin-bottom:8px;">Data Integrity</div>
+          <div class="impact-number">0</div>
+          <div class="impact-sublabel">manual data transfer/manipulation/reconciliation</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-sublabel" style="margin-bottom:8px;">Strategic Growth</div>
+          <div class="impact-number">40%</div>
+          <div class="impact-sublabel">of all requests processed through our platform by Aug 2025. Unlocked portfolio migration</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- Footer -->
+  <footer class="page-footer">
+    <div class="container">
+      <div class="page-footer-inner">
+        <a href="index.html" class="footer-name">← Yiran Zhu</a>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
+          <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
+          <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Pipeline Animation JS -->
+  <script>
+    let _animEl  = null;
+    let _animCSS = '';
+    let _uid     = 0;
+    const PURPLE = '#9747FF';
+    const GREEN  = '#3EFFA0';
+
+    function buildLines() {
+      if (_animEl) _animEl.remove();
+      _animEl  = document.createElement('style');
+      document.head.appendChild(_animEl);
+      _animCSS = '';
+      _uid     = 0;
+
+      const svg  = document.getElementById('conn-svg');
+      const grid = document.getElementById('cards-grid');
+      if (!svg || !grid) return;
+      const gr = grid.getBoundingClientRect();
+      svg.innerHTML = '';
+
+      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+      defs.innerHTML = `
+        <filter id="glow-p" x="-200%" y="-200%" width="500%" height="500%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glow-g" x="-200%" y="-200%" width="500%" height="500%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>`;
+      svg.appendChild(defs);
+
+      function R(el) {
+        const b = el.getBoundingClientRect();
+        return { l: b.left-gr.left, t: b.top-gr.top, r: b.right-gr.left, b: b.bottom-gr.top,
+                 cx: b.left-gr.left+b.width/2, cy: b.top-gr.top+b.height/2 };
+      }
+      function mkPath(d, stroke, opacity, extra) {
+        const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        p.setAttribute('d', d); p.setAttribute('stroke', stroke);
+        p.setAttribute('stroke-width', '1'); p.setAttribute('fill', 'none');
+        p.setAttribute('stroke-opacity', opacity);
+        if (extra) Object.entries(extra).forEach(([k,v]) => p.setAttribute(k,v));
+        return p;
+      }
+      function drawLine(d, x1, y1, color, filterId, duration, delay, addStartDot) {
+        svg.appendChild(mkPath(d, color, '0.25'));
+        const pulse = mkPath(d, color, '1', { 'stroke-linecap':'round', 'filter':`url(#${filterId})` });
+        svg.appendChild(pulse);
+        const len = pulse.getTotalLength() || 200;
+        const seg = Math.max(18, Math.min(55, len * 0.18));
+        pulse.setAttribute('stroke-dasharray', `${seg} ${len+1}`);
+        const name = `p${++_uid}`;
+        _animCSS += `@keyframes ${name}{from{stroke-dashoffset:${(len+seg).toFixed(1)}}to{stroke-dashoffset:0}}`;
+        pulse.style.animation = `${name} ${duration}s ${delay}s linear infinite`;
+        if (addStartDot) {
+          const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          dot.setAttribute('cx', x1); dot.setAttribute('cy', y1); dot.setAttribute('r', '2.5');
+          dot.setAttribute('fill', color); dot.setAttribute('opacity', '0.55');
+          svg.appendChild(dot);
+        }
+      }
+      function hBez(x1, y1, x2, y2, color, fId, dur, dly, dot) {
+        const cp = (x2-x1)*0.5;
+        drawLine(`M${x1} ${y1} C${x1+cp} ${y1},${x2-cp} ${y2},${x2} ${y2}`, x1, y1, color, fId, dur, dly, dot);
+      }
+      function topArc(x1, y1, x2, y2, apex, color, fId, dur, dly) {
+        drawLine(`M${x1} ${y1} C${x1} ${apex},${x2} ${apex},${x2} ${y2}`, x1, y1, color, fId, dur, dly, true);
+      }
+
+      const hls  = [0,1,2,3].map(i => document.getElementById('hl'+i));
+      const s2ps = [0,1,2,3].map(i => document.getElementById('s2p'+i));
+      hls.forEach((hl,i) => {
+        if (!hl || !s2ps[i]) return;
+        const h = R(hl), p = R(s2ps[i]);
+        hBez(h.r, h.cy, p.l, p.cy, PURPLE, 'glow-p', 0.9, i*0.18, false);
+      });
+
+      const s3ls = [0,1,2].map(i => document.getElementById('s3l'+i));
+      const s3rs = [0,1,2].map(i => document.getElementById('s3r'+i));
+      s3ls.forEach((lEl,i) => {
+        if (!lEl || !s3rs[i]) return;
+        const l = R(lEl), rv = R(s3rs[i]);
+        hBez(l.r, l.cy, rv.l, rv.cy, GREEN, 'glow-g', 0.75, i*0.12, false);
+      });
+
+      const s4ps = [0,1,2,3].map(i => document.getElementById('s4p'+i));
+      s2ps.forEach((pEl,i) => {
+        if (!pEl || !s4ps[i]) return;
+        const p = R(pEl), t = R(s4ps[i]);
+        topArc(p.r, p.cy, t.l, t.cy, -(42+i*10), PURPLE, 'glow-p', 2.0, i*0.28);
+      });
+
+      const s5ps = [0,1,2,3].map(i => document.getElementById('s5p'+i));
+      s4ps.forEach((pEl,i) => {
+        if (!pEl || !s5ps[i]) return;
+        const p = R(pEl), t = R(s5ps[i]);
+        hBez(p.r, p.cy, t.l, t.cy, PURPLE, 'glow-p', 1.4, i*0.18, true);
+      });
+
+      const s3t = R(document.getElementById('s3-table'));
+      const s5t = R(document.getElementById('s5-table'));
+      [-12, 0, 12].forEach((off,i) => {
+        const x1=s3t.cx+off, y1=s3t.b, x2=s5t.cx+off, y2=s5t.b;
+        const drop = 50+i*9;
+        drawLine(`M${x1} ${y1} C${x1} ${y1+drop},${x2} ${y2+drop},${x2} ${y2}`, x1, y1, GREEN, 'glow-g', 2.0, i*0.15, true);
+      });
+
+      _animEl.textContent = _animCSS;
+    }
+
+    window.addEventListener('load', buildLines);
+    window.addEventListener('resize', () => {
+      clearTimeout(window._rt);
+      window._rt = setTimeout(buildLines, 90);
+    });
+
+    document.querySelectorAll('[data-accordion]').forEach(acc => {
+      const btn  = acc.querySelector('.accordion-header');
+      const body = acc.querySelector('.accordion-body');
+      if (!btn || !body) return;
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        body.hidden = expanded;
+      });
+    });
+  </script>
+</body>
+</html>
