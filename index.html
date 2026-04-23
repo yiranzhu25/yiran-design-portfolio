@@ -25,7 +25,7 @@
     .pipeline-root .headers-row,
     .pipeline-root .cards-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
     .pipeline-root .team-row    { margin-bottom: 10px; }
@@ -50,11 +50,6 @@
       background: #1A1D2E; border: 1px solid rgba(255,255,255,0.18);
       border-radius: 12px; padding: 3px 9px; font-size: 8px;
       font-weight: 600; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 4px;
-    }
-    .pipeline-root .s1-inputs { display: flex; flex-direction: column; gap: 7px; padding: 6px 2px 4px; }
-    .pipeline-root .input-field {
-      border: 1px solid rgba(255,255,255,0.14); border-radius: 5px;
-      padding: 7px 9px; font-size: 9px; color: rgba(255,255,255,0.32); background: transparent;
     }
     .pipeline-root .s2-body { display: flex; gap: 7px; align-items: stretch; }
     .pipeline-root .doc-panel {
@@ -138,169 +133,158 @@
     }
   </style>
 </head>
-<body class="page-wrap">
+<body>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="nav-left">
-        <span class="nav-name">Yiran Zhu <span class="nav-plus">+</span></span>
-      </div>
-      <div class="nav-center">
-        <span class="nav-status">Building AI-powered loan platform @ GS <span class="nav-plus">+</span></span>
-      </div>
-      <div class="nav-right">
-        <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
-        <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
-        <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
-      </div>
+  <!-- ── Header ───────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-col-left">
+      <span class="header-name"><strong>Yiran</strong> Zhu</span>
+      <a href="resume.pdf" target="_blank" class="header-pill" title="Download resume">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M6.41936 3.03841V9.55425L3.57269 6.70758C3.34519 6.48008 2.97186 6.48008 2.74436 6.70758C2.51686 6.93508 2.51686 7.30258 2.74436 7.53008L6.58852 11.3742C6.81602 11.6017 7.18352 11.6017 7.41102 11.3742L11.2552 7.53008C11.4827 7.30258 11.4827 6.93508 11.2552 6.70758C11.0277 6.48008 10.6602 6.48008 10.4327 6.70758L7.58602 9.55425V3.03841C7.58602 2.71758 7.32352 2.45508 7.00269 2.45508C6.68186 2.45508 6.41936 2.71758 6.41936 3.03841Z" fill="#302B27"/>
+          </svg>
+      </a>
     </div>
-  </nav>
+    <div class="header-col-center">
+      <span>Building <strong>AI-powered loan platform</strong> @ GS</span>
+      <span class="header-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M6.41936 3.03841V9.55425L3.57269 6.70758C3.34519 6.48008 2.97186 6.48008 2.74436 6.70758C2.51686 6.93508 2.51686 7.30258 2.74436 7.53008L6.58852 11.3742C6.81602 11.6017 7.18352 11.6017 7.41102 11.3742L11.2552 7.53008C11.4827 7.30258 11.4827 6.93508 11.2552 6.70758C11.0277 6.48008 10.6602 6.48008 10.4327 6.70758L7.58602 9.55425V3.03841C7.58602 2.71758 7.32352 2.45508 7.00269 2.45508C6.68186 2.45508 6.41936 2.71758 6.41936 3.03841Z" fill="#302B27"/>
+          </svg>
+      </span>
+    </div>
+    <div class="header-col-right">
+      <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="header-link">LinkedIn</a>
+      <a href="resume.pdf" target="_blank" class="header-link">Resume</a>
+      <a href="mailto:yiran.jour@gmail.com" class="header-link header-link-bold">yiran.jour@gmail.com</a>
+    </div>
+  </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <h1 class="hero-heading">
-        I shape <em class="hero-em">what needs to exist</em>
-        &thinsp;–&thinsp; then design the <em class="hero-em">system</em>
-        that makes it work.
+  <!-- ── Main content ──────────────────────────────────── -->
+  <main class="home-main">
+
+    <!-- Introduction -->
+    <section class="intro-section">
+      <h1 class="home-hero-heading">
+        I shape <strong>what needs to exist</strong> - then design the <strong>system</strong> that <strong>makes it work.</strong>
       </h1>
-    </div>
-  </section>
 
-  <!-- Value Props -->
-  <section class="section">
-    <div class="container">
-      <div class="value-props">
-
-        <div class="value-prop-item">
-          <div class="vp-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1.5" y="3.5" width="17" height="13" rx="2" stroke="#888" stroke-width="1.4"/>
-              <line x1="5" y1="8" x2="15" y2="8" stroke="#888" stroke-width="1.4" stroke-linecap="round"/>
-              <line x1="5" y1="11" x2="12" y2="11" stroke="#888" stroke-width="1.4" stroke-linecap="round"/>
+      <ul class="vp-list">
+        <li class="vp-list-item">
+          <div class="vp-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M18 16L22 12L18 8V11H12.94C12.6 7.9 10.68 5.28 8 3.95C7.96 2.31 6.64 1 5 1C3.34 1 2 2.34 2 4C2 5.66 3.34 7 5 7C5.95 7 6.78 6.55 7.33 5.86C9.23 6.9 10.6 8.77 10.92 11H7.82C7.4 9.84 6.3 9 5 9C3.34 9 2 10.34 2 12C2 13.66 3.34 15 5 15C6.3 15 7.4 14.16 7.82 13H10.92C10.6 15.23 9.23 17.1 7.34 18.14C6.78 17.45 5.95 17 5 17C3.34 17 2 18.34 2 20C2 21.66 3.34 23 5 23C6.64 23 7.96 21.69 7.99 20.05C10.67 18.72 12.59 16.1 12.93 13H18V16Z" fill="#302B27"/>
             </svg>
           </div>
-          <h3 class="vp-title">Product Definition</h3>
-          <p class="vp-desc">Beyond screens — I align user insights, domain knowledge, and business reality to define what the product needs to be.</p>
-        </div>
-
-        <div class="value-prop-item">
-          <div class="vp-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="10" cy="10" r="2" stroke="#888" stroke-width="1.4"/>
-              <circle cx="3" cy="5" r="1.5" stroke="#888" stroke-width="1.2"/>
-              <circle cx="17" cy="5" r="1.5" stroke="#888" stroke-width="1.2"/>
-              <circle cx="3" cy="15" r="1.5" stroke="#888" stroke-width="1.2"/>
-              <circle cx="17" cy="15" r="1.5" stroke="#888" stroke-width="1.2"/>
-              <line x1="4.5" y1="5.5" x2="8.5" y2="8.8" stroke="#888" stroke-width="1.2"/>
-              <line x1="15.5" y1="5.5" x2="11.5" y2="8.8" stroke="#888" stroke-width="1.2"/>
-              <line x1="4.5" y1="14.5" x2="8.5" y2="11.2" stroke="#888" stroke-width="1.2"/>
-              <line x1="15.5" y1="14.5" x2="11.5" y2="11.2" stroke="#888" stroke-width="1.2"/>
+          <h5 class="vp-name">Product Definition</h5>
+          <p class="vp-body">Beyond screens — I align user insights, domain knowledge, and business reality to define what the product needs to be.</p>
+        </li>
+        <li class="vp-list-item">
+          <div class="vp-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M17.3 5.3L14.41 8.17L15.83 9.59L18.7 6.7L21 9V3H15L17.3 5.3ZM9 3H3V9L5.3 6.7L8.17 9.59L9.59 8.17L6.7 5.3L9 3ZM8.17 14.41L5.3 17.3L3 15V21H9L6.7 18.7L9.59 15.83L8.17 14.41ZM15.83 14.41L14.41 15.83L17.3 18.7L15 21H21V15L18.7 17.3L15.83 14.41Z" fill="#302B27"/>
             </svg>
           </div>
-          <h3 class="vp-title">Systems Thinking</h3>
-          <p class="vp-desc">Beyond features — I design end-to-end workflows and reusable patterns that scale across the life cycle of how users interact with the system.</p>
-        </div>
-
-        <div class="value-prop-item">
-          <div class="vp-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="13" width="4" height="5" rx="1" stroke="#888" stroke-width="1.3"/>
-              <rect x="8" y="9" width="4" height="9" rx="1" stroke="#888" stroke-width="1.3"/>
-              <rect x="14" y="4" width="4" height="14" rx="1" stroke="#888" stroke-width="1.3"/>
+          <h5 class="vp-name">Systems Thinking</h5>
+          <p class="vp-body">Beyond features — I design end-to-end workflows and reusable patterns that scale across the life cycle of how users interact with the system.</p>
+        </li>
+        <li class="vp-list-item">
+          <div class="vp-icon-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path opacity="0.3" d="M6 7C6.55228 7 7 6.55228 7 6C7 5.44772 6.55228 5 6 5C5.44772 5 5 5.44772 5 6C5 6.55228 5.44772 7 6 7Z" fill="#302B27"/>
+              <path opacity="0.3" d="M18 19C18.5523 19 19 18.5523 19 18C19 17.4477 18.5523 17 18 17C17.4477 17 17 17.4477 17 18C17 18.5523 17.4477 19 18 19Z" fill="#302B27"/>
+              <path d="M19 15.18V7C19 4.79 17.21 3 15 3C12.79 3 11 4.79 11 7V17C11 18.1 10.1 19 9 19C7.9 19 7 18.1 7 17V8.82C8.16 8.4 9 7.3 9 6C9 4.34 7.66 3 6 3C4.34 3 3 4.34 3 6C3 7.3 3.84 8.4 5 8.82V17C5 19.21 6.79 21 9 21C11.21 21 13 19.21 13 17V7C13 5.9 13.9 5 15 5C16.1 5 17 5.9 17 7V15.18C15.84 15.59 15 16.69 15 18C15 19.66 16.34 21 18 21C19.66 21 21 19.66 21 18C21 16.7 20.16 15.6 19 15.18ZM6 7C5.45 7 5 6.55 5 6C5 5.45 5.45 5 6 5C6.55 5 7 5.45 7 6C7 6.55 6.55 7 6 7ZM18 19C17.45 19 17 18.55 17 18C17 17.45 17.45 17 18 17C18.55 17 19 17.45 19 18C19 18.55 18.55 19 18 19Z" fill="#302B27"/>
             </svg>
           </div>
-          <h3 class="vp-title">Phased Execution</h3>
-          <p class="vp-desc">Beyond vision, I sequence delivery in phases that bring the most value to user and business, with technology evolution in mind.</p>
-        </div>
+          <h5 class="vp-name">Phased Execution</h5>
+          <p class="vp-body">Beyond vision, I sequence delivery in phases that bring the most value to user and business, with technology evolution in mind.</p>
+        </li>
+      </ul>
+    </section>
 
-      </div>
-    </div>
-  </section>
+    <!-- Selected Work -->
+    <section class="home-work-section">
+      <h2 class="home-section-title">Selected work</h2>
 
-  <!-- Selected Work -->
-  <section class="section work-section">
-    <div class="container">
-      <h2 class="section-title">Selected work</h2>
+      <div class="work-entries">
 
-      <!-- Card 1: AI Data Review — split panel -->
-      <div class="work-card work-card--split">
-        <div class="work-card-visual">
-          <div class="work-card-left">
-            <!-- Replace with actual screenshot image -->
-            <div style="width:100%;height:100%;background:#F0EFF8;display:flex;align-items:center;justify-content:center;padding:20px;">
-              <div style="width:100%;max-width:340px;background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.06);">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;font-size:11px;color:#666;border-bottom:1px solid #eee;padding-bottom:8px;">
-                  <span>› 1 of 10 exceptions</span>
-                  <span style="background:#111;color:#fff;border-radius:20px;padding:2px 8px;font-size:10px;">Exception only</span>
-                </div>
-                <div style="background:#F5F3FF;border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;">
-                  <span style="font-size:11px;color:#7B5CF5;font-weight:600;">⚡ AI extracted with potential issues</span>
-                  <span style="font-size:11px;color:#666;">View reasoning →</span>
-                </div>
-                <div style="background:#fafafa;border-radius:8px;padding:10px 12px;margin-bottom:10px;">
-                  <span style="font-size:11px;color:#999;">Manual input — Olivia Klu · Mar 3, 2025</span>
-                </div>
-                <div style="background:#F5F3FF;border-radius:8px;padding:12px;font-size:11px;color:#444;line-height:1.6;">
-                  <div style="margin-bottom:6px;display:flex;gap:6px;align-items:center;">
-                    <span style="background:#E8E3FF;color:#7B5CF5;border-radius:4px;padding:2px 7px;font-size:10px;font-weight:600;">Citation 1</span>
-                    <span style="color:#888;font-size:10px;">@ DocumentA.pdf · Page 29</span>
-                  </div>
-                  The Client hereby acknowledges that the reallocation of allocated capital remains contingent upon the successful verification of all secondary identifiers.
-                  <span style="color:#7B5CF5;text-decoration:underline;"> In the event of a discrepancy exceeding the established 0.05% threshold...</span>
-                </div>
+        <!-- ── Entry 1: AI Data Review ── -->
+        <div class="work-entry">
+          <div class="work-entry-row">
+            <h3 class="work-entry-title">AI Data Review Transformation</h3>
+            <div class="work-entry-content">
+              <p class="work-entry-desc">Designed an <strong>AI-driven data review</strong> that transformed a 7-hour manual process into a <strong>30-minute exception-based</strong> audit, reducing vendor dependency and build user trust through <strong>explainable AI</strong>.</p>
+              <div class="work-entry-meta">
+                <span class="work-meta-item">Goldman Sachs</span>
+                <span class="work-meta-item">Finance</span>
+                <span class="work-meta-item">AI-HITL</span>
+                <a href="case-study-ai-data-review.html" class="view-study-btn">
+                  View case study
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
-          <div class="work-card-right--dark">
-            <span class="work-card-demo-label">Concept<br>App Demo</span>
-            <span class="work-card-demo-cta">Vibe coding in progress →</span>
-          </div>
-        </div>
-        <div class="work-card-info">
-          <h3 class="work-card-title">AI Data Review Transformation</h3>
-          <p class="work-card-desc">Designed an <strong>AI-driven data review</strong> that transformed a 7-hour manual process into a <strong>30-minute</strong> exception-based audit, reducing vendor dependency and build user trust through explainable AI.</p>
-          <div class="tags">
-            <span class="tag">Goldman Sachs</span>
-            <span class="tag">Finance</span>
-            <span class="tag">AI-HITL</span>
-          </div>
-          <a href="case-study-ai-data-review.html" class="case-link">View case study →</a>
-        </div>
-      </div>
 
-      <!-- Card 2: Automate — inline pipeline animation -->
-      <div class="work-card work-card--full">
-        <div class="work-card-visual">
-          <div class="pipeline-embed-wrap">
+          <!-- Visual: split panel -->
+          <div class="work-visual-split">
+            <div class="work-visual-split-left">
+              <img src="img/ai-data-review-case-thumb.png" alt="AI Data Review interface demo">
+            </div>
+            <div class="work-visual-split-right">
+              <p class="concept-title">Concept App Demo</p>
+              <p class="concept-cta">Vibe coding in progress
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
+                </svg>    
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Entry 2: Automate ── -->
+        <div class="work-entry">
+          <div class="work-entry-row">
+            <h3 class="work-entry-title">Automate Cross-Function Operations</h3>
+            <div class="work-entry-content">
+              <p class="work-entry-desc">Unblocked a critical business bottleneck by <strong>re-engineering</strong> how cross-functional teams, tools, and data hand-offs were orchestrated — <strong>collapsing fragmented, multi-team processes</strong> into <strong>one automated workflow</strong>.</p>
+              <div class="work-entry-meta">
+                <span class="work-meta-item">Goldman Sachs</span>
+                <span class="work-meta-item">Finance</span>
+                <span class="work-meta-item">System Thinking</span>
+                <span class="work-meta-item">Product Architect</span>
+                <a href="case-study-automate.html" class="view-study-btn">
+                  View case study
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual: pipeline animation -->
+          <div class="work-visual-full" style="pointer-events:none; user-select:none;">
             <div class="pipeline-root" id="pipeline-root-home">
               <div class="wrapper">
                 <div class="team-row">
-                  <div class="team-col"><div class="tdot p"></div><span class="tname">Team A</span></div>
                   <div class="team-col"><div class="tdot p"></div><span class="tname">Team B</span></div>
                   <div class="team-col"><div class="tdot g"></div><span class="tname">Team C</span></div>
                   <div class="team-col"><div class="tdot g"></div><span class="tname">Team C</span></div>
                   <div class="team-col"><div class="tdot g"></div><span class="tname">Team C</span></div>
                 </div>
                 <div class="headers-row">
-                  <div class="stage-hdr">Stage 1: Initiate</div>
-                  <div class="stage-hdr">Stage 2: Data review</div>
-                  <div class="stage-hdr">Stage 3: Map</div>
-                  <div class="stage-hdr">Stage 4: New Set up</div>
-                  <div class="stage-hdr">Stage 5: Approve all</div>
+                  <div class="stage-hdr">Stage 1: Data review</div>
+                  <div class="stage-hdr">Stage 2: Map</div>
+                  <div class="stage-hdr">Stage 3: New Set up</div>
+                  <div class="stage-hdr">Stage 4: Approve all</div>
                 </div>
                 <div class="cards-grid" id="cards-grid">
-                  <div class="card" id="s1">
-                    <div class="s1-inputs">
-                      <div class="input-field">Input</div>
-                      <div class="input-field">Input</div>
-                      <div class="input-field">Input</div>
-                    </div>
-                  </div>
                   <div class="card" id="s2">
                     <div class="card-bar">
-                      <div class="bar-icon"><img src="pdf_icon.png" width="18" height="18" alt="PDF"></div>
+                      <div class="bar-icon"><img src="img/pdf_icon.png" width="18" height="18" alt="PDF"></div>
                       <div class="bar-btn">Extract <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M5 0.8L6.12 3.52L9.05 3.9L6.9 5.99L7.48 9.05L5 7.6L2.52 9.05L3.1 5.99L0.95 3.9L3.88 3.52L5 0.8Z" fill="rgba(255,255,255,0.88)"/></svg></div>
                     </div>
                     <div class="s2-body">
@@ -323,7 +307,7 @@
                   </div>
                   <div class="card" id="s3">
                     <div class="card-bar">
-                      <div class="bar-icon"><img src="excel_icon.png" width="18" height="18" alt="Excel"></div>
+                      <div class="bar-icon"><img src="img/excel_icon.png" width="18" height="18" alt="Excel"></div>
                       <div class="bar-btn">Upload ↑</div>
                     </div>
                     <div class="s3-map-area">
@@ -340,7 +324,6 @@
                     </div>
                     <div class="s3-table-wrap" id="s3-table">
                       <div class="s3-trow"><div class="s3-th"></div><div class="s3-th"></div><div class="s3-th"></div></div>
-                      <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
                       <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
                       <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
                     </div>
@@ -375,7 +358,6 @@
                       <div class="s5-trow"><div class="s5-th"></div><div class="s5-th"></div><div class="s5-th"></div></div>
                       <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
                       <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
-                      <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
                     </div>
                   </div>
                   <svg class="conn-svg" id="conn-svg" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -384,201 +366,150 @@
             </div>
           </div>
         </div>
-        <div class="work-card-info">
-          <h3 class="work-card-title">Automate Cross-Function Operations</h3>
-          <p class="work-card-desc">Unblocked a critical business bottleneck by reengineering how cross-functional teams, tools, and data handoffs were orchestrated — collapsing fragmented, multi-team processes into one automated workflow.</p>
-          <div class="tags">
-            <span class="tag tag--orange">Finance</span>
-            <span class="tag tag--orange">System Thinking</span>
-            <span class="tag tag--orange">Product Architect</span>
-          </div>
-          <a href="case-study-automate.html" class="case-link">View case study →</a>
-        </div>
-      </div>
 
-      <!-- Cards 3 & 4: 2-col grid -->
-      <div class="work-card-grid">
+        <!-- ── Entries 3 & 4: 2-col ── -->
+        <div class="work-grid-2col">
 
-        <div class="work-card-grid-item">
-          <div class="work-card-visual">
-            <!-- Replace with actual PROS design system screenshot -->
-            <div style="width:100%;height:100%;background:#EBF0F8;display:flex;align-items:center;justify-content:center;">
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:20px;width:100%;">
-                <div style="background:#1B4FBF;border-radius:6px;height:80px;"></div>
-                <div style="background:#fff;border:1px solid #ddd;border-radius:6px;height:80px;padding:8px;">
-                  <div style="height:6px;background:#ccc;border-radius:3px;margin-bottom:5px;"></div>
-                  <div style="height:6px;background:#eee;border-radius:3px;width:70%;margin-bottom:5px;"></div>
-                  <div style="height:6px;background:#eee;border-radius:3px;width:85%;"></div>
-                </div>
-                <div style="background:#fff;border:1px solid #ddd;border-radius:6px;height:80px;padding:8px;">
-                  <div style="display:flex;gap:4px;flex-wrap:wrap;">
-                    <div style="width:14px;height:14px;border-radius:2px;background:#1B4FBF;"></div>
-                    <div style="width:14px;height:14px;border-radius:2px;background:#4A7FD4;"></div>
-                    <div style="width:14px;height:14px;border-radius:2px;background:#7BAAE0;"></div>
-                    <div style="width:14px;height:14px;border-radius:2px;background:#B5D0EF;"></div>
-                    <div style="width:14px;height:14px;border-radius:2px;background:#E8F2FF;"></div>
-                  </div>
-                </div>
-                <div style="background:#1B4FBF;border-radius:6px;height:80px;padding:8px;">
-                  <div style="height:5px;background:rgba(255,255,255,0.3);border-radius:2px;margin-bottom:4px;"></div>
-                  <div style="height:5px;background:rgba(255,255,255,0.2);border-radius:2px;width:80%;margin-bottom:4px;"></div>
-                  <div style="height:5px;background:rgba(255,255,255,0.15);border-radius:2px;width:60%;"></div>
-                </div>
+          <!-- Design System -->
+          <div class="work-card-sm">
+            <div class="work-card-sm-image">
+              <img src="img/pros-case-thumb.png" alt="Design System at Scale">
+            </div>
+            <div class="work-card-sm-info">
+              <div class="work-card-sm-header">
+                <h3 class="work-card-sm-title">Maintaining Design System at Scale</h3>
+                <a href="case-study-design-system.html" class="pill-arrow-btn" aria-label="View case study">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
+                  </svg>
+                </a>
+              </div>
+              <div class="work-card-sm-meta">
+                <span class="work-meta-item">PROS</span>
+                <span class="work-meta-item">Tech</span>
+                <span class="work-meta-item">Design Systems</span>
+                <span class="work-meta-item">UI Design</span>
               </div>
             </div>
           </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Maintaining Design System at Scale</h3>
-            <div class="tags">
-              <span class="tag tag--dark-blue">Tech</span>
-              <span class="tag tag--dark-blue">Design Systems</span>
-              <span class="tag tag--dark-blue">UI Design</span>
-            </div>
-            <a href="case-study-design-system.html" class="work-card-plus" aria-label="View case study">+</a>
-          </div>
-        </div>
 
-        <div class="work-card-grid-item">
-          <div class="work-card-visual">
-            <!-- Replace with actual Rushable restaurant screenshot -->
-            <div style="width:100%;height:100%;background:#1A2030;display:flex;align-items:center;justify-content:center;padding:16px;">
-              <div style="display:flex;gap:10px;transform:perspective(600px) rotateY(-8deg);width:100%;">
-                <div style="background:#0D1424;border-radius:16px;padding:12px;flex:1;border:1px solid rgba(255,255,255,0.1);">
-                  <div style="height:6px;background:rgba(255,255,255,0.2);border-radius:3px;margin-bottom:8px;width:60%;"></div>
-                  <div style="display:flex;gap:4px;margin-bottom:8px;">
-                    <div style="background:#2A7FF5;border-radius:4px;padding:4px 8px;font-size:8px;color:#fff;">NEW 3</div>
-                    <div style="background:#1a1a2a;border-radius:4px;padding:4px 8px;font-size:8px;color:#aaa;">READY 8</div>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.05);border-radius:6px;padding:8px;margin-bottom:4px;">
-                    <div style="height:4px;background:rgba(255,255,255,0.15);border-radius:2px;margin-bottom:4px;width:70%;"></div>
-                    <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;width:50%;"></div>
-                  </div>
-                  <div style="background:rgba(255,255,255,0.05);border-radius:6px;padding:8px;">
-                    <div style="height:4px;background:rgba(255,255,255,0.15);border-radius:2px;margin-bottom:4px;width:80%;"></div>
-                    <div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;width:40%;"></div>
-                  </div>
-                </div>
-                <div style="background:#0D1424;border-radius:16px;padding:12px;flex:1;border:1px solid rgba(255,255,255,0.1);">
-                  <div style="height:6px;background:rgba(255,255,255,0.2);border-radius:3px;margin-bottom:8px;width:50%;"></div>
-                  <div style="background:rgba(42,127,245,0.15);border-radius:6px;padding:8px;margin-bottom:6px;border:1px solid rgba(42,127,245,0.3);">
-                    <div style="font-size:8px;color:#2A7FF5;margin-bottom:4px;">⚡ Auto Pilot</div>
-                    <div style="height:4px;background:rgba(42,127,245,0.3);border-radius:2px;width:80%;"></div>
-                  </div>
-                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
-                    <div style="background:rgba(255,255,255,0.05);border-radius:4px;padding:4px;text-align:center;">
-                      <div style="font-size:7px;color:#aaa;">Rush</div>
-                      <div style="font-size:9px;color:#fff;font-weight:600;">20m</div>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.05);border-radius:4px;padding:4px;text-align:center;">
-                      <div style="font-size:7px;color:#aaa;">Steady</div>
-                      <div style="font-size:9px;color:#fff;font-weight:600;">15m</div>
-                    </div>
-                    <div style="background:rgba(255,255,255,0.05);border-radius:4px;padding:4px;text-align:center;">
-                      <div style="font-size:7px;color:#aaa;">Slow</div>
-                      <div style="font-size:9px;color:#fff;font-weight:600;">10m</div>
-                    </div>
-                  </div>
-                </div>
+          <!-- Restaurant -->
+          <div class="work-card-sm">
+            <div class="work-card-sm-image" style="background:#161414;">
+              <img src="img/rushable-case-thumb.png" alt="Restaurant operations & consumer ordering">
+            </div>
+            <div class="work-card-sm-info">
+              <div class="work-card-sm-header">
+                <h3 class="work-card-sm-title">Restaurant operations &amp; consumer ordering</h3>
+                <a href="case-study-restaurant.html" class="pill-arrow-btn" aria-label="View case study">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
+                  </svg>
+                </a>
+              </div>
+              <div class="work-card-sm-meta">
+                <span class="work-meta-item">Rushable</span>
+                <span class="work-meta-item">Tech</span>
+                <span class="work-meta-item">UX/UI Design</span>
               </div>
             </div>
           </div>
-          <div class="work-card-info">
-            <h3 class="work-card-title">Restaurant operations &amp; consumer ordering</h3>
-            <div class="tags">
-              <span class="tag">Rushable</span>
-              <span class="tag">Tech</span>
-              <span class="tag">UX/UI Design</span>
-            </div>
-            <a href="case-study-restaurant.html" class="work-card-plus" aria-label="View case study">+</a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Career -->
+    <section class="career-section">
+      <div class="career-header-row">
+        <h2 class="career-heading">Where I've been professionally</h2>
+        <a href="resume.pdf" target="_blank" class="download-resume-btn">
+          Download resume
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v10M5 9l4 4 4-4M2 14h14" stroke="#302b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="career-entries-list">
+
+        <div class="career-entry">
+          <div></div>
+          <div class="career-year">2023 – Now</div>
+          <div class="career-content">
+            <div class="career-role">Senior Product Designer</div>
+            <div class="career-company">Goldman Sachs</div>
+            <div class="career-desc">Re-imaging a AI-powered loan platform to simplify convoluted operational processes, reduce business cost, and mitigate risk. Led core product areas from vision to execution.</div>
           </div>
         </div>
 
-      </div><!-- /work-card-grid -->
+        <div class="career-entry">
+          <div></div>
+          <div class="career-year">2022 – 2023</div>
+          <div class="career-content">
+            <div class="career-role">Product Designer</div>
+            <div class="career-company">Goldman Sachs</div>
+            <div class="career-desc">Built automation-first platform. Owned end-to-end design process for core features.</div>
+          </div>
+        </div>
+
+        <div class="career-entry">
+          <div></div>
+          <div class="career-year">2019 – 2022</div>
+          <div class="career-content">
+            <div class="career-role">Freelance UX Designer</div>
+            <div class="career-desc">Partnered with startups and small businesses to transform ideas into digital experience.</div>
+          </div>
+        </div>
+
+        <div class="career-entry">
+          <div></div>
+          <div class="career-year">2018 – 2019</div>
+          <div class="career-content">
+            <div class="career-role">UI Designer</div>
+            <div class="career-company">PROS</div>
+            <div class="career-desc">Maintained design system across multiple product lines, contributing to a strategic transition of legacy pricing tools into a modern cloud-based platform.</div>
+          </div>
+        </div>
+
+        <div class="career-entry">
+          <div></div>
+          <div class="career-year">2015 – 2018</div>
+          <div class="career-content">
+            <div class="career-role">Interactive Designer</div>
+            <div class="career-company">Sun Sentinel</div>
+            <div class="career-desc">Designed interactive news experiences that drove audience engagement and earned local journalism awards.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Personal -->
+    <section class="personal-section">
+      <h2 class="personal-heading">The human behind design</h2>
+
+      <div class="personal-grid">
+        <div></div>
+        <div class="personal-label-col">Current interest</div>
+        <div class="personal-text-col">Taking my family to see the world, which is a fun experience design challenge in life – Yes, the human behind design is still a designer.</div>
+      </div>
+
+      <div class="personal-placeholder-block">Placeholder</div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="header-col-left">
+      <span class="header-name"><strong>Yiran</strong> Zhu</span>
     </div>
-  </section>
-
-  <!-- Where I've been professionally -->
-  <section class="section">
-    <div class="container">
-      <div class="timeline-header">
-        <h2 class="section-title" style="margin-bottom:0;">Where I've been professionally</h2>
-        <a href="resume.pdf" target="_blank" class="btn-link">Download resume ↓</a>
-      </div>
-
-      <div class="timeline">
-
-        <div class="timeline-row">
-          <div class="timeline-year">2023–Now</div>
-          <div class="timeline-content">
-            <div class="timeline-role">Senior Product Designer</div>
-            <div class="timeline-company">Goldman Sachs</div>
-            <p class="timeline-desc">Re-imaging a AI-powered loan platform to simplify convoluted operational processes, reduce business cost, and mitigate risk. Led core product areas from vision to execution.</p>
-          </div>
-        </div>
-
-        <div class="timeline-row">
-          <div class="timeline-year">2022–2023</div>
-          <div class="timeline-content">
-            <div class="timeline-role">Product Designer</div>
-            <div class="timeline-company">Goldman Sachs</div>
-            <p class="timeline-desc">Built automation-first platform. Owned end-to-end design process for core features.</p>
-          </div>
-        </div>
-
-        <div class="timeline-row">
-          <div class="timeline-year">2019–2022</div>
-          <div class="timeline-content">
-            <div class="timeline-role">Freelance UX Designer</div>
-            <div class="timeline-company"></div>
-            <p class="timeline-desc">Partnered with startups and small businesses to transform ideas into digital experience.</p>
-          </div>
-        </div>
-
-        <div class="timeline-row">
-          <div class="timeline-year">2018–2019</div>
-          <div class="timeline-content">
-            <div class="timeline-role">UI Designer</div>
-            <div class="timeline-company">PROS</div>
-            <p class="timeline-desc">Maintained design system across multiple product lines, contributing to a strategic transition of legacy pricing tools into a modern cloud-based platform.</p>
-          </div>
-        </div>
-
-        <div class="timeline-row">
-          <div class="timeline-year">2015–2018</div>
-          <div class="timeline-content">
-            <div class="timeline-role">Interactive Designer</div>
-            <div class="timeline-company">Sun Sentinel</div>
-            <p class="timeline-desc">Designed interactive news experiences that drove audience engagement and earned local journalism awards.</p>
-          </div>
-        </div>
-
-      </div>
+    <div class="header-col-center">
+      <span>Building <strong>AI-powered loan platform</strong> @ GS</span>
     </div>
-  </section>
-
-  <!-- The human behind design -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">The human behind design</h2>
-      <div class="personal-interest">
-        <span class="personal-label">Current interest:</span>
-        <span class="personal-text">Taking my family to see the world, which is a fun experience design challenge in life – Yes, the human behind design is still a designer.</span>
-      </div>
-      <div class="personal-placeholder"></div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="page-footer">
-    <div class="container">
-      <div class="page-footer-inner">
-        <span class="footer-name">Yiran Zhu</span>
-        <div class="footer-links">
-          <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
-          <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
-          <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
-        </div>
-      </div>
+    <div class="header-col-right">
+      <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="header-link">LinkedIn</a>
+      <a href="resume.pdf" target="_blank" class="header-link">Resume</a>
+      <a href="mailto:yiran.jour@gmail.com" class="header-link header-link-bold">yiran.jour@gmail.com</a>
     </div>
   </footer>
 
@@ -683,13 +614,16 @@
         hBez(p.r, p.cy, t.l, t.cy, PURPLE, 'glow-p', 1.4, i*0.18, true);
       });
 
-      const s3t = R(document.getElementById('s3-table'));
-      const s5t = R(document.getElementById('s5-table'));
-      [-12, 0, 12].forEach((off,i) => {
-        const x1=s3t.cx+off, y1=s3t.b, x2=s5t.cx+off, y2=s5t.b;
-        const drop = 50+i*9;
-        drawLine(`M${x1} ${y1} C${x1} ${y1+drop},${x2} ${y2+drop},${x2} ${y2}`, x1, y1, GREEN, 'glow-g', 2.0, i*0.15, true);
-      });
+      const s3t = document.getElementById('s3-table');
+      const s5t = document.getElementById('s5-table');
+      if (s3t && s5t) {
+        const st = R(s3t), sv = R(s5t);
+        [-10, 0, 10].forEach((off,i) => {
+          const x1=st.cx+off, y1=st.b, x2=sv.cx+off, y2=sv.b;
+          const drop = 40+i*8;
+          drawLine(`M${x1} ${y1} C${x1} ${y1+drop},${x2} ${y2+drop},${x2} ${y2}`, x1, y1, GREEN, 'glow-g', 2.0, i*0.15, true);
+        });
+      }
 
       _animEl.textContent = _animCSS;
     }
@@ -698,18 +632,6 @@
     window.addEventListener('resize', () => {
       clearTimeout(window._rt);
       window._rt = setTimeout(buildLines, 90);
-    });
-
-    // Accordion
-    document.querySelectorAll('[data-accordion]').forEach(acc => {
-      const btn  = acc.querySelector('.accordion-header');
-      const body = acc.querySelector('.accordion-body');
-      if (!btn || !body) return;
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        body.hidden = expanded;
-      });
     });
   </script>
 </body>
