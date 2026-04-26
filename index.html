@@ -6,7 +6,9 @@
   <title>Yiran Zhu — Product Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="portfolio design system/design-system.css">
 
   <!-- Pipeline Animation Styles (scoped to .pipeline-root) -->
   <style>
@@ -132,32 +134,52 @@
       width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 20;
     }
   </style>
+  <style>
+    .copy-email { position: relative; }
+    .copy-email .email-tooltip {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #121212;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 150ms ease;
+      z-index: 1000;
+    }
+    .copy-email.copied .email-tooltip { opacity: 1; }
+  </style>
 </head>
 <body>
 
   <!-- ── Header ───────────────────────────────────────── -->
   <header class="site-header">
     <div class="header-col-left">
-      <span class="header-name"><strong>Yiran</strong> Zhu</span>
-      <a href="resume.pdf" target="_blank" class="header-pill" title="Download resume">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M6.41936 3.03841V9.55425L3.57269 6.70758C3.34519 6.48008 2.97186 6.48008 2.74436 6.70758C2.51686 6.93508 2.51686 7.30258 2.74436 7.53008L6.58852 11.3742C6.81602 11.6017 7.18352 11.6017 7.41102 11.3742L11.2552 7.53008C11.4827 7.30258 11.4827 6.93508 11.2552 6.70758C11.0277 6.48008 10.6602 6.48008 10.4327 6.70758L7.58602 9.55425V3.03841C7.58602 2.71758 7.32352 2.45508 7.00269 2.45508C6.68186 2.45508 6.41936 2.71758 6.41936 3.03841Z" fill="#302B27"/>
-          </svg>
-      </a>
+      <span class="header-name"><strong>Yiran Zhu</strong></span>
+      <span class="header-title">Product Design @ Goldman Sachs</span>
     </div>
-    <div class="header-col-center">
-      <span>Building <strong>AI-powered loan platform</strong> @ GS</span>
-      <span class="header-pill">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-          <path d="M6.41936 3.03841V9.55425L3.57269 6.70758C3.34519 6.48008 2.97186 6.48008 2.74436 6.70758C2.51686 6.93508 2.51686 7.30258 2.74436 7.53008L6.58852 11.3742C6.81602 11.6017 7.18352 11.6017 7.41102 11.3742L11.2552 7.53008C11.4827 7.30258 11.4827 6.93508 11.2552 6.70758C11.0277 6.48008 10.6602 6.48008 10.4327 6.70758L7.58602 9.55425V3.03841C7.58602 2.71758 7.32352 2.45508 7.00269 2.45508C6.68186 2.45508 6.41936 2.71758 6.41936 3.03841Z" fill="#302B27"/>
-          </svg>
-      </span>
-    </div>
+
     <div class="header-col-right">
-      <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="header-link">LinkedIn</a>
-      <a href="resume.pdf" target="_blank" class="header-link">Resume</a>
-      <a href="mailto:yiran.jour@gmail.com" class="header-link header-link-bold">yiran.jour@gmail.com</a>
+      <a href="index.html#work" class="header-link nav-scroll-link" data-section="work">Work</a>
+      <a href="index.html#about" class="header-link nav-scroll-link" data-section="about">About</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
+      <a href="#" class="header-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+    <nav class="nav-dropdown" id="nav-dropdown" aria-hidden="true">
+      <a href="index.html#work" class="nav-dropdown-link nav-scroll-link" data-section="work">Work</a>
+      <a href="index.html#about" class="nav-dropdown-link nav-scroll-link" data-section="about">About</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
+      <a href="#" class="nav-dropdown-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
+    </nav>
   </header>
 
   <!-- ── Main content ──────────────────────────────────── -->
@@ -166,14 +188,22 @@
     <!-- Introduction -->
     <section class="intro-section">
       <h1 class="home-hero-heading">
-        I shape <strong>what needs to exist</strong> - then design the <strong>system</strong> that <strong>makes it work.</strong>
+        <span class="hero-line">
+          I shape <em class="type-hero-accent">what needs to exist</em><svg class="hero-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4666FF"><path d="M18 16L22 12L18 8V11H12.94C12.6 7.9 10.68 5.28 8 3.95C7.96 2.31 6.64 1 5 1C3.34 1 2 2.34 2 4C2 5.66 3.34 7 5 7C5.95 7 6.78 6.55 7.33 5.86C9.23 6.9 10.6 8.77 10.92 11H7.82C7.4 9.84 6.3 9 5 9C3.34 9 2 10.34 2 12C2 13.66 3.34 15 5 15C6.3 15 7.4 14.16 7.82 13H10.92C10.6 15.23 9.23 17.1 7.34 18.14C6.78 17.45 5.95 17 5 17C3.34 17 2 18.34 2 20C2 21.66 3.34 23 5 23C6.64 23 7.96 21.69 7.99 20.05C10.67 18.72 12.59 16.1 12.93 13H18V16Z"/></svg>
+        </span>
+        <span class="hero-line">
+          then design the <em class="type-hero-accent">system</em><svg class="hero-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4666FF"><path d="M17.3 5.3L14.41 8.17L15.83 9.59L18.7 6.7L21 9V3H15L17.3 5.3ZM9 3H3V9L5.3 6.7L8.17 9.59L9.59 8.17L6.7 5.3L9 3ZM8.17 14.41L5.3 17.3L3 15V21H9L6.7 18.7L9.59 15.83L8.17 14.41ZM15.83 14.41L14.41 15.83L17.3 18.7L15 21H21V15L18.7 17.3L15.83 14.41Z"/></svg> that
+        </span>
+        <span class="hero-line">
+          <em class="type-hero-accent">makes it work</em><svg class="hero-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#4666FF"><path opacity="0.3" d="M6 7C6.55228 7 7 6.55228 7 6C7 5.44772 6.55228 5 6 5C5.44772 5 5 5.44772 5 6C5 6.55228 5.44772 7 6 7Z"/><path opacity="0.3" d="M18 19C18.5523 19 19 18.5523 19 18C19 17.4477 18.5523 17 18 17C17.4477 17 17 17.4477 17 18C17 18.5523 17.4477 19 18 19Z"/><path d="M19 15.18V7C19 4.79 17.21 3 15 3C12.79 3 11 4.79 11 7V17C11 18.1 10.1 19 9 19C7.9 19 7 18.1 7 17V8.82C8.16 8.4 9 7.3 9 6C9 4.34 7.66 3 6 3C4.34 3 3 4.34 3 6C3 7.3 3.84 8.4 5 8.82V17C5 19.21 6.79 21 9 21C11.21 21 13 19.21 13 17V7C13 5.9 13.9 5 15 5C16.1 5 17 5.9 17 7V15.18C15.84 15.59 15 16.69 15 18C15 19.66 16.34 21 18 21C19.66 21 21 19.66 21 18C21 16.7 20.16 15.6 19 15.18Z"/></svg>
+        </span>
       </h1>
 
       <ul class="vp-list">
         <li class="vp-list-item">
           <div class="vp-icon-wrap">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M18 16L22 12L18 8V11H12.94C12.6 7.9 10.68 5.28 8 3.95C7.96 2.31 6.64 1 5 1C3.34 1 2 2.34 2 4C2 5.66 3.34 7 5 7C5.95 7 6.78 6.55 7.33 5.86C9.23 6.9 10.6 8.77 10.92 11H7.82C7.4 9.84 6.3 9 5 9C3.34 9 2 10.34 2 12C2 13.66 3.34 15 5 15C6.3 15 7.4 14.16 7.82 13H10.92C10.6 15.23 9.23 17.1 7.34 18.14C6.78 17.45 5.95 17 5 17C3.34 17 2 18.34 2 20C2 21.66 3.34 23 5 23C6.64 23 7.96 21.69 7.99 20.05C10.67 18.72 12.59 16.1 12.93 13H18V16Z" fill="#302B27"/>
+              <path d="M18 16L22 12L18 8V11H12.94C12.6 7.9 10.68 5.28 8 3.95C7.96 2.31 6.64 1 5 1C3.34 1 2 2.34 2 4C2 5.66 3.34 7 5 7C5.95 7 6.78 6.55 7.33 5.86C9.23 6.9 10.6 8.77 10.92 11H7.82C7.4 9.84 6.3 9 5 9C3.34 9 2 10.34 2 12C2 13.66 3.34 15 5 15C6.3 15 7.4 14.16 7.82 13H10.92C10.6 15.23 9.23 17.1 7.34 18.14C6.78 17.45 5.95 17 5 17C3.34 17 2 18.34 2 20C2 21.66 3.34 23 5 23C6.64 23 7.96 21.69 7.99 20.05C10.67 18.72 12.59 16.1 12.93 13H18V16Z" fill="#4666FF"/>
             </svg>
           </div>
           <h5 class="vp-name">Product Definition</h5>
@@ -182,7 +212,7 @@
         <li class="vp-list-item">
           <div class="vp-icon-wrap">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M17.3 5.3L14.41 8.17L15.83 9.59L18.7 6.7L21 9V3H15L17.3 5.3ZM9 3H3V9L5.3 6.7L8.17 9.59L9.59 8.17L6.7 5.3L9 3ZM8.17 14.41L5.3 17.3L3 15V21H9L6.7 18.7L9.59 15.83L8.17 14.41ZM15.83 14.41L14.41 15.83L17.3 18.7L15 21H21V15L18.7 17.3L15.83 14.41Z" fill="#302B27"/>
+              <path d="M17.3 5.3L14.41 8.17L15.83 9.59L18.7 6.7L21 9V3H15L17.3 5.3ZM9 3H3V9L5.3 6.7L8.17 9.59L9.59 8.17L6.7 5.3L9 3ZM8.17 14.41L5.3 17.3L3 15V21H9L6.7 18.7L9.59 15.83L8.17 14.41ZM15.83 14.41L14.41 15.83L17.3 18.7L15 21H21V15L18.7 17.3L15.83 14.41Z" fill="#4666FF"/>
             </svg>
           </div>
           <h5 class="vp-name">Systems Thinking</h5>
@@ -192,80 +222,58 @@
           <div class="vp-icon-wrap">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path opacity="0.3" d="M6 7C6.55228 7 7 6.55228 7 6C7 5.44772 6.55228 5 6 5C5.44772 5 5 5.44772 5 6C5 6.55228 5.44772 7 6 7Z" fill="#302B27"/>
-              <path opacity="0.3" d="M18 19C18.5523 19 19 18.5523 19 18C19 17.4477 18.5523 17 18 17C17.4477 17 17 17.4477 17 18C17 18.5523 17.4477 19 18 19Z" fill="#302B27"/>
-              <path d="M19 15.18V7C19 4.79 17.21 3 15 3C12.79 3 11 4.79 11 7V17C11 18.1 10.1 19 9 19C7.9 19 7 18.1 7 17V8.82C8.16 8.4 9 7.3 9 6C9 4.34 7.66 3 6 3C4.34 3 3 4.34 3 6C3 7.3 3.84 8.4 5 8.82V17C5 19.21 6.79 21 9 21C11.21 21 13 19.21 13 17V7C13 5.9 13.9 5 15 5C16.1 5 17 5.9 17 7V15.18C15.84 15.59 15 16.69 15 18C15 19.66 16.34 21 18 21C19.66 21 21 19.66 21 18C21 16.7 20.16 15.6 19 15.18ZM6 7C5.45 7 5 6.55 5 6C5 5.45 5.45 5 6 5C6.55 5 7 5.45 7 6C7 6.55 6.55 7 6 7ZM18 19C17.45 19 17 18.55 17 18C17 17.45 17.45 17 18 17C18.55 17 19 17.45 19 18C19 18.55 18.55 19 18 19Z" fill="#302B27"/>
+              <path opacity="0.3" d="M18 19C18.5523 19 19 18.5523 19 18C19 17.4477 18.5523 17 18 17C17.4477 17 17 17.4477 17 18C17 18.5523 17.4477 19 18 19Z" fill="#4666FF"/>
+              <path d="M19 15.18V7C19 4.79 17.21 3 15 3C12.79 3 11 4.79 11 7V17C11 18.1 10.1 19 9 19C7.9 19 7 18.1 7 17V8.82C8.16 8.4 9 7.3 9 6C9 4.34 7.66 3 6 3C4.34 3 3 4.34 3 6C3 7.3 3.84 8.4 5 8.82V17C5 19.21 6.79 21 9 21C11.21 21 13 19.21 13 17V7C13 5.9 13.9 5 15 5C16.1 5 17 5.9 17 7V15.18C15.84 15.59 15 16.69 15 18C15 19.66 16.34 21 18 21C19.66 21 21 19.66 21 18C21 16.7 20.16 15.6 19 15.18ZM6 7C5.45 7 5 6.55 5 6C5 5.45 5.45 5 6 5C6.55 5 7 5.45 7 6C7 6.55 6.55 7 6 7ZM18 19C17.45 19 17 18.55 17 18C17 17.45 17.45 17 18 17C18.55 17 19 17.45 19 18C19 18.55 18.55 19 18 19Z" fill="#4666FF"/>
             </svg>
           </div>
           <h5 class="vp-name">Phased Execution</h5>
-          <p class="vp-body">Beyond vision, I sequence delivery in phases that bring the most value to user and business, with technology evolution in mind.</p>
+          <p class="vp-body">Beyond vision — I sequence delivery in phases that bring the most value to user and business, with technology evolution in mind.</p>
         </li>
       </ul>
     </section>
 
     <!-- Selected Work -->
-    <section class="home-work-section">
+    <section class="home-work-section" id="work">
       <h2 class="home-section-title">Selected work</h2>
 
       <div class="work-entries">
 
         <!-- ── Entry 1: AI Data Review ── -->
         <div class="work-entry">
-          <div class="work-entry-row">
-            <h3 class="work-entry-title">AI Data Review Transformation</h3>
-            <div class="work-entry-content">
-              <p class="work-entry-desc">Designed an <strong>AI-driven data review</strong> that transformed a 7-hour manual process into a <strong>30-minute exception-based</strong> audit, reducing vendor dependency and build user trust through <strong>explainable AI</strong>.</p>
-              <div class="work-entry-meta">
-                <span class="work-meta-item">Goldman Sachs</span>
-                <span class="work-meta-item">Finance</span>
-                <span class="work-meta-item">AI-HITL</span>
-                <a href="case-study-ai-data-review.html" class="view-study-btn">
-                  View case study
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Visual: split panel -->
+          <!-- Visual: split panel (visual first per Figma) -->
           <div class="work-visual-split">
             <div class="work-visual-split-left">
               <img src="img/ai-data-review-case-thumb.png" alt="AI Data Review interface demo">
             </div>
             <div class="work-visual-split-right">
-              <p class="concept-title">Concept App Demo</p>
-              <p class="concept-cta">Vibe coding in progress
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
-                </svg>    
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Entry 2: Automate ── -->
-        <div class="work-entry">
-          <div class="work-entry-row">
-            <h3 class="work-entry-title">Automate Cross-Function Operations</h3>
-            <div class="work-entry-content">
-              <p class="work-entry-desc">Unblocked a critical business bottleneck by <strong>re-engineering</strong> how cross-functional teams, tools, and data hand-offs were orchestrated — <strong>collapsing fragmented, multi-team processes</strong> into <strong>one automated workflow</strong>.</p>
-              <div class="work-entry-meta">
-                <span class="work-meta-item">Goldman Sachs</span>
-                <span class="work-meta-item">Finance</span>
-                <span class="work-meta-item">System Thinking</span>
-                <span class="work-meta-item">Product Architect</span>
-                <a href="case-study-automate.html" class="view-study-btn">
-                  View case study
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
+              <p class="concept-title">Concept Demo</p>
+              <div class="concept-cta">
+                <span class="concept-cta-label">Vibe code in progress</span>
+                <a href="case-study-ai-data-review.html" class="concept-arrow-btn" aria-label="View case study">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 14 14" fill="none">
+                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#121212"/>
                   </svg>
                 </a>
               </div>
             </div>
           </div>
+          <!-- Text info below visual -->
+          <div class="work-entry-info">
+            <p class="work-meta-tags">AI-HITL · AI UX Patterns · Goldman Sachs · 2025-2026</p>
+            <h3 class="work-entry-title">AI Data Review Transformation</h3>
+            <p class="work-entry-desc">Designed an <strong>AI-driven data review</strong> that transformed a 7-hour manual process into a <strong>30-minute exception-based</strong> audit, reducing vendor dependency and build user trust through <strong>explainable AI</strong>.</p>
+            <a href="case-study-ai-data-review.html" class="btn-dark">
+              View Case Study
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#fff"/>
+              </svg>
+            </a>
+          </div>
+        </div>
 
-          <!-- Visual: pipeline animation -->
+        <!-- ── Entry 2: Automate ── -->
+        <div class="work-entry">
+          <!-- Visual: pipeline animation (visual first per Figma) -->
           <div class="work-visual-full" style="pointer-events:none; user-select:none;">
             <div class="pipeline-root" id="pipeline-root-home">
               <div class="wrapper">
@@ -365,6 +373,18 @@
               </div>
             </div>
           </div>
+          <!-- Text info below visual -->
+          <div class="work-entry-info">
+            <p class="work-meta-tags">Systems Thinking · Product Architect · Goldman Sachs · 2024</p>
+            <h3 class="work-entry-title">Automate Cross-functional Operations</h3>
+            <p class="work-entry-desc">Unblocked a critical business bottleneck by <strong>re-engineering</strong> how cross-functional teams, tools, and data hand-offs were orchestrated — <strong>collapsing fragmented, multi-team processes</strong> into one <strong>automated workflow</strong>.</p>
+            <a href="case-study-automate.html" class="btn-dark">
+              View Case Study
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#fff"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
         <!-- ── Entries 3 & 4: 2-col ── -->
@@ -376,42 +396,35 @@
               <img src="img/pros-case-thumb.png" alt="Design System at Scale">
             </div>
             <div class="work-card-sm-info">
-              <div class="work-card-sm-header">
-                <h3 class="work-card-sm-title">Maintaining Design System at Scale</h3>
-                <a href="case-study-design-system.html" class="pill-arrow-btn" aria-label="View case study">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
-                  </svg>
-                </a>
-              </div>
-              <div class="work-card-sm-meta">
-                <span class="work-meta-item">PROS</span>
-                <span class="work-meta-item">Tech</span>
-                <span class="work-meta-item">Design Systems</span>
-                <span class="work-meta-item">UI Design</span>
-              </div>
+             
+                <p class="work-meta-tags">Tech · Design System · UI Design · PROS · 2019</p>
+                <h3 class="work-card-sm-title">Maintain Design System at Scale</h3>
+              
+              <a href="case-study-design-system.html" class="view-study-btn">
+                View Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
+                </svg>
+              </a>
             </div>
           </div>
 
           <!-- Restaurant -->
           <div class="work-card-sm">
-            <div class="work-card-sm-image" style="background:#161414;">
-              <img src="img/rushable-case-thumb.png" alt="Restaurant operations & consumer ordering">
+            <div class="work-card-sm-image" style="background:#00000f;">
+              <img id="rushable-case-thumb" src="img/rushable-case-thumb.png" alt="Restaurant POS & Ordering">
             </div>
             <div class="work-card-sm-info">
-              <div class="work-card-sm-header">
-                <h3 class="work-card-sm-title">Restaurant operations &amp; consumer ordering</h3>
-                <a href="case-study-restaurant.html" class="pill-arrow-btn" aria-label="View case study">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
-                  </svg>
-                </a>
-              </div>
-              <div class="work-card-sm-meta">
-                <span class="work-meta-item">Rushable</span>
-                <span class="work-meta-item">Tech</span>
-                <span class="work-meta-item">UX/UI Design</span>
-              </div>
+              
+                <p class="work-meta-tags">Tech · UX/UI Design · Rushable · 2022</p>
+                <h3 class="work-card-sm-title">Restaurant POS &amp; Ordering</h3>
+              
+              <a href="case-study-restaurant.html" class="view-study-btn">
+                View Case Study
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
+                </svg>
+              </a>
             </div>
           </div>
 
@@ -420,12 +433,14 @@
     </section>
 
     <!-- Career -->
-    <section class="career-section">
+    <section class="career-section" id="about">
       <div class="career-header-row">
         <h2 class="career-heading">Where I've been professionally</h2>
-        <a href="resume.pdf" target="_blank" class="download-resume-btn">
+        <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="download-resume-btn">
           Download resume
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2v10M5 9l4 4 4-4M2 14h14" stroke="#302b27" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M13.5 11.25V13.5H4.5V11.25H3V13.5C3 14.325 3.675 15 4.5 15H13.5C14.325 15 15 14.325 15 13.5V11.25H13.5ZM12.75 8.25L11.6925 7.1925L9.75 9.1275V3H8.25V9.1275L6.3075 7.1925L5.25 8.25L9 12L12.75 8.25Z" fill="#302B27"/>
+          </svg>
         </a>
       </div>
 
@@ -501,15 +516,12 @@
   <!-- ── Footer ───────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="header-col-left">
-      <span class="header-name"><strong>Yiran</strong> Zhu</span>
-    </div>
-    <div class="header-col-center">
-      <span>Building <strong>AI-powered loan platform</strong> @ GS</span>
+      <span class="header-name"><strong>Yiran Zhu</strong></span>
     </div>
     <div class="header-col-right">
-      <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="header-link">LinkedIn</a>
-      <a href="resume.pdf" target="_blank" class="header-link">Resume</a>
-      <a href="mailto:yiran.jour@gmail.com" class="header-link header-link-bold">yiran.jour@gmail.com</a>
+      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="header-link">LinkedIn</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
+      <a href="#" class="header-link header-link-bold copy-email" data-email="yiran.jour@gmail.com">yiran.jour@gmail.com</a>
     </div>
   </footer>
 
@@ -632,6 +644,66 @@
     window.addEventListener('resize', () => {
       clearTimeout(window._rt);
       window._rt = setTimeout(buildLines, 90);
+    });
+  </script>
+  <script>
+    // ── Hamburger menu ──────────────────────────────────────────
+    var hamburgerBtn = document.getElementById('hamburger-btn');
+    var navDropdown  = document.getElementById('nav-dropdown');
+    if (hamburgerBtn && navDropdown) {
+      hamburgerBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = navDropdown.classList.toggle('open');
+        hamburgerBtn.setAttribute('aria-expanded', open);
+        navDropdown.setAttribute('aria-hidden', !open);
+      });
+      document.addEventListener('click', function() {
+        navDropdown.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        navDropdown.setAttribute('aria-hidden', 'true');
+      });
+      navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+    }
+
+    // ── Work / About smooth scroll + active state ────────────────
+    var isHomepage = window.location.pathname === '/' ||
+                     window.location.pathname.endsWith('/index.html') ||
+                     window.location.pathname.endsWith('/');
+    function setActiveLink(section) {
+      document.querySelectorAll('.nav-scroll-link').forEach(function(l) {
+        l.classList.toggle('header-link--active', l.dataset.section === section);
+      });
+    }
+    document.querySelectorAll('.nav-scroll-link').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var section = this.dataset.section;
+        if (isHomepage) {
+          e.preventDefault();
+          var target = document.getElementById(section);
+          if (target) target.scrollIntoView({ behavior: 'smooth' });
+          setActiveLink(section);
+        }
+        // Close dropdown if open
+        if (navDropdown) {
+          navDropdown.classList.remove('open');
+          if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    document.querySelectorAll('.copy-email').forEach(function(link) {
+      var tooltip = document.createElement('span');
+      tooltip.className = 'email-tooltip';
+      tooltip.textContent = 'Copied';
+      link.appendChild(tooltip);
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var email = this.dataset.email;
+        navigator.clipboard.writeText(email).then(function() {
+          link.classList.add('copied');
+          setTimeout(function() { link.classList.remove('copied'); }, 1500);
+        });
+      });
     });
   </script>
 </body>
