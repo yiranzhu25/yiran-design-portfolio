@@ -6,300 +6,246 @@
   <title>Maintaining Design System at Scale — Yiran Zhu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Instrument+Serif:ital@0;1&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="page-wrap">
+<body>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="nav-left">
-        <a href="index.html" class="nav-name">Yiran Zhu <span class="nav-plus">+</span></a>
-      </div>
-      <div class="nav-right">
-        <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
-        <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
-        <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
-      </div>
+  <!-- ── Header ───────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-col-left">
+      <a href="index.html" class="header-name header-link" style="font-weight:700;">Yiran Zhu</a>
+      <span class="header-title" style="font-size:16px; color: var(--color-text-primary);">Product Design @ Goldman Sachs</span>
     </div>
-  </nav>
+    <div class="header-col-right">
+      <a href="index.html#work" class="header-link">Work</a>
+      <a href="index.html#about" class="header-link">About</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
+      <a href="mailto:yiran.jour@gmail.com" class="header-link">Email</a>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav-dropdown" id="nav-dropdown" aria-hidden="true">
+      <a href="index.html#work" class="nav-dropdown-link">Work</a>
+      <a href="index.html#about" class="nav-dropdown-link">About</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
+      <a href="mailto:yiran.jour@gmail.com" class="nav-dropdown-link">Email</a>
+    </nav>
+  </header>
 
-  <!-- Hero: 2-col image grid -->
-  <div class="cs-hero">
-    <div class="container">
-      <div class="cs-hero-2col">
-        <!-- Left: color swatches / component library -->
-        <div style="background:#1B4FBF;border-radius:12px 0 0 12px;padding:24px;min-height:300px;display:flex;flex-direction:column;gap:12px;">
-          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
-            <div style="height:24px;border-radius:4px;background:#1B4FBF;border:2px solid rgba(255,255,255,0.4);"></div>
-            <div style="height:24px;border-radius:4px;background:#4A7FD4;"></div>
-            <div style="height:24px;border-radius:4px;background:#7BAAE0;"></div>
-            <div style="height:24px;border-radius:4px;background:#B5D0EF;"></div>
-            <div style="height:24px;border-radius:4px;background:#E8F2FF;"></div>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
-            <div style="height:24px;border-radius:4px;background:#1A472A;"></div>
-            <div style="height:24px;border-radius:4px;background:#2D7A3A;"></div>
-            <div style="height:24px;border-radius:4px;background:#52B368;"></div>
-            <div style="height:24px;border-radius:4px;background:#A8DCBA;"></div>
-            <div style="height:24px;border-radius:4px;background:#E0F5E6;"></div>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;">
-            <div style="height:24px;border-radius:4px;background:#7A1515;"></div>
-            <div style="height:24px;border-radius:4px;background:#C0392B;"></div>
-            <div style="height:24px;border-radius:4px;background:#E57373;"></div>
-            <div style="height:24px;border-radius:4px;background:#FFCDD2;"></div>
-            <div style="height:24px;border-radius:4px;background:#FFF5F5;"></div>
-          </div>
-          <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:10px;margin-top:4px;">
-            <div style="height:5px;background:rgba(255,255,255,0.4);border-radius:2px;margin-bottom:5px;width:60%;"></div>
-            <div style="height:5px;background:rgba(255,255,255,0.2);border-radius:2px;margin-bottom:5px;width:80%;"></div>
-            <div style="height:5px;background:rgba(255,255,255,0.15);border-radius:2px;width:50%;"></div>
-          </div>
-          <div style="background:rgba(255,255,255,0.1);border-radius:8px;padding:10px;">
-            <div style="display:flex;gap:6px;margin-bottom:6px;">
-              <div style="background:rgba(255,255,255,0.2);border-radius:3px;height:14px;flex:1;"></div>
-              <div style="background:rgba(255,255,255,0.2);border-radius:3px;height:14px;flex:1;"></div>
-              <div style="background:rgba(255,255,255,0.2);border-radius:3px;height:14px;flex:1;"></div>
-            </div>
-            <div style="display:flex;gap:6px;">
-              <div style="background:rgba(255,255,255,0.1);border-radius:3px;height:10px;flex:1;"></div>
-              <div style="background:rgba(255,255,255,0.1);border-radius:3px;height:10px;flex:1;"></div>
-              <div style="background:rgba(255,255,255,0.1);border-radius:3px;height:10px;flex:1;"></div>
-            </div>
-          </div>
-        </div>
-        <!-- Right: dashboard/charts -->
-        <div style="background:#fff;border:1px solid #eee;border-radius:0 12px 12px 0;padding:20px;min-height:300px;display:flex;flex-direction:column;gap:12px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-            <div style="background:#f5f7fa;border-radius:8px;padding:12px;">
-              <div style="font-size:10px;color:#888;margin-bottom:6px;">Charts &amp; Graphs</div>
-              <div style="display:flex;align-items:flex-end;gap:4px;height:50px;">
-                <div style="background:#1B4FBF;width:14px;border-radius:2px 2px 0 0;" class="cs-bar" style="height:70%;"></div>
-                <div style="background:#4A7FD4;width:14px;height:85%;border-radius:2px 2px 0 0;"></div>
-                <div style="background:#7BAAE0;width:14px;height:55%;border-radius:2px 2px 0 0;"></div>
-                <div style="background:#B5D0EF;width:14px;height:90%;border-radius:2px 2px 0 0;"></div>
-                <div style="background:#1B4FBF;width:14px;height:65%;border-radius:2px 2px 0 0;"></div>
-              </div>
-            </div>
-            <div style="background:#f5f7fa;border-radius:8px;padding:12px;">
-              <div style="font-size:10px;color:#888;margin-bottom:6px;">Tooltip</div>
-              <div style="background:#1B4FBF;border-radius:6px;padding:8px;">
-                <div style="font-size:9px;color:#fff;font-weight:600;margin-bottom:3px;">August 2019</div>
-                <div style="font-size:8px;color:rgba(255,255,255,0.7);">Avg Spend: $10,000+</div>
-                <div style="font-size:8px;color:rgba(255,255,255,0.7);">Customer: ESPN</div>
-              </div>
-            </div>
-          </div>
-          <div style="background:#f5f7fa;border-radius:8px;padding:12px;">
-            <div style="font-size:10px;color:#888;margin-bottom:8px;">Tab</div>
-            <div style="display:flex;gap:0;border-bottom:2px solid #e0e0e0;margin-bottom:8px;">
-              <div style="font-size:10px;color:#1B4FBF;font-weight:600;padding:4px 12px;border-bottom:2px solid #1B4FBF;margin-bottom:-2px;">Overview</div>
-              <div style="font-size:10px;color:#999;padding:4px 12px;">Details</div>
-              <div style="font-size:10px;color:#999;padding:4px 12px;">History</div>
-            </div>
-            <div style="display:flex;gap:4px;align-items:flex-end;height:36px;">
-              <div style="background:#C0392B;flex:1;border-radius:2px 2px 0 0;" style="height:80%;"></div>
-              <div style="background:#E57373;flex:1;height:55%;border-radius:2px 2px 0 0;"></div>
-              <div style="background:#FFCDD2;flex:1;height:70%;border-radius:2px 2px 0 0;"></div>
-              <div style="background:#1B4FBF;flex:1;height:90%;border-radius:2px 2px 0 0;"></div>
-              <div style="background:#4A7FD4;flex:1;height:60%;border-radius:2px 2px 0 0;"></div>
-            </div>
-          </div>
+  <!-- ── Hero: full-bleed image ─────────────────────── -->
+  <section class="cs-hero-fullbleed">
+    <img src="img/pros-case-thumb.png" alt="Design System at Scale" class="cs-hero-fullbleed-img">
+  </section>
+
+  <!-- ── Sections ─────────────────────────────────────── -->
+  <div class="cs-sections-wrap">
+
+    <!-- Title + Metadata -->
+    <section class="cs-content-section cs-content-section--title">
+      <div class="cs-title-left">
+        <h1 class="cs-title-heading">Maintaining <em class="type-hero-accent">Design System at Scale</em></h1>
+        <p class="cs-title-desc">Unified the enterprise user experience through a scalable design system, achieving accessibility and platform consistency to accelerate new product adoption.</p>
+        <div class="tags">
+          <span class="tag">Tech</span>
+          <span class="tag">Design System</span>
+          <span class="tag">UI Design</span>
         </div>
       </div>
+      <ul class="cs-meta-list">
+        <li>
+          <span class="cs-meta-list-label">Company</span>
+          <p class="cs-meta-list-value">PROS</p>
+        </li>
+        <li>
+          <span class="cs-meta-list-label">Role</span>
+          <p class="cs-meta-list-value">UI Design</p>
+        </li>
+        <li>
+          <span class="cs-meta-list-label">Timeline</span>
+          <p class="cs-meta-list-value">2018–2019</p>
+        </li>
+        <li>
+          <span class="cs-meta-list-label">Team</span>
+          <p class="cs-meta-list-value">UI designers, UX designers, researchers, PMs and engineers</p>
+        </li>
+        <li>
+          <span class="cs-meta-list-label">Product contribution</span>
+          <p class="cs-meta-list-value">Maintained company design system, UI design</p>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Background text -->
+    <section class="cs-content-section">
+      <p class="cs-body-text">PROS built enterprise pricing optimization software for airlines and retail companies—complex data-heavy products where pricing analysts needed to execute strategies, analyze performance, and discover revenue opportunities.</p>
+      <p class="cs-body-text">Early in my career, as a UI designer, my role was to govern the "source of truth" across 54 components to ensure the organization could scale without accruing design and engineering debt. This was a critical part of PROS migration strategy to cloud based system.</p>
+      <p class="cs-body-text">Here were a few highlights of the achievements:</p>
+    </section>
+
+    <!-- Bridging the Source of Truth gap -->
+    <section class="cs-content-section">
+      <h2 class="cs-section-heading">Bridging the <span class="accent-italic">Source of Truth</span> gap</h2>
+      <div class="feature-grid-wrap">
+        <ul class="feature-list" style="grid-template-columns: 1fr;">
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M16.49 10H12.35L10.86 13.74L10.35 15H8.99996H7.29996L5.07996 20H19.35L16.49 10Z" fill="#4666FF"/>
+                <path d="M18 8H11L9 13H6L2 22H22L18 8ZM7.3 15H9H10.35L10.85 13.74L12.35 10H16.49L19.35 20H5.08L7.3 15Z" fill="#4666FF"/>
+                <path d="M15 1H13V5H15V1Z" fill="#4666FF"/>
+                <path d="M18.9496 2.64035L16.1212 5.46875L17.5354 6.88295L20.3638 4.05455L18.9496 2.64035Z" fill="#4666FF"/>
+                <path d="M9.05385 2.6367L7.63965 4.0509L10.468 6.8793L11.8822 5.4651L9.05385 2.6367Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Challenge</h5>
+            </div>
+            <p class="feature-desc">Discrepancies between Sketch files, documentation, and the code library were generating many UI fix tickets, and slowing down sprint velocity.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M14.5 9.5C14.5 6.47 12.03 4 9 4C5.97 4 3.5 6.47 3.5 9.5C3.5 11.97 4.99 13.39 5.85 14H12.15C13.01 13.39 14.5 11.97 14.5 9.5Z" fill="#4666FF"/>
+                <path d="M7 20H11C11 21.1 10.1 22 9 22C7.9 22 7 21.1 7 20ZM5 19H13V17H5V19ZM16.5 9.5C16.5 13.32 13.84 15.36 12.73 16H5.27C4.16 15.36 1.5 13.32 1.5 9.5C1.5 5.36 4.86 2 9 2C13.14 2 16.5 5.36 16.5 9.5ZM14.5 9.5C14.5 6.47 12.03 4 9 4C5.97 4 3.5 6.47 3.5 9.5C3.5 11.97 4.99 13.39 5.85 14H12.15C13.01 13.39 14.5 11.97 14.5 9.5ZM21.37 7.37L20 8L21.37 8.63L22 10L22.63 8.63L24 8L22.63 7.37L22 6L21.37 7.37ZM19 6L19.94 3.94L22 3L19.94 2.06L19 0L18.06 2.06L16 3L18.06 3.94L19 6Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Solution</h5>
+            </div>
+            <p class="feature-desc">I led a <strong>gap analysis of 132 component variants</strong>, identifying misalignments that caused friction during handoffs.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M12.35 16.1804L7.82005 11.6504L5.30005 18.7004L12.35 16.1804Z" fill="#4666FF"/>
+                <path d="M2 22L16 17L7 8L2 22ZM12.35 16.18L5.3 18.7L7.82 11.65L12.35 16.18Z" fill="#4666FF"/>
+                <path d="M14.53 12.5306L20.12 6.94062C20.61 6.45062 21.4 6.45062 21.89 6.94062L22.48 7.53063L23.54 6.47062L22.95 5.88063C21.88 4.81062 20.13 4.81062 19.06 5.88063L13.47 11.4706L14.53 12.5306Z" fill="#4666FF"/>
+                <path d="M9.46997 7.47094L10.53 8.53094L11.12 7.94094C12.19 6.87094 12.19 5.12094 11.12 4.05094L10.53 3.46094L9.46997 4.53094L10.06 5.12094C10.54 5.60094 10.54 6.40094 10.06 6.88094L9.46997 7.47094Z" fill="#4666FF"/>
+                <path d="M17.06 11.8806L15.47 13.4706L16.53 14.5306L18.12 12.9406C18.61 12.4506 19.4 12.4506 19.89 12.9406L21.5 14.5506L22.56 13.4906L20.95 11.8806C19.87 10.8106 18.13 10.8106 17.06 11.8806Z" fill="#4666FF"/>
+                <path d="M15.06 5.88094L11.47 9.47094L12.53 10.5309L16.12 6.94094C17.19 5.87094 17.19 4.12094 16.12 3.05094L14.53 1.46094L13.47 2.52094L15.06 4.11094C15.54 4.60094 15.54 5.40094 15.06 5.88094Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Impact</h5>
+            </div>
+            <p class="feature-desc">I drove an alignment process that moved <strong>20+ core components</strong> into full parity across design and production, eliminating average <strong>60% UI fix tickets</strong> per sprint.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+  </div><!-- /cs-sections-wrap -->
+
+  <!-- ── Full-width image grid ──────────────────────── -->
+  <div class="ds-image-grid">
+    <div class="ds-image-grid-cell">
+      <img src="img/pros-data-viz.png" alt="Data visualization samples">
+    </div>
+    <div class="ds-image-grid-cell">
+      <img src="img/pros-tooltips.png" alt="Tooltip patterns">
     </div>
   </div>
 
-  <!-- Metadata -->
-  <div class="container">
-    <div class="cs-meta">
-      <div class="cs-meta-left">
-        <h1 class="cs-title">Maintaining <span class="text-bold">Design System at Scale</span></h1>
-        <p class="cs-desc">Unified the enterprise user experience through a scalable design system, achieving accessibility and platform consistency to accelerate new product adoption.</p>
-        <div class="tags">
-          <span class="tag tag--dark-blue">Tech</span>
-          <span class="tag tag--dark-blue">Design System</span>
-          <span class="tag tag--dark-blue">UI Design</span>
-        </div>
-      </div>
-      <div class="cs-meta-right">
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Company</span>
-          <span class="cs-meta-value">PROS</span>
-        </div>
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Role</span>
-          <span class="cs-meta-value">UI Design</span>
-        </div>
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Timeline</span>
-          <span class="cs-meta-value">2018–2019</span>
-        </div>
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Team</span>
-          <span class="cs-meta-value">UI designers, UX designers, researchers, PMs and engineers</span>
-        </div>
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Product contribution</span>
-          <span class="cs-meta-value">Maintained company design system</span>
-        </div>
-      </div>
-    </div>
+  <div class="cs-sections-wrap">
 
-    <!-- Background -->
-    <div class="cs-section">
-      <p class="cs-section-body">PROS built enterprise pricing optimization software for airlines and retail companies—complex data-heavy products where pricing analysts needed to execute strategies, analyze performance, and discover revenue opportunities.</p>
-      <p class="cs-section-body">Early in my career, as a UI designer, my role was to govern the "source of truth" across 54 components to ensure the organization could scale without accruing design and engineering debt. This was a critical part of PROS migration strategy to cloud based system.</p>
-      <p class="cs-section-body">Here were a few highlights of the achievements:</p>
-    </div>
-
-    <!-- Bridging the Source of Truth Gap -->
-    <div class="cs-section">
-      <h2 class="cs-section-title">Bridging the <span class="text-bold">"Source of Truth" Gap</span></h2>
-
-      <div class="cs-trio">
-        <div class="cs-trio-item">
-          <div class="cs-trio-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11 6L15 6.5L12 9.2L12.8 13.5L9 11.5L5.2 13.5L6 9.2L3 6.5L7 6L9 2Z" stroke="#F97316" stroke-width="1.4" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="cs-trio-label">Challenge</div>
-          <p class="cs-trio-desc">Discrepancies between Sketch files, documentation, and the code library were generating many UI fix tickets, and slowing down sprint velocity.</p>
-        </div>
-        <div class="cs-trio-item">
-          <div class="cs-trio-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="#3B82F6" stroke-width="1.4"/><path d="M6 9l2 2 4-4" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="cs-trio-label">Solution</div>
-          <p class="cs-trio-desc">I led a <strong>gap analysis of 132 component variants</strong>, identifying misalignments that caused friction during handoffs.</p>
-        </div>
-        <div class="cs-trio-item">
-          <div class="cs-trio-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 13l4-4 3 3 5-7" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="cs-trio-label">Impact</div>
-          <p class="cs-trio-desc">I drove an alignment process that moved <strong>20+ core components</strong> into full parity across design and production, <strong>eliminating average 60% UI fix tickets</strong> per sprint.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Chart image placeholder -->
-    <div class="cs-section">
-      <div class="cs-image-placeholder" style="display:flex;gap:16px;padding:24px;height:auto;min-height:200px;">
-        <!-- Chart samples illustration -->
-        <div style="flex:1;background:#fff;border-radius:8px;border:1px solid #eee;padding:16px;">
-          <div style="font-size:10px;color:#888;margin-bottom:10px;">Revenue by Region</div>
-          <div style="display:flex;align-items:flex-end;gap:5px;height:80px;">
-            <div style="display:flex;flex-direction:column;gap:2px;align-items:flex-end;gap:5px;height:80px;flex:1;">
-              <div style="background:#1B4FBF;flex:1;width:100%;border-radius:2px 2px 0 0;opacity:0.9;min-height:20px;"></div>
-              <div style="background:#4A7FD4;flex:0.7;width:100%;border-radius:2px 2px 0 0;min-height:14px;"></div>
-              <div style="background:#C0392B;flex:0.5;width:100%;border-radius:2px 2px 0 0;min-height:10px;"></div>
+    <!-- High Density Data Visualization -->
+    <section class="cs-content-section">
+      <h2 class="cs-section-heading"><span class="accent-italic">High Density</span> Data Visualization</h2>
+      <div class="feature-grid-wrap">
+        <ul class="feature-list" style="grid-template-columns: 1fr;">
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M16.49 10H12.35L10.86 13.74L10.35 15H8.99996H7.29996L5.07996 20H19.35L16.49 10Z" fill="#4666FF"/>
+                <path d="M18 8H11L9 13H6L2 22H22L18 8ZM7.3 15H9H10.35L10.85 13.74L12.35 10H16.49L19.35 20H5.08L7.3 15Z" fill="#4666FF"/>
+                <path d="M15 1H13V5H15V1Z" fill="#4666FF"/>
+                <path d="M18.9496 2.64035L16.1212 5.46875L17.5354 6.88295L20.3638 4.05455L18.9496 2.64035Z" fill="#4666FF"/>
+                <path d="M9.05385 2.6367L7.63965 4.0509L10.468 6.8793L11.8822 5.4651L9.05385 2.6367Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Challenge</h5>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;height:80px;flex:1;">
-              <div style="background:#1B4FBF;flex:0.6;width:100%;border-radius:2px 2px 0 0;min-height:12px;"></div>
-              <div style="background:#4A7FD4;flex:0.9;width:100%;border-radius:2px 2px 0 0;min-height:18px;"></div>
-              <div style="background:#C0392B;flex:0.4;width:100%;border-radius:2px 2px 0 0;min-height:8px;"></div>
+            <p class="feature-desc">Standardizing complex data visualization tools for pricing analysis without sacrificing technical feasibility.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M14.5 9.5C14.5 6.47 12.03 4 9 4C5.97 4 3.5 6.47 3.5 9.5C3.5 11.97 4.99 13.39 5.85 14H12.15C13.01 13.39 14.5 11.97 14.5 9.5Z" fill="#4666FF"/>
+                <path d="M7 20H11C11 21.1 10.1 22 9 22C7.9 22 7 21.1 7 20ZM5 19H13V17H5V19ZM16.5 9.5C16.5 13.32 13.84 15.36 12.73 16H5.27C4.16 15.36 1.5 13.32 1.5 9.5C1.5 5.36 4.86 2 9 2C13.14 2 16.5 5.36 16.5 9.5ZM14.5 9.5C14.5 6.47 12.03 4 9 4C5.97 4 3.5 6.47 3.5 9.5C3.5 11.97 4.99 13.39 5.85 14H12.15C13.01 13.39 14.5 11.97 14.5 9.5ZM21.37 7.37L20 8L21.37 8.63L22 10L22.63 8.63L24 8L22.63 7.37L22 6L21.37 7.37ZM19 6L19.94 3.94L22 3L19.94 2.06L19 0L18.06 2.06L16 3L18.06 3.94L19 6Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Solution</h5>
             </div>
-          </div>
-        </div>
-        <div style="flex:1;background:#1B4FBF;border-radius:8px;padding:16px;color:#fff;">
-          <div style="font-size:10px;color:rgba(255,255,255,0.7);margin-bottom:6px;font-weight:600;letter-spacing:0.05em;">TOOLTIP TITLE</div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.6);margin-bottom:10px;">Removable for highly customized cases</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;">
-            <div style="font-size:9px;color:rgba(255,255,255,0.6);">Quarter</div>
-            <div style="font-size:9px;color:#fff;font-weight:600;">2019 Q1</div>
-            <div style="font-size:9px;color:rgba(255,255,255,0.6);">Avg Monthly Spend</div>
-            <div style="font-size:9px;color:#fff;font-weight:600;">$10,000+</div>
-            <div style="font-size:9px;color:rgba(255,255,255,0.6);">Customer</div>
-            <div style="font-size:9px;color:#fff;font-weight:600;">ESPN</div>
-            <div style="font-size:9px;color:rgba(255,255,255,0.6);">Discount</div>
-            <div style="font-size:9px;color:#fff;font-weight:600;">5.12%</div>
-          </div>
-        </div>
+            <p class="feature-desc">I acted as the bridge between user-centered standards and architectural constraints.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M12.35 16.1804L7.82005 11.6504L5.30005 18.7004L12.35 16.1804Z" fill="#4666FF"/>
+                <path d="M2 22L16 17L7 8L2 22ZM12.35 16.18L5.3 18.7L7.82 11.65L12.35 16.18Z" fill="#4666FF"/>
+                <path d="M14.53 12.5306L20.12 6.94062C20.61 6.45062 21.4 6.45062 21.89 6.94062L22.48 7.53063L23.54 6.47062L22.95 5.88063C21.88 4.81062 20.13 4.81062 19.06 5.88063L13.47 11.4706L14.53 12.5306Z" fill="#4666FF"/>
+                <path d="M9.46997 7.47094L10.53 8.53094L11.12 7.94094C12.19 6.87094 12.19 5.12094 11.12 4.05094L10.53 3.46094L9.46997 4.53094L10.06 5.12094C10.54 5.60094 10.54 6.40094 10.06 6.88094L9.46997 7.47094Z" fill="#4666FF"/>
+                <path d="M17.06 11.8806L15.47 13.4706L16.53 14.5306L18.12 12.9406C18.61 12.4506 19.4 12.4506 19.89 12.9406L21.5 14.5506L22.56 13.4906L20.95 11.8806C19.87 10.8106 18.13 10.8106 17.06 11.8806Z" fill="#4666FF"/>
+                <path d="M15.06 5.88094L11.47 9.47094L12.53 10.5309L16.12 6.94094C17.19 5.87094 17.19 4.12094 16.12 3.05094L14.53 1.46094L13.47 2.52094L15.06 4.11094C15.54 4.60094 15.54 5.40094 15.06 5.88094Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Impact</h5>
+            </div>
+            <p class="feature-desc">I standardized a <strong>universal tooltip pattern across 19 chart types across 4 product lines</strong>. I enabled developers to stop building one-off customizations, directly increasing their implementation speed.</p>
+          </li>
+        </ul>
       </div>
-    </div>
-
-    <!-- High-Density Data Visualization -->
-    <div class="cs-section">
-      <h2 class="cs-section-title"><span class="text-bold">High-Density</span> Data Visualization</h2>
-
-      <div class="cs-trio">
-        <div class="cs-trio-item">
-          <div class="cs-trio-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L11 6L15 6.5L12 9.2L12.8 13.5L9 11.5L5.2 13.5L6 9.2L3 6.5L7 6L9 2Z" stroke="#F97316" stroke-width="1.4" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="cs-trio-label">Challenge</div>
-          <p class="cs-trio-desc">Standardizing complex data visualization tools for pricing analysis without sacrificing technical feasibility.</p>
-        </div>
-        <div class="cs-trio-item">
-          <div class="cs-trio-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="#3B82F6" stroke-width="1.4"/><path d="M6 9l2 2 4-4" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="cs-trio-label">Solution</div>
-          <p class="cs-trio-desc">I acted as the bridge between user-centered standards and architectural constraints.</p>
-        </div>
-        <div class="cs-trio-item">
-          <div class="cs-trio-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 13l4-4 3 3 5-7" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="cs-trio-label">Impact</div>
-          <p class="cs-trio-desc">I standardized a <strong>universal tooltip pattern across 19 chart types across 4 product lines</strong>. I enabled developers to stop building one-off customizations, directly increasing their implementation speed.</p>
-        </div>
-      </div>
-    </div>
+    </section>
 
     <!-- Governance & System Integrity -->
-    <div class="cs-section">
-      <h2 class="cs-section-title">Governance &amp; System Integrity</h2>
-
-      <div class="cs-grid cs-grid--3" style="margin-top:24px;">
-
-        <div class="cs-grid-item">
-          <div class="cs-grid-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2L4 5v5c0 4 2.8 7.7 6 9 3.2-1.3 6-5 6-9V5L10 2z" stroke="#7B5CF5" stroke-width="1.4" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 class="cs-grid-label">Consultative Design</h4>
-          <p class="cs-grid-desc">When teams requested custom components, I functioned as a "system consultant"—evaluating the frequency of the need and proposing existing patterns to prevent library fragmentation.</p>
-        </div>
-
-        <div class="cs-grid-item">
-          <div class="cs-grid-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="#7B5CF5" stroke-width="1.4"/><path d="M7 10l2 2 4-4" stroke="#7B5CF5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 class="cs-grid-label">Inclusive Design</h4>
-          <p class="cs-grid-desc">I ensured <strong>100% of my components met WCAG AA standards</strong>, recognizing that accessibility is a non-negotiable requirement for enterprise-grade SaaS.</p>
-        </div>
-
+    <section class="cs-content-section">
+      <h2 class="cs-section-heading">Governance &amp; <span class="accent-italic">System Integrity</span></h2>
+      <div class="feature-grid-wrap">
+        <ul class="feature-list" style="grid-template-columns: 1fr;">
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M15 11V4H4V12.17L4.59 11.59L5.17 11H6H15Z" fill="#4666FF"/>
+                <path d="M21 6H19V15H6V17C6 17.55 6.45 18 7 18H18L22 22V7C22 6.45 21.55 6 21 6ZM16 13C16.55 13 17 12.55 17 12V3C17 2.45 16.55 2 16 2H3C2.45 2 2 2.45 2 3V17L6 13H16ZM4.59 11.59L4 12.17V4H15V11H5.17L4.59 11.59Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Consultative Design</h5>
+            </div>
+            <p class="feature-desc">When teams requested custom components, I functioned as a "system consultant"—evaluating the frequency of the need and proposing existing patterns to prevent library fragmentation.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M20.5 6C17.89 6.7 14.83 7 12 7C9.17 7 6.11 6.7 3.5 6L3 8C4.86 8.5 7 8.83 9 9V22H11V16H13V22H15V9C17 8.83 19.14 8.5 21 8L20.5 6ZM12 6C13.1 6 14 5.1 14 4C14 2.9 13.1 2 12 2C10.9 2 10 2.9 10 4C10 5.1 10.9 6 12 6Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Inclusive Design</h5>
+            </div>
+            <p class="feature-desc">I ensured <strong>100% of my components met WCAG AA standards</strong>, recognizing that accessibility is a non-negotiable requirement for enterprise-grade SaaS.</p>
+          </li>
+        </ul>
       </div>
+    </section>
+
+  </div><!-- /cs-sections-wrap -->
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="header-col-left">
+      <span class="header-name"><strong>Yiran Zhu</strong></span>
     </div>
-
-  </div><!-- /container -->
-
-  <!-- Footer -->
-  <footer class="page-footer">
-    <div class="container">
-      <div class="page-footer-inner">
-        <a href="index.html" class="footer-name">← Yiran Zhu</a>
-        <div class="footer-links">
-          <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
-          <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
-          <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
-        </div>
-      </div>
+    <div class="header-col-right">
+      <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="header-link">LinkedIn</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
+      <a href="mailto:yiran.jour@gmail.com" class="header-link header-link-bold">yiran.jour@gmail.com</a>
     </div>
   </footer>
 
   <script>
-    document.querySelectorAll('[data-accordion]').forEach(acc => {
-      const btn  = acc.querySelector('.accordion-header');
-      const body = acc.querySelector('.accordion-body');
-      if (!btn || !body) return;
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        body.hidden = expanded;
+    var hamburgerBtn = document.getElementById('hamburger-btn');
+    var navDropdown  = document.getElementById('nav-dropdown');
+    if (hamburgerBtn && navDropdown) {
+      hamburgerBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = navDropdown.classList.toggle('open');
+        hamburgerBtn.setAttribute('aria-expanded', open);
       });
-    });
+      document.addEventListener('click', function() {
+        navDropdown.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    }
   </script>
 </body>
 </html>

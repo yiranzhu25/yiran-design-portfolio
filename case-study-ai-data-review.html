@@ -6,216 +6,377 @@
   <title>AI Data Review Transformation — Yiran Zhu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap">
   <link rel="stylesheet" href="styles.css">
+ 
 </head>
-<body class="page-wrap">
+<body>
 
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="nav-left">
-        <a href="index.html" class="nav-name">Yiran Zhu <span class="nav-plus">+</span></a>
-      </div>
-      <div class="nav-right">
-        <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
-        <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
-        <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
-      </div>
+  <!-- ── Header ───────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-col-left">
+      <a href="index.html" class="header-name header-link" style="font-weight:700;">Yiran Zhu</a>
+      <span class="header-title" style="font-size:16px; color: var(--color-text-primary);">Product Design @ Goldman Sachs</span>
     </div>
-  </nav>
+    <div class="header-col-right">
+      <a href="index.html#work" class="header-link">Work</a>
+      <a href="index.html#about" class="header-link">About</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
+      <a href="mailto:yiran.jour@gmail.com" class="header-link">Email</a>
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav class="nav-dropdown" id="nav-dropdown" aria-hidden="true">
+      <a href="index.html#work" class="nav-dropdown-link">Work</a>
+      <a href="index.html#about" class="nav-dropdown-link">About</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
+      <a href="mailto:yiran.jour@gmail.com" class="nav-dropdown-link">Email</a>
+    </nav>
+  </header>
 
-  <!-- Hero -->
-  <div class="cs-hero">
-    <div class="container">
-      <div class="cs-hero-inner">
-        <!-- AI Data Review UI mockup -->
-   <img src="img/ai-data-review-case-thumb.png" alt="AI Data Review UI mockup" class="cs-hero-image">
+  <!-- ── Hero: AI Review UI Mockup ──────────────────── -->
+  <div class="cs-hero-widget">
+    <div class="cs-widget-inner">
+
+      <!-- Pagination + Toggle bar -->
+      <div class="widget-bar">
+        <div class="widget-bar-left">
+          <div class="widget-pagination-btns">
+            <button class="widget-pagination-btn" aria-label="Previous">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M7.5 2L3.5 6L7.5 10" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button class="widget-pagination-btn" aria-label="Next">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2L8.5 6L4.5 10" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <span class="widget-pagination-label">1 of 10 exceptions</span>
+        </div>
+        <div class="widget-toggle-group">
+          <div class="widget-toggle-track">
+            <div class="widget-toggle-thumb"></div>
+          </div>
+          <span class="widget-toggle-label">Exception only</span>
+        </div>
       </div>
+
+      <!-- AI extracted row -->
+      <div class="widget-row widget-row--ai">
+        <div class="widget-row-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L13.6 6.8H18.8L14.6 9.6L16.2 14.4L12 11.6L7.8 14.4L9.4 9.6L5.2 6.8H10.4L12 2Z" fill="#b54708" opacity="0.8"/>
+            <path d="M19 2L19.8 4.4H22L20.1 5.7L20.9 8L19 6.7L17.1 8L17.9 5.7L16 4.4H18.2L19 2Z" fill="#b54708" opacity="0.6"/>
+            <path d="M5 14L5.5 15.7H7.2L5.85 16.6L6.35 18.3L5 17.4L3.65 18.3L4.15 16.6L2.8 15.7H4.5L5 14Z" fill="#b54708" opacity="0.6"/>
+          </svg>
+        </div>
+        <div class="widget-row-content">
+          <span class="widget-ai-label">AI extracted with potential issues</span>
+        </div>
+        <div class="widget-row-action">
+          <span class="widget-view-btn">View reasoning
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Manual input row -->
+      <div class="widget-row widget-row--manual">
+        <div class="widget-row-icon">
+          <div class="widget-avatar"></div>
+        </div>
+        <div class="widget-row-content">
+          <div class="widget-manual-info">
+            <span class="widget-manual-title">Manual input</span>
+            <div class="widget-manual-sub">
+              <span>Olivia Kiu</span>
+              <span class="widget-dot"></span>
+              <span>Mar 3, 2025 14:22 EST</span>
+            </div>
+          </div>
+        </div>
+        <div class="widget-row-action">
+          <span class="widget-view-btn widget-view-btn--disabled">View reasoning
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#d5d7da" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Citation card -->
+      <div class="widget-citation">
+        <div class="widget-citation-tabs">
+          <div class="widget-citation-tab-left">
+            <span class="widget-badge-dark">Citation 1</span>
+            <div class="widget-badge-file">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="1" width="8" height="11" rx="1" stroke="#414651" stroke-width="1.2"/><path d="M4 4h4M4 6.5h4M4 9h2" stroke="#414651" stroke-width="1" stroke-linecap="round"/></svg>
+              DocumentA.pdf
+            </div>
+            <span class="widget-dot"></span>
+            <span class="widget-badge-page">Page 29</span>
+          </div>
+          <div class="widget-citation-actions">
+            <svg class="widget-action-icon" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" rx="2" stroke="#6b7280" stroke-width="1.3"/><path d="M5 8h6M5 5.5h4M5 10.5h3" stroke="#6b7280" stroke-width="1" stroke-linecap="round"/></svg>
+            <svg class="widget-action-icon" viewBox="0 0 16 16" fill="none"><path d="M10 2L14 6L6 14H2V10L10 2Z" stroke="#6b7280" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="widget-action-icon" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#6b7280" stroke-width="1.3"/><path d="M8 5v3l2 2" stroke="#6b7280" stroke-width="1.3" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <div class="widget-citation-body">
+          <p class="widget-citation-text">The Client hereby acknowledges that the reallocation of allocated capital remains contingent upon the successful verification of all secondary identifiers. <span class="widget-text-highlight">In the event of a discrepancy exceeding the established 0.05% threshold, the automated validation protocol will trigger a mandatory manual review.</span></p>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Metadata -->
-  <div class="container">
-    <div class="cs-meta">
-      <div class="cs-meta-left">
-        <h1 class="cs-title"><span class="text-bold">AI Data Review</span> Transformation</h1>
-        <p class="cs-desc">Designed an AI-driven data review that transformed a 7-hour manual process into a 30-minute exception-based audit, reducing vendor dependency and build user trust through explainable AI.</p>
+  <!-- ── Sections ─────────────────────────────────────── -->
+  <div class="cs-sections-wrap">
+
+    <!-- Title + Metadata -->
+    <section class="cs-content-section cs-content-section--title">
+      <div class="cs-title-left">
+        <h1 class="cs-title-heading">
+          <em class="type-hero-accent">AI Data Review</em> Transformation
+        </h1>
+        <p class="cs-title-desc">Designed an AI-driven data review that transformed a 7-hour manual process into a 30-minute exception-based audit, reducing vendor dependency and build user trust through explainable AI.</p>
         <div class="tags">
-          <span class="tag">Finance</span>
           <span class="tag">AI-HITL</span>
+          <span class="tag">AI UX Patterns</span>
         </div>
       </div>
-      <div class="cs-meta-right">
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Company</span>
-          <span class="cs-meta-value">Goldman Sachs</span>
-        </div>
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Role</span>
-          <span class="cs-meta-value">Product Design</span>
-        </div>
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Timeline</span>
-          <span class="cs-meta-value">July 2024 – Ongoing</span>
-        </div>
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Team</span>
-          <span class="cs-meta-value">PM, engineers, legal consultant and SME</span>
-        </div>
-        <div class="cs-meta-field">
-          <span class="cs-meta-label">Product contribution</span>
-          <span class="cs-meta-value">Led product design vision, design execution, and stakeholder alignment from strategies through phased delivery.</span>
-        </div>
-      </div>
-    </div>
+      <ul class="cs-meta-list">
+        <li>
+          <span class="cs-meta-list-label">Company</span>
+          <p class="cs-meta-list-value">Goldman Sachs</p>
+        </li>
+        <li>
+          <span class="cs-meta-list-label">Role</span>
+          <p class="cs-meta-list-value">Product Design</p>
+        </li>
+        <li>
+          <span class="cs-meta-list-label">Timeline</span>
+          <p class="cs-meta-list-value">July 2025 - Ongoing</p>
+        </li>
+        <li>
+          <span class="cs-meta-list-label">Team</span>
+          <p class="cs-meta-list-value">PM, engineers, legal consultant and SME</p>
+        </li>
+        <li>
+          <span class="cs-meta-list-label">Product contribution</span>
+          <p class="cs-meta-list-value">Led product design vision, design execution, and stakeholder alignment from strategies through phased delivery.</p>
+        </li>
+      </ul>
+    </section>
 
     <!-- Confidentiality Note -->
-    <div class="accordion" data-accordion>
-      <button class="accordion-header" aria-expanded="false" aria-controls="acc-body-1">
-        <span>Confidentiality &amp; Design Note</span>
-        <span class="accordion-arrow">↑</span>
-      </button>
-      <div class="accordion-body" id="acc-body-1" hidden>
-        <p>To comply with NDA requirements, this case study omits proprietary business logic and utilizes a modified design system. The UX logic, information architecture, and business impact represent the actual work delivered. Full case study can be shared privately.</p>
+    <section class="cs-content-section cs-content-section--accordion">
+      <div class="accordion" data-accordion>
+        <button class="accordion-header" aria-expanded="false" aria-controls="acc-ai-body">
+          <span>Confidentiality &amp; Design Note</span>
+          <span class="accordion-arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="accordion-body" id="acc-ai-body" hidden>
+          <p>To comply with NDA requirements, this case study omits proprietary business logic and utilizes a modified design system. The UX logic, information architecture, and business impact represent the actual work delivered. Full case study can be shared privately.</p>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- What was broken -->
-    <div class="cs-section">
-      <h2 class="cs-section-title">What was <span class="text-bold">broken</span></h2>
-      <p class="cs-section-body">Every loan required two rounds of manual effort from 2 team members 7 hours total reviewing hundreds of data points against legal documents, plus 24 hours wait time on vendor. It can never be done on time, and business can never scale.</p>
-      <p class="cs-section-body">Limited capability of current legacy system and human error pose risk to data accuracy.</p>
-    </div>
-
-    <!-- How I designed the new solution -->
-    <div class="cs-section">
-      <h2 class="cs-section-title">How I designed the <span class="text-bold">new solution to hit the goals</span></h2>
-      <p class="cs-section-body">As the sole designer, I redesigned the experience to move from fully manual review to AI-driven exception-based auditing.</p>
-
-      <div class="cs-grid cs-grid--5">
-
-        <div class="cs-grid-item">
-          <div class="cs-grid-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#7B5CF5" stroke-width="1.5"/><circle cx="10" cy="10" r="3" stroke="#7B5CF5" stroke-width="1.5"/></svg>
-          </div>
-          <h4 class="cs-grid-label">Efficiency gain</h4>
-          <p class="cs-grid-desc">Mapping data to their original document coordinates addressed user's biggest time spent during review</p>
-        </div>
-
-        <div class="cs-grid-item">
-          <div class="cs-grid-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3L13 7H17L14 10L15 14L10 12L5 14L6 10L3 7H7L10 3Z" stroke="#7B5CF5" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 class="cs-grid-label">Trust in AI</h4>
-          <p class="cs-grid-desc">Explainable AI and confidence-based filter allows users to bypass verified data and focus on uncertain answers</p>
-        </div>
-
-        <div class="cs-grid-item">
-          <div class="cs-grid-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="3" stroke="#7B5CF5" stroke-width="1.5"/><path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#7B5CF5" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <h4 class="cs-grid-label">Overhead reduction</h4>
-          <p class="cs-grid-desc">Redefined operational workflow from 2-person double check to single-user oversight</p>
-        </div>
-
-        <div class="cs-grid-item">
-          <div class="cs-grid-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C5.6 2 2 5.6 2 10s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8z" stroke="#7B5CF5" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#7B5CF5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 class="cs-grid-label">Increased accuracy</h4>
-          <p class="cs-grid-desc">Limit manual touchpoint reduced human error, and robust real time data validation prevented unverified data getting into system</p>
-        </div>
-
-        <div class="cs-grid-item">
-          <div class="cs-grid-icon">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2l2.2 5.5H18l-4.5 3.3 1.7 5.2L10 13l-5.2 3 1.7-5.2L2 7.5h5.8L10 2z" stroke="#7B5CF5" stroke-width="1.5" stroke-linejoin="round"/></svg>
-          </div>
-          <h4 class="cs-grid-label">Cost saving</h4>
-          <p class="cs-grid-desc">In-house AI solution cut the millions of vendor cost</p>
-        </div>
-
+    <!-- Problem: Business cannot scale -->
+    <section class="cs-content-section">
+      <div>
+        <h2 class="cs-section-heading">Problem <span class="accent-italic">Business cannot scale</span></h2>
       </div>
-    </div>
+      <p class="cs-body-text">Every loan required two rounds of manual effort from 2 team members 7 hours total reviewing hundreds of data points against legal documents, plus 24 hours wait time on vendor.</p>
+      <p class="cs-body-text">It can never be done on time, and business can never scale. Limited capability of current legacy system and human error pose risk to data accuracy.</p>
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <p class="kpi-number">~500</p>
+          <div>
+            <p class="kpi-label">Data fields to review</p>
+            <p class="kpi-sublabel">Per process</p>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-number">7+</p>
+          <div>
+            <p class="kpi-label">Hours review time</p>
+            <p class="kpi-sublabel">Across two + rounds</p>
+          </div>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-number">24</p>
+          <div>
+            <p class="kpi-label">Hours wait time</p>
+            <p class="kpi-sublabel">On vendor</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution: AI-driven exception based review -->
+    <section class="cs-content-section">
+      <div>
+        <h2 class="cs-section-heading">Solution <span class="accent-italic">AI-driven exception based review</span></h2>
+      </div>
+      <p class="cs-body-text">As the sole designer, I redesigned the experience to move from fully manual review to AI-driven exception-based auditing.</p>
+      <a href="#" class="btn-demo">
+        View Vibe Coding Demo
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="feature-grid-wrap">
+        <ul class="feature-list">
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M12 4.02002C7.60002 4.02002 4.02002 7.60002 4.02002 12C4.02002 16.4 7.60002 19.98 12 19.98C16.4 19.98 19.98 16.4 19.98 12C19.98 7.60002 16.4 4.02002 12 4.02002ZM11.39 19V13.5H8.25002L12.75 5.00002V10.5H15.75L11.39 19Z" fill="#4666FF"/>
+                <path d="M12 2.02002C6.49002 2.02002 2.02002 6.49002 2.02002 12C2.02002 17.51 6.49002 21.98 12 21.98C17.51 21.98 21.98 17.51 21.98 12C21.98 6.49002 17.51 2.02002 12 2.02002ZM12 19.98C7.60002 19.98 4.02002 16.4 4.02002 12C4.02002 7.60002 7.60002 4.02002 12 4.02002C16.4 4.02002 19.98 7.60002 19.98 12C19.98 16.4 16.4 19.98 12 19.98ZM12.75 5.00002L8.25002 13.5H11.39V19L15.75 10.5H12.75V5.00002Z" fill="#4666FF"/>
+              </svg>
+              
+              <h5 class="feature-title">Efficiency gain</h5>
+            </div>
+            <p class="feature-desc">Mapping data to their original document coordinates addressed user's biggest time spent during review</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M12.2201 19.8491C12.0401 20.0291 11.7201 20.0591 11.5101 19.8491C11.3301 19.6691 11.3001 19.3491 11.5101 19.1391L14.9001 15.7491L13.4901 14.3391L10.1001 17.7291C9.91006 17.9291 9.59006 17.9191 9.39006 17.7291C9.18006 17.5191 9.21006 17.1991 9.39006 17.0191L12.7801 13.6291L11.3701 12.2191L7.98006 15.6091C7.80006 15.7891 7.48006 15.8191 7.27006 15.6091C7.08006 15.4191 7.08006 15.0991 7.27006 14.8991L10.6601 11.5091L9.24006 10.0991L5.85006 13.4891C5.67006 13.6691 5.35006 13.6991 5.14006 13.4891C4.95006 13.2891 4.95006 12.9791 5.14006 12.7791L9.52006 8.39914L11.3901 10.2591C12.3401 11.2091 13.9801 11.1991 14.9301 10.2591C15.9101 9.27914 15.9101 7.69914 14.9301 6.71914L13.0701 4.85914L13.3501 4.57914C14.1301 3.79914 15.4001 3.79914 16.1801 4.57914L20.4201 8.81914C21.2001 9.59914 21.2001 10.8691 20.4201 11.6491L12.2201 19.8491Z" fill="#4666FF"/>
+                <path d="M12.2201 19.85C12.0401 20.03 11.7201 20.06 11.5101 19.85C11.3301 19.67 11.3001 19.35 11.5101 19.14L14.9001 15.75L13.4901 14.34L10.1001 17.73C9.91009 17.93 9.59009 17.92 9.39009 17.73C9.18009 17.52 9.21009 17.2 9.39009 17.02L12.7801 13.63L11.3701 12.22L7.98009 15.61C7.80009 15.79 7.48009 15.82 7.27009 15.61C7.08009 15.42 7.08009 15.1 7.27009 14.9L10.6601 11.51L9.24009 10.1L5.85009 13.49C5.67009 13.67 5.35009 13.7 5.14009 13.49C4.95009 13.29 4.95009 12.98 5.14009 12.78L9.52009 8.4L11.3901 10.26C12.3401 11.21 13.9801 11.2 14.9301 10.26C15.9101 9.28 15.9101 7.7 14.9301 6.72L13.0701 4.86L13.3501 4.58C14.1301 3.8 15.4001 3.8 16.1801 4.58L20.4201 8.82C21.2001 9.6 21.2001 10.87 20.4201 11.65L12.2201 19.85ZM21.8301 13.07C23.3901 11.51 23.3901 8.98 21.8301 7.41L17.5901 3.17C16.0301 1.61 13.5001 1.61 11.9301 3.17L11.6501 3.45L11.3701 3.17C9.81009 1.61 7.28009 1.61 5.71009 3.17L2.17009 6.71C0.750092 8.13 0.620092 10.34 1.77009 11.9L3.22009 10.45C2.83009 9.7 2.96009 8.75 3.59009 8.12L7.13009 4.58C7.91009 3.8 9.18009 3.8 9.96009 4.58L13.5201 8.14C13.7001 8.32 13.7301 8.64 13.5201 8.85C13.3101 9.06 12.9901 9.03 12.8101 8.85L9.52009 5.57L3.72009 11.36C2.74009 12.33 2.74009 13.92 3.72009 14.9C4.11009 15.29 4.61009 15.53 5.14009 15.6C5.21009 16.12 5.44009 16.62 5.84009 17.02C6.24009 17.42 6.74009 17.65 7.26009 17.72C7.33009 18.24 7.56009 18.74 7.96009 19.14C8.36009 19.54 8.86009 19.77 9.38009 19.84C9.45009 20.38 9.69009 20.87 10.0801 21.26C10.5501 21.73 11.1801 21.99 11.8501 21.99C12.5201 21.99 13.1501 21.73 13.6201 21.26L21.8301 13.07Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Trust in AI</h5>
+            </div>
+            <p class="feature-desc">Explainable AI and confidence-based filter allows users to bypass verified data and focus on uncertain answers</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M9 10C9.82843 10 10.5 9.32843 10.5 8.5C10.5 7.67157 9.82843 7 9 7C8.17157 7 7.5 7.67157 7.5 8.5C7.5 9.32843 8.17157 10 9 10Z" fill="#4666FF"/>
+                <path opacity="0.3" d="M4.33984 17H13.6598C12.8198 16.42 10.7898 15.75 8.99984 15.75C7.20984 15.75 5.17984 16.42 4.33984 17Z" fill="#4666FF"/>
+                <path d="M9 12C10.93 12 12.5 10.43 12.5 8.5C12.5 6.57 10.93 5 9 5C7.07 5 5.5 6.57 5.5 8.5C5.5 10.43 7.07 12 9 12ZM9 7C9.83 7 10.5 7.67 10.5 8.5C10.5 9.33 9.83 10 9 10C8.17 10 7.5 9.33 7.5 8.5C7.5 7.67 8.17 7 9 7ZM9 13.75C6.66 13.75 2 14.92 2 17.25V19H16V17.25C16 14.92 11.34 13.75 9 13.75ZM4.34 17C5.18 16.42 7.21 15.75 9 15.75C10.79 15.75 12.82 16.42 13.66 17H4.34ZM16.04 13.81C17.2 14.65 18 15.77 18 17.25V19H22V17.25C22 15.23 18.5 14.08 16.04 13.81ZM15 12C16.93 12 18.5 10.43 18.5 8.5C18.5 6.57 16.93 5 15 5C14.46 5 13.96 5.13 13.5 5.35C14.13 6.24 14.5 7.33 14.5 8.5C14.5 9.67 14.13 10.76 13.5 11.65C13.96 11.87 14.46 12 15 12Z" fill="#4666FF"/>
+              </svg>
+             
+              <h5 class="feature-title">Overhead reduction</h5>
+            </div>
+            <p class="feature-desc">Redefined operational workflow from 2-person double check to single-user oversight</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path opacity="0.3" d="M12 4.14062L6 6.39062V11.0906C6 15.0906 8.55 18.7906 12 19.9206C15.45 18.7906 18 15.1006 18 11.0906V6.39062L12 4.14062ZM12 17.0006C9.24 17.0006 7 14.7606 7 12.0006C7 9.24063 9.24 7.00063 12 7.00063C14.76 7.00063 17 9.24063 17 12.0006C17 14.7606 14.76 17.0006 12 17.0006ZM13.65 14.3506L11.5 12.2006V9.00063H12.5V11.7906L14.35 13.6406L13.65 14.3506Z" fill="#4666FF"/>
+                <path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2ZM18 11.09C18 15.09 15.45 18.79 12 19.92C8.55 18.79 6 15.1 6 11.09V6.39L12 4.14L18 6.39V11.09ZM12 7C9.24 7 7 9.24 7 12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12C17 9.24 14.76 7 12 7ZM13.65 14.35L11.5 12.2V9H12.5V11.79L14.35 13.64L13.65 14.35Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Increased accuracy</h5>
+            </div>
+            <p class="feature-desc">Limit manual touchpoint reduced human error, and robust real time data validation prevented unverified data getting into system</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <g opacity="0.3">
+                  <path d="M19 9.50009L15.5 6.00009C15.5 5.35009 15.59 4.71009 15.76 4.09009C14.79 4.34009 14 5.06009 13.67 6.00009H7.5C5.57 6.00009 4 7.57009 4 9.50009C4 11.3801 5.22 16.1501 6.01 19.0001H8V17.0001H14V19.0001H16.01L17.56 13.8501L20 13.0301V9.50009H19ZM13 9.00009H8V7.00009H13V9.00009ZM16 11.0001C15.45 11.0001 15 10.5501 15 10.0001C15 9.45009 15.45 9.00009 16 9.00009C16.55 9.00009 17 9.45009 17 10.0001C17 10.5501 16.55 11.0001 16 11.0001Z" fill="#4666FF"/>
+                </g>
+                <path d="M15 10C15 9.45 15.45 9 16 9C16.55 9 17 9.45 17 10C17 10.55 16.55 11 16 11C15.45 11 15 10.55 15 10ZM8 9H13V7H8V9ZM22 7.5V14.47L19.18 15.41L17.5 21H12V19H10V21H4.5C4.5 21 2 12.54 2 9.5C2 6.46 4.46 4 7.5 4H12.5C13.41 2.79 14.86 2 16.5 2C17.33 2 18 2.67 18 3.5C18 3.71 17.96 3.9 17.88 4.08C17.74 4.42 17.62 4.81 17.56 5.23L19.83 7.5H22ZM20 9.5H19L15.5 6C15.5 5.35 15.59 4.71 15.76 4.09C14.79 4.34 14 5.06 13.67 6H7.5C5.57 6 4 7.57 4 9.5C4 11.38 5.22 16.15 6.01 19H8V17H14V19H16.01L17.56 13.85L20 13.03V9.5Z" fill="#4666FF"/>
+              </svg>
+              <h5 class="feature-title">Cost saving</h5>
+            </div>
+            <p class="feature-desc">In-house AI solution cut the millions of vendor cost</p>
+          </li>
+        </ul>
+      </div>
+    </section>
 
     <!-- Impact -->
-    <div class="cs-section impact-section">
-      <h2 class="cs-section-title">Impact</h2>
+    <section class="cs-content-section">
+      <div>
+        <h2 class="cs-section-heading">Impact</h2>
+      </div>
 
-      <!-- Grouped container -->
-      <div class="impact-card-group">
-        <!-- Phased Delivery -->
-        <div class="impact-group-inner">
-          <div class="impact-group-label-row">
-            <span class="badge badge--measured">MEASURED</span>
-            <span class="impact-card-group-label">Phased Delivery</span>
-          </div>
-          <div class="impact-grid impact-grid--2col">
-            <div class="impact-card">
-              <div class="impact-number">98%</div>
-              <div class="impact-sublabel">decrease on wait time</div>
-            </div>
-            <div class="impact-card">
-              <div class="impact-number">40%</div>
-              <div class="impact-sublabel">decrease on review time</div>
-            </div>
-          </div>
+      <!-- Blue cards row: Phased Delivery - Measured -->
+      <div class="impact-row">
+        <div class="impact-card-new impact-card-new--blue">
+          <p class="impact-overline">PHASED DELIVERY - MEASURED</p>
+          <p class="impact-number-new">98%</p>
+          <p class="impact-label-new">Decrease on wait time</p>
         </div>
-
-        <!-- Full Vision -->
-        <div class="impact-group-inner">
-          <div class="impact-group-label-row">
-            <span class="badge badge--projected">PROJECTED</span>
-            <span class="impact-card-group-label">Full Vision</span>
-          </div>
-          <div class="impact-grid impact-grid--3col">
-            <div class="impact-card">
-              <div class="impact-number">10K+</div>
-              <div class="impact-sublabel">hours saved annually</div>
-            </div>
-            <div class="impact-card">
-              <div class="impact-number">92%</div>
-              <div class="impact-sublabel">decrease on review time</div>
-            </div>
-            <div class="impact-card">
-              <div class="impact-number">$600K+</div>
-              <div class="impact-sublabel">cost saving annually</div>
-            </div>
-          </div>
+        <div class="impact-card-new impact-card-new--blue">
+          <p class="impact-overline">PHASED DELIVERY - MEASURED</p>
+          <p class="impact-number-new">40%</p>
+          <p class="impact-label-new">Decrease on review time</p>
         </div>
       </div>
 
-      <!-- Design Impact -->
-      <div class="impact-text-card">
-        <div class="impact-text-label">Design Impact</div>
-        <p class="impact-text-desc">Established AI citation as reusable component across all product areas on the platform</p>
+      <!-- Green cards row: Full Vision - Projected -->
+      <div class="impact-row">
+        <div class="impact-card-new impact-card-new--green">
+          <p class="impact-overline">FULL VISION - PROJECTED</p>
+          <p class="impact-number-new">10K+</p>
+          <p class="impact-label-new">Hours saved annually</p>
+        </div>
+        <div class="impact-card-new impact-card-new--green">
+          <p class="impact-overline">FULL VISION - PROJECTED</p>
+          <p class="impact-number-new">92%</p>
+          <p class="impact-label-new">Decrease on review time</p>
+        </div>
+        <div class="impact-card-new impact-card-new--green">
+          <p class="impact-overline">FULL VISION - PROJECTED</p>
+          <p class="impact-number-new">$600K+</p>
+          <p class="impact-label-new">Cost saving annually</p>
+        </div>
       </div>
+
+      <!-- Dark full-width card: First across-platform AI pattern -->
+      <div class="impact-row">
+        <div class="impact-card-new impact-card-new--dark">
+          <p class="impact-overline">FIRST</p>
+          <p class="impact-number-new">Across platform AI pattern</p>
+          <p class="impact-label-new">For AI human interaction on AI extraction output</p>
+        </div>
+      </div>
+
+    </section>
+
+  </div><!-- /cs-sections-wrap -->
+
+  <!-- ── Footer ───────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="header-col-left">
+      <span class="header-name"><strong>Yiran Zhu</strong></span>
     </div>
-
-  </div><!-- /container -->
-
-  <!-- Footer -->
-  <footer class="page-footer">
-    <div class="container">
-      <div class="page-footer-inner">
-        <a href="index.html" class="footer-name">← Yiran Zhu</a>
-        <div class="footer-links">
-          <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="nav-link">LinkedIn</a>
-          <a href="resume.pdf" target="_blank" class="nav-link">Resume</a>
-          <a href="mailto:yiran.jour@gmail.com" class="nav-link">yiran.jour@gmail.com</a>
-        </div>
-      </div>
+    <div class="header-col-right">
+      <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="header-link">LinkedIn</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
+      <a href="mailto:yiran.jour@gmail.com" class="header-link header-link-bold">yiran.jour@gmail.com</a>
     </div>
   </footer>
 
   <script>
-    document.querySelectorAll('[data-accordion]').forEach(acc => {
-      const btn  = acc.querySelector('.accordion-header');
-      const body = acc.querySelector('.accordion-body');
+    // Hamburger menu
+    var hamburgerBtn = document.getElementById('hamburger-btn');
+    var navDropdown  = document.getElementById('nav-dropdown');
+    if (hamburgerBtn && navDropdown) {
+      hamburgerBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = navDropdown.classList.toggle('open');
+        hamburgerBtn.setAttribute('aria-expanded', open);
+      });
+      document.addEventListener('click', function() {
+        navDropdown.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    }
+
+    // Accordion
+    document.querySelectorAll('[data-accordion]').forEach(function(acc) {
+      var btn  = acc.querySelector('.accordion-header');
+      var body = acc.querySelector('.accordion-body');
+      var arrow = acc.querySelector('.accordion-arrow');
       if (!btn || !body) return;
-      btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.addEventListener('click', function() {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
         btn.setAttribute('aria-expanded', String(!expanded));
         body.hidden = expanded;
+        if (arrow) arrow.style.transform = expanded ? '' : 'rotate(180deg)';
       });
     });
   </script>
