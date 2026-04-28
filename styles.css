@@ -1157,6 +1157,9 @@ p {
   line-height: 1.65;
   padding: 8px 0;
 }
+@media (max-width: 480px) {
+  .concept-body {font-size: 14px;}
+}
 .concept-cta {
   font-size: 14px;
   font-weight: 600;
@@ -1361,6 +1364,10 @@ p {
   line-height: 1.6;
   padding: 16px 0;
 }
+@media (max-width: 480px) {
+  .personal-text-col p{font-size: 14px;}
+}
+
 .personal-placeholder-block {
   background: linear-gradient(to top, #f0f0f0, #eee);
   border-radius: 24px;
@@ -1417,6 +1424,11 @@ p {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+.cs-widget-fallback {
+  display: none;
+  width: 100%;
+  max-width: 667px;
 }
 /* Pagination / toggle bar */
 .widget-bar {
@@ -1912,6 +1924,8 @@ p {
 }
 @media (max-width: 600px) {
   .cs-hero-widget { padding: 40px 24px; }
+  .cs-widget-inner { display: none; }
+  .cs-widget-fallback { display: block; }
   .cs-content-section { padding: 48px 24px; gap: 24px; }
   .cs-content-section--title { padding: 48px 24px; }
   .cs-title-heading { font-size: 36px; }
@@ -1994,6 +2008,8 @@ p {
 
   .cs-title { font-size: 32px; letter-spacing: -0.5px; }
   .cs-section-title { font-size: 24px; }
+  .widget-pagination-label, .widget-toggle-label, .widget-ai-label,.widget-view-btn, .widget-manual-title, .widget-text-highlight{font-size:14px;}
+  .widget-manual-sub, .widget-badge-dark, .widget-badge-file, .widget-badge-page{font-size:12px;}
 }
 
 @media (max-width: 480px) {
