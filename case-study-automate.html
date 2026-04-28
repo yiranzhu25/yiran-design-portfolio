@@ -16,52 +16,49 @@
       background: #0D0F1A;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       display: flex;
-      align-items: flex-start;
+      align-items: stretch;
       justify-content: center;
-      padding: 40px 24px 48px;
+      padding: 28px 20px;
       width: 100%;
-      min-height: 480px;
+      min-height: 400px;
+      overflow: hidden;
     }
-    .pipeline-root .wrapper { width: 100%; max-width: 1380px; }
+    .pipeline-root .wrapper { width: 100%; max-width: 1380px; display: flex; flex-direction: column; }
     .pipeline-root .stages-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
       position: relative;
+      flex: 1;
     }
-    .pipeline-root .stage-col { display: flex; flex-direction: column; gap: 12px; }
+    .pipeline-root .stage-col { display: flex; flex-direction: column; gap: 10px; }
     .pipeline-root .stage-col .card { flex: 1; }
-    .pipeline-root .team-col { display: flex; align-items: center; gap: 8px; padding: 0 2px; }
-    .pipeline-root .tdot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .pipeline-root .team-col { display: flex; align-items: center; gap: 6px; padding: 0 2px; justify-content:center;}
+    .pipeline-root .tdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
     .pipeline-root .tdot.p { background: #7B5CF5; box-shadow: 0 0 6px rgba(123,92,245,0.65); }
     .pipeline-root .tdot.g { background: #3EFFA0; box-shadow: 0 0 6px rgba(62,255,160,0.65); }
-    .pipeline-root .tname { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.85); }
+    .pipeline-root .tname { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.85); }
     .pipeline-root .stage-hdr {
-      background: #252836; border-radius: 8px; text-align: center;
-      padding: 9px 8px; font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.82);
+      background: #252836; border-radius: 6px; text-align: center;
+      padding: 7px 6px; font-size: 9px; font-weight: 500; color: rgba(255,255,255,0.82);
     }
     .pipeline-root .card {
-      background: #1A1D2E; border-radius: 14px; padding: 13px;
+      background: #1A1D2E; border-radius: 11px; padding: 10px;
       border: 1px solid rgba(255,255,255,0.065); position: relative;
     }
-    .pipeline-root .card-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 11px; }
-    .pipeline-root .bar-icon { width: 26px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pipeline-root .card-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; }
+    .pipeline-root .bar-icon { width: 20px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .pipeline-root .bar-btn {
-      background: #1A1D2E; border: 1px solid rgba(255,255,255,0.18); border-radius: 16px;
-      padding: 4px 11px; font-size: 9.5px; font-weight: 600; color: rgba(255,255,255,0.8);
-      display: flex; align-items: center; gap: 5px;
+      background: #1A1D2E; border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 12px; padding: 3px 9px; font-size: 8px;
+      font-weight: 600; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 4px;
     }
-    .pipeline-root .s1-inputs { display: flex; flex-direction: column; gap: 10px; padding: 10px 2px 6px; }
-    .pipeline-root .input-field {
-      border: 1px solid rgba(255,255,255,0.14); border-radius: 7px;
-      padding: 9px 12px; font-size: 11px; color: rgba(255,255,255,0.32); background: transparent;
-    }
-    .pipeline-root .s2-body { display: flex; gap: 9px; align-items: stretch; }
+    .pipeline-root .s2-body { display: flex; gap: 7px; align-items: stretch; }
     .pipeline-root .doc-panel {
-      flex: 1.35; background: #20233A; border-radius: 8px; padding: 9px 8px;
-      display: flex; flex-direction: column; gap: 4.5px;
+      flex: 1.35; background: #20233A; border-radius: 6px; padding: 7px 6px;
+      display: flex; flex-direction: column; gap: 3.5px;
     }
-    .pipeline-root .dl { height: 4px; border-radius: 2px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+    .pipeline-root .dl { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
     .pipeline-root .dl.f { width: 100%; }
     .pipeline-root .dl.e { width: 85%; }
     .pipeline-root .dl.m { width: 70%; }
@@ -77,29 +74,29 @@
       55% { left: 130%; }
       100%{ left: 130%; }
     }
-    .pipeline-root .pills-col { flex: 1; display: flex; flex-direction: column; gap: 7px; justify-content: space-around; }
-    .pipeline-root .s3-map-area { display: flex; gap: 8px; margin-bottom: 10px; align-items: flex-start; }
-    .pipeline-root .s3-col { flex: 1; display: flex; flex-direction: column; gap: 7px; }
-    .pipeline-root .s3-table-wrap { background: #20233A; border-radius: 8px; padding: 8px; }
-    .pipeline-root .s3-trow { display: flex; gap: 5px; margin-bottom: 4px; }
+    .pipeline-root .pills-col { flex: 1; display: flex; flex-direction: column; gap: 5px; justify-content: space-around; }
+    .pipeline-root .s3-map-area { display: flex; gap: 6px; margin-bottom: 8px; align-items: flex-start; }
+    .pipeline-root .s3-col { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+    .pipeline-root .s3-table-wrap { background: #20233A; border-radius: 6px; padding: 6px; }
+    .pipeline-root .s3-trow { display: flex; gap: 4px; margin-bottom: 3px; }
     .pipeline-root .s3-trow:last-child { margin-bottom: 0; }
-    .pipeline-root .s3-th { flex:1; height:12px; border-radius:3px; background:rgba(62,255,160,0.22); }
-    .pipeline-root .s3-td { flex:1; height:9px;  border-radius:2px; background:rgba(255,255,255,0.08); }
+    .pipeline-root .s3-th { flex:1; height:9px; border-radius:2px; background:rgba(62,255,160,0.22); }
+    .pipeline-root .s3-td { flex:1; height:7px; border-radius:2px; background:rgba(255,255,255,0.08); }
     .pipeline-root .s4-body { padding-top: 2px; }
-    .pipeline-root .select-row { display: flex; gap: 7px; margin-bottom: 10px; }
+    .pipeline-root .select-row { display: flex; gap: 5px; margin-bottom: 8px; }
     .pipeline-root .select-pill {
       flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13);
-      border-radius: 7px; padding: 7px 9px; font-size: 9px; font-weight: 500;
+      border-radius: 5px; padding: 5px 7px; font-size: 7px; font-weight: 500;
       color: rgba(255,255,255,0.45); letter-spacing: 0.07em;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .pipeline-root .sel-arrow { opacity: 0.5; font-size: 8px; }
-    .pipeline-root .s4-pills { display: flex; flex-direction: column; gap: 7px; }
-    .pipeline-root .s5-usd-block { background: #20233A; border-radius: 8px; padding: 9px 10px; margin-bottom: 10px; }
-    .pipeline-root .usd-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+    .pipeline-root .sel-arrow { opacity: 0.5; font-size: 6px; }
+    .pipeline-root .s4-pills { display: flex; flex-direction: column; gap: 5px; }
+    .pipeline-root .s5-usd-block { background: #20233A; border-radius: 6px; padding: 7px 8px; margin-bottom: 8px; }
+    .pipeline-root .usd-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
     .pipeline-root .usd-row:last-child { margin-bottom: 0; }
     .pipeline-root .usd-bar {
-      width: 34px; height: 13px; border-radius: 4px; background: rgba(62,255,160,0.28);
+      width: 26px; height: 10px; border-radius: 3px; background: rgba(62,255,160,0.28);
       flex-shrink: 0; position: relative; overflow: hidden;
     }
     .pipeline-root .usd-bar::after {
@@ -112,29 +109,32 @@
       65% { left: 130%; }
       100%{ left: 130%; }
     }
-    .pipeline-root .usd-amt { font-size: 10px; font-weight: 700; font-family: 'SF Mono','Fira Code',monospace; white-space: nowrap; }
+    .pipeline-root .usd-amt { font-size: 8px; font-weight: 700; font-family: 'SF Mono', 'Fira Code', monospace; white-space: nowrap; }
     .pipeline-root .usd-pos { color: #3EFFA0; }
     .pipeline-root .usd-neg { color: #FF6B6B; }
-    .pipeline-root .s5-pills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
-    .pipeline-root .s5-table-wrap { background: #20233A; border-radius: 8px; padding: 8px; }
-    .pipeline-root .s5-trow { display: flex; gap: 5px; margin-bottom: 4px; }
+    .pipeline-root .s5-pills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 8px; }
+    .pipeline-root .s5-table-wrap { background: #20233A; border-radius: 6px; padding: 6px; }
+    .pipeline-root .s5-trow { display: flex; gap: 4px; margin-bottom: 3px; }
     .pipeline-root .s5-trow:last-child { margin-bottom: 0; }
-    .pipeline-root .s5-th { flex:1; height:12px; border-radius:3px; background:rgba(62,255,160,0.22); }
-    .pipeline-root .s5-td { flex:1; height:9px;  border-radius:2px; background:rgba(255,255,255,0.08); }
+    .pipeline-root .s5-th { flex:1; height:9px; border-radius:2px; background:rgba(62,255,160,0.22); }
+    .pipeline-root .s5-td { flex:1; height:7px; border-radius:2px; background:rgba(255,255,255,0.08); }
     .pipeline-root .pill {
-      background: #FFFFFF; border-radius: 6px; padding: 6px 8px;
-      display: flex; align-items: center; gap: 6px; min-height: 26px;
+      background: #FFFFFF; border-radius: 5px; padding: 5px 6px;
+      display: flex; align-items: center; gap: 5px; min-height: 20px;
     }
     .pipeline-root .pill.g-fill { background: rgba(62,255,160,0.13); border: 1px solid rgba(62,255,160,0.27); }
     .pipeline-root .pill.g-fill .pill-line { background: rgba(62,255,160,0.38); }
-    .pipeline-root .pill.small { padding: 5px 7px; min-height: 22px; }
-    .pipeline-root .pdot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-    .pipeline-root .pdot.p { background: #7B5CF5; box-shadow: 0 0 5px rgba(123,92,245,0.8); }
-    .pipeline-root .pdot.g { background: #3EFFA0; box-shadow: 0 0 5px rgba(62,255,160,0.8); }
-    .pipeline-root .pill-line { flex: 1; height: 4px; border-radius: 2px; background: rgba(26,29,46,0.13); }
+    .pipeline-root .pill.small { padding: 4px 5px; min-height: 17px; }
+    .pipeline-root .pdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .pipeline-root .pdot.p { background: #7B5CF5; box-shadow: 0 0 4px rgba(123,92,245,0.8); }
+    .pipeline-root .pdot.g { background: #3EFFA0; box-shadow: 0 0 4px rgba(62,255,160,0.8); }
+    .pipeline-root .pill-line { flex: 1; height: 3px; border-radius: 2px; background: rgba(26,29,46,0.13); }
     .pipeline-root .conn-svg {
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 20;
+    }
+    @media (max-width: 768px) {
+      .pipeline-root { min-height: unset; }
     }
   </style>
 </head>
@@ -171,25 +171,11 @@
           <div class="stages-grid" id="cards-grid">
             <div class="stage-col">
               <div class="team-col"><div class="tdot p"></div><span class="tname">Team A</span></div>
-              <div class="stage-hdr">Stage 1: Initiate</div>
-              <div class="card" id="s1">
-                <div class="s1-inputs">
-                  <div class="input-field">Input</div>
-                  <div class="input-field">Input</div>
-                  <div class="input-field">Input</div>
-                </div>
-              </div>
-            </div>
-            <div class="stage-col">
-              <div class="team-col"><div class="tdot p"></div><span class="tname">Team B</span></div>
-              <div class="stage-hdr">Stage 2: Data review</div>
+              <div class="stage-hdr">Stage 1: Data review</div>
               <div class="card" id="s2">
                 <div class="card-bar">
-                  <div class="bar-icon"><img src="img/pdf_icon.png" width="24" height="24" alt="PDF" style="display:block;image-rendering:auto;"></div>
-                  <div class="bar-btn">
-                    Extract
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 0.8L6.12 3.52L9.05 3.9L6.9 5.99L7.48 9.05L5 7.6L2.52 9.05L3.1 5.99L0.95 3.9L3.88 3.52L5 0.8Z" fill="rgba(255,255,255,0.88)" stroke="rgba(255,255,255,0.3)" stroke-width="0.3"/></svg>
-                  </div>
+                  <div class="bar-icon"><img src="img/pdf_icon.png" width="18" height="18" alt="PDF"></div>
+                  <div class="bar-btn">Extract <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M5 0.8L6.12 3.52L9.05 3.9L6.9 5.99L7.48 9.05L5 7.6L2.52 9.05L3.1 5.99L0.95 3.9L3.88 3.52L5 0.8Z" fill="rgba(255,255,255,0.88)"/></svg></div>
                 </div>
                 <div class="s2-body">
                   <div class="doc-panel" id="doc-panel">
@@ -200,22 +186,28 @@
                     <div class="dl hl f" id="hl2"></div><div class="dl s"></div>
                     <div class="dl e"></div><div class="dl f"></div>
                     <div class="dl hl m" id="hl3"></div><div class="dl f"></div><div class="dl s"></div>
+                    <div class="dl f"></div><div class="dl e"></div>
+                    <div class="dl m"></div><div class="dl hl f"></div><div class="dl s"></div>
+                    <div class="dl f"></div><div class="dl e"></div>
+                    <div class="dl hl e"></div><div class="dl m"></div><div class="dl f"></div>
                   </div>
                   <div class="pills-col" id="s2-pills">
                     <div class="pill" id="s2p0"><div class="pdot p"></div><div class="pill-line"></div></div>
                     <div class="pill" id="s2p1"><div class="pdot p"></div><div class="pill-line"></div></div>
                     <div class="pill" id="s2p2"><div class="pdot p"></div><div class="pill-line"></div></div>
                     <div class="pill" id="s2p3"><div class="pdot p"></div><div class="pill-line"></div></div>
+                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="stage-col">
-              <div class="team-col"><div class="tdot g"></div><span class="tname">Team C</span></div>
-              <div class="stage-hdr">Stage 3: Map</div>
+              <div class="team-col"><div class="tdot g"></div><span class="tname">Team B</span></div>
+              <div class="stage-hdr">Stage 2: Map</div>
               <div class="card" id="s3">
                 <div class="card-bar">
-                  <div class="bar-icon"><img src="img/excel_icon.png" width="24" height="24" alt="Excel" style="display:block;image-rendering:auto;"></div>
+                  <div class="bar-icon"><img src="img/excel_icon.png" width="18" height="18" alt="Excel"></div>
                   <div class="bar-btn">Upload ↑</div>
                 </div>
                 <div class="s3-map-area">
@@ -223,11 +215,15 @@
                     <div class="pill" id="s3l0"><div class="pdot g"></div><div class="pill-line"></div></div>
                     <div class="pill" id="s3l1"><div class="pdot g"></div><div class="pill-line"></div></div>
                     <div class="pill" id="s3l2"><div class="pdot g"></div><div class="pill-line"></div></div>
+                    <div class="pill"><div class="pdot g"></div><div class="pill-line"></div></div>
+                    <div class="pill"><div class="pdot g"></div><div class="pill-line"></div></div>
                   </div>
                   <div class="s3-col" id="s3-right">
                     <div class="pill g-fill" id="s3r0"><div class="pill-line"></div></div>
                     <div class="pill g-fill" id="s3r1"><div class="pill-line"></div></div>
                     <div class="pill g-fill" id="s3r2"><div class="pill-line"></div></div>
+                    <div class="pill g-fill"><div class="pill-line"></div></div>
+                    <div class="pill g-fill"><div class="pill-line"></div></div>
                   </div>
                 </div>
                 <div class="s3-table-wrap" id="s3-table">
@@ -235,12 +231,13 @@
                   <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
                   <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
                   <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
+                  <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
                 </div>
               </div>
             </div>
             <div class="stage-col">
-              <div class="team-col"><div class="tdot g"></div><span class="tname">Team C</span></div>
-              <div class="stage-hdr">Stage 4: New Set up</div>
+              <div class="team-col"><div class="tdot g"></div><span class="tname">Team B</span></div>
+              <div class="stage-hdr">Stage 3: New Set up</div>
               <div class="card" id="s4">
                 <div class="s4-body">
                   <div class="select-row">
@@ -252,27 +249,36 @@
                     <div class="pill" id="s4p1"><div class="pdot p"></div><div class="pill-line"></div></div>
                     <div class="pill" id="s4p2"><div class="pdot p"></div><div class="pill-line"></div></div>
                     <div class="pill" id="s4p3"><div class="pdot p"></div><div class="pill-line"></div></div>
+                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="stage-col">
-              <div class="team-col"><div class="tdot g"></div><span class="tname">Team C</span></div>
-              <div class="stage-hdr">Stage 5: Approve all</div>
+              <div class="team-col"><div class="tdot g"></div><span class="tname">Team B Manager</span></div>
+              <div class="stage-hdr">Stage 4: Approve all</div>
               <div class="card" id="s5">
                 <div class="s5-usd-block">
-                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+ 20,000.00 USD</span></div>
-                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+ 14,394.00 USD</span></div>
-                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">− 9,027.00 USD</span></div>
+                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+20,000.00 USD</span></div>
+                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+14,394.00 USD</span></div>
+                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">−9,027.00 USD</span></div>
+                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+6,800.00 USD</span></div>
+                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">−3,512.00 USD</span></div>
                 </div>
                 <div class="s5-pills-grid" id="s5-pills">
                   <div class="pill small" id="s5p0"><div class="pdot p"></div><div class="pill-line"></div></div>
                   <div class="pill small" id="s5p1"><div class="pdot p"></div><div class="pill-line"></div></div>
                   <div class="pill small" id="s5p2"><div class="pdot p"></div><div class="pill-line"></div></div>
                   <div class="pill small" id="s5p3"><div class="pdot p"></div><div class="pill-line"></div></div>
+                  <div class="pill small"><div class="pdot p"></div><div class="pill-line"></div></div>
+                  <div class="pill small"><div class="pdot p"></div><div class="pill-line"></div></div>
                 </div>
                 <div class="s5-table-wrap" id="s5-table">
                   <div class="s5-trow"><div class="s5-th"></div><div class="s5-th"></div><div class="s5-th"></div></div>
+                  <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
                   <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
                   <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
                   <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
@@ -488,12 +494,14 @@
   <!-- ── Footer ───────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="header-col-left">
-      <span class="header-name"><strong>Yiran Zhu</strong></span>
+      <span class="header-name">© 2026 · Designed in Figma, built with Claude Code + Figma MCP, deployed on Github.</span>
     </div>
     <div class="header-col-right">
-      <a href="https://www.linkedin.com/in/yiran-zhu/" target="_blank" class="header-link">LinkedIn</a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
-      <a href="mailto:yiran.jour@gmail.com" class="header-link header-link-bold">yiran.jour@gmail.com</a>
+      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="header-link"><img src="img/InBug-Black.png"></a>
+      <a href="https://github.com/yiranzhu25" target="_blank" class="header-link"><img src="img/GitHub_Invertocat_Black.png"></a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link"><img src="img/article_person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
+      <a href="#" class="header-link header-link-bold copy-email" data-email="yiran.jour@gmail.com">
+        <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
     </div>
   </footer>
 

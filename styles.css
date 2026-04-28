@@ -861,6 +861,7 @@ p {
 
 /* Active nav link */
 .header-link--active { font-weight: 700; }
+.header-link img{width: 24px;}
 
 /* Hamburger button — hidden by default, shown at ≤480px */
 .hamburger-btn {
@@ -912,8 +913,12 @@ p {
 .header-name {
   font-size: 16px;
   color: var(--color-text-primary);
-  white-space: nowrap;
 }
+.site-footer .header-name{
+  font-size:14px;
+  color: var(--color-text-secondary);
+}
+
 .header-link {
   font-size: 16px;
   color: var(--color-text-primary);
@@ -942,7 +947,7 @@ p {
   padding: 64px;
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 240px;
   align-items: center;
 }
 
@@ -1113,7 +1118,7 @@ p {
 }
 .work-visual-split-left {
   flex: 1;
-  background: #f5f3f5;
+  background: var(--color-bg-secondary);
   overflow: hidden;
   display: flex;
   align-items: flex-start;
@@ -1143,9 +1148,14 @@ p {
   color: #F5F5F7;
   letter-spacing: -0.72px;
   line-height: 1.1;
+}
+.concept-body {
   flex: 1;
-  display: flex;
-  align-items: flex-start;
+  font-size: 16px;
+  font-weight: 400;
+  color: #F5F5F7;
+  line-height: 1.65;
+  padding: 8px 0;
 }
 .concept-cta {
   font-size: 14px;
@@ -1176,7 +1186,7 @@ p {
 
 /* Work visual: full-width pipeline / placeholder */
 .work-visual-full {
-  border-radius: 16px;
+  
   overflow: hidden;
 }
 .work-visual-placeholder {
@@ -1344,11 +1354,12 @@ p {
   letter-spacing: -0.36px;
   line-height: 1.6;
 }
-.personal-text-col {
+.personal-text-col p{
   font-size: 18px;
   color: var(--color-text-primary);
   letter-spacing: -0.36px;
   line-height: 1.6;
+  padding: 16px 0;
 }
 .personal-placeholder-block {
   background: linear-gradient(to top, #f0f0f0, #eee);
@@ -1623,7 +1634,7 @@ p {
 }
 .widget-citation-body {
   background: #fff;
-  border-radius: 0 16px 16px 16px;
+  border-radius: 0 0 16px 16px;
   padding: 16px 24px 24px;
   box-shadow: 0 16px 16px rgba(12,12,13,0.10);
 }
@@ -1904,7 +1915,7 @@ p {
   .cs-content-section { padding: 48px 24px; gap: 24px; }
   .cs-content-section--title { padding: 48px 24px; }
   .cs-title-heading { font-size: 36px; }
-  .kpi-row { flex-wrap:wrap; column; gap: 16px; width: 100%; }
+  .kpi-row { flex-wrap:wrap; gap: 16px; width: 100%; }
   .kpi-card { height: auto; min-height: 160px; min-width:fit-content; }
   .feature-list { grid-template-columns: 1fr; }
 }
@@ -1917,7 +1928,7 @@ p {
 
 @media (max-width: 1024px) {
   .site-header, .site-footer { padding: 24px 40px; }
-  .home-main { padding: 40px; gap: 80px; }
+  .home-main { padding: 40px; gap: 180px; }
   .work-visual-split-right { width: 240px; padding: 40px; }
   .concept-title { font-size: 36px; }
   .home-work-section {padding: 0; width: 100%;}
@@ -1933,7 +1944,7 @@ p {
   .header-title { display: none; }
   .header-col-center { display: none; }
   .site-footer { grid-template-columns: 1fr auto; padding: 20px 24px; }
-  .home-main { padding: 40px; }
+  .home-main { padding: 40px; gap: 80px;}
   .home-hero-heading { font-size: 48px; letter-spacing: -0.5px; }
   .hero-icon { width: 18px; height: 18px; margin-top: 6px; }
   .vp-list { gap: 8px; }
@@ -2010,7 +2021,19 @@ p {
   .career-desc{font-size: 14px;}
   .personal-label-col{font-size: 14px;}
   .personal-text-col{font-size: 14px;}
-  .header-col-right > a.header-link { display: none; }
+  .site-header .header-col-right > a.header-link { display: none; }
+  .site-footer {
+    grid-template-columns: 1fr;
+    padding: 20px 24px;
+  }
+  .site-footer .header-col-left,
+  .site-footer .header-col-right {
+    justify-content: flex-start;
+  }
+  .site-footer .header-name {
+    white-space: normal;
+    line-height: 1.5;
+  }
   .work-visual-split {gap:8px;}
   .hamburger-btn { display: flex; }
 
@@ -2079,6 +2102,7 @@ p {
   width: 100%;
   min-height: 400px;
   overflow: hidden;
+  /*border-radius: 16px;*/
 }
 .pipeline-root .wrapper { width: 100%; max-width: 1380px; display: flex; flex-direction: column; }
 .pipeline-root .stages-grid {
