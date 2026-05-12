@@ -1121,15 +1121,17 @@ p {
   background: var(--color-bg-secondary);
   overflow: hidden;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
   border-radius: 16px;
+  padding: 24px 24px 0;
 }
-.work-visual-split-left img {
+.ai-review-thumb {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center center;
+  display: block;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
 }
 .work-visual-split-right {
   width: 300px;
@@ -1409,7 +1411,29 @@ p {
 }
 
 
- /* ── AI data review Case Study specific overrides ── */
+/* ── AI data review Case Study specific overrides ── */
+.cs-hero-thumb-wrap {
+  background: #f5f3f5;
+  width: 100%;
+  padding: 64px 40px 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+}
+.cs-hero-thumb {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.cs-feature-break {
+  width: 100%;
+}
+.cs-feature-break img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
  .cs-hero-widget {
   background: #f5f3f5;
   width: 100%;

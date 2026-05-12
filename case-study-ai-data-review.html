@@ -35,104 +35,9 @@
     </nav>
   </header>
 
-  <!-- ── Hero: AI Review UI Mockup ──────────────────── -->
-  <div class="cs-hero-widget">
-    <div class="cs-widget-inner">
-
-      <!-- Pagination + Toggle bar -->
-      <div class="widget-bar">
-        <div class="widget-bar-left">
-          <div class="widget-pagination-btns">
-            <button class="widget-pagination-btn" aria-label="Previous">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M7.5 2L3.5 6L7.5 10" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-            <button class="widget-pagination-btn" aria-label="Next">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4.5 2L8.5 6L4.5 10" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-          <span class="widget-pagination-label">1 of 10 exceptions</span>
-        </div>
-        <div class="widget-toggle-group">
-          <div class="widget-toggle-track">
-            <div class="widget-toggle-thumb"></div>
-          </div>
-          <span class="widget-toggle-label">Exception only</span>
-        </div>
-      </div>
-
-      <!-- AI extracted row -->
-      <div class="widget-row widget-row--ai">
-        <div class="widget-row-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M25.3335 12L27.0002 8.33334L30.6668 6.66668L27.0002 5.00001L25.3335 1.33334L23.6668 5.00001L20.0002 6.66668L23.6668 8.33334L25.3335 12ZM15.3335 12.6667L12.0002 5.33334L8.66683 12.6667L1.3335 16L8.66683 19.3333L12.0002 26.6667L15.3335 19.3333L22.6668 16L15.3335 12.6667ZM25.3335 20L23.6668 23.6667L20.0002 25.3333L23.6668 27L25.3335 30.6667L27.0002 27L30.6668 25.3333L27.0002 23.6667L25.3335 20Z" fill="url(#paint0_linear_5_7538)"/>
-            <defs>
-            <linearGradient id="paint0_linear_5_7538" x1="5.00016" y1="5.00001" x2="34.9446" y2="33.1111" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#6941C6"/>
-            <stop offset="1" stop-color="#2E90FA"/>
-            </linearGradient>
-            </defs>
-            </svg>
-        </div>
-        <div class="widget-row-content">
-          <span class="widget-ai-label">AI extracted with potential issues</span>
-        </div>
-        <div class="widget-row-action">
-          <span class="widget-view-btn">View reasoning
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
-      </div>
-
-      <!-- Manual input row -->
-      <div class="widget-row widget-row--manual">
-        <div class="widget-row-icon">
-          <div class="widget-avatar"><img src="img/Avatar.png"></div>
-        </div>
-        <div class="widget-row-content">
-          <div class="widget-manual-info">
-            <span class="widget-manual-title">Manual input</span>
-            <div class="widget-manual-sub">
-              <span>Olivia Kiu</span>
-              <span class="widget-dot"></span>
-              <span>Mar 3, 2025 14:22 EST</span>
-            </div>
-          </div>
-        </div>
-        <div class="widget-row-action">
-          <span class="widget-view-btn widget-view-btn--disabled">View reasoning
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12M10 4l6 6-6 6" stroke="#d5d7da" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
-      </div>
-
-      <!-- Citation card -->
-      <div class="widget-citation">
-        <div class="widget-citation-tabs">
-          <div class="widget-citation-tab-left">
-            <span class="widget-badge-dark">Citation 1</span>
-            <div class="widget-badge-file">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="1" width="8" height="11" rx="1" stroke="#414651" stroke-width="1.2"/><path d="M4 4h4M4 6.5h4M4 9h2" stroke="#414651" stroke-width="1" stroke-linecap="round"/></svg>
-              DocumentA.pdf
-            </div>
-            <span class="widget-dot"></span>
-            <span class="widget-badge-page">Page 29</span>
-          </div>
-          <div class="widget-citation-actions">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M11.3334 1.33334H13.1134C13.4907 1.32667 13.8573 1.45876 14.1436 1.70455C14.43 1.95034 14.6161 2.29271 14.6667 2.66667V7.33334C14.6161 7.7073 14.43 8.04967 14.1436 8.29546C13.8573 8.54125 13.4907 8.67335 13.1134 8.66667H11.3334M6.66669 10V12.6667C6.66669 13.1971 6.8774 13.7058 7.25247 14.0809C7.62755 14.456 8.13625 14.6667 8.66669 14.6667L11.3334 8.66667V1.33334H3.81335C3.4918 1.32971 3.17977 1.4424 2.93475 1.65067C2.68973 1.85894 2.52824 2.14874 2.48002 2.46667L1.56002 8.46667C1.53102 8.65777 1.5439 8.85289 1.59779 9.03851C1.65168 9.22413 1.74529 9.39581 1.87211 9.54166C1.99894 9.68752 2.15597 9.80405 2.33231 9.8832C2.50864 9.96234 2.70008 10.0022 2.89335 10H6.66669Z" stroke="#414651" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 2H14M14 2V6M14 2L9.33333 6.66667M6 14H2M2 14V10M2 14L6.66667 9.33333" stroke="#414651" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-        </div>
-        <div class="widget-citation-body">
-          <p class="widget-citation-text">The Client hereby acknowledges that the reallocation of allocated capital remains contingent upon the successful verification of all secondary identifiers. <span class="widget-text-highlight">In the event of a discrepancy exceeding the established 0.05% threshold, the automated validation protocol will trigger a mandatory manual review.</span></p>
-        </div>
-      </div>
-
-    </div>
-    <img class="cs-widget-fallback" src="img/Content Block.png" alt="AI Data Review widget preview">
+  <!-- ── Hero: Case Thumbnail ──────────────────────── -->
+  <div class="cs-hero-thumb-wrap">
+    <img class="cs-hero-thumb" src="img/ai-data-review-case-thumb-2.png" alt="AI Data Review Transformation">
   </div>
 
   <!-- ── Sections ─────────────────────────────────────── -->
@@ -294,6 +199,11 @@
         </ul>
       </div>
     </section>
+
+    <!-- Feature Breakdown Image -->
+    <div class="cs-feature-break">
+      <img src="img/feature-break-down.png" alt="Feature breakdown">
+    </div>
 
     <!-- Impact -->
     <section class="cs-content-section">
