@@ -1240,6 +1240,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: 48px;
+  max-width: 1200px;
+  padding: 0 64px;
 }
 .career-header-row {
   display: flex;
@@ -1321,6 +1323,8 @@ p {
   display: flex;
   flex-direction: column;
   gap: 48px;
+  max-width: 1200px;
+  padding: 0 64px;
 }
 .personal-heading {
   font-size: 36px;
