@@ -101,8 +101,9 @@
       <div>
         <h2 class="cs-section-heading">Problem <span class="accent-italic">Business cannot scale</span></h2>
       </div>
-      <p class="cs-body-text">Every loan required two rounds of manual effort from 2 team members 7 hours total reviewing hundreds of data points against legal documents, plus 24 hours wait time on vendor.</p>
-      <p class="cs-body-text">It can never be done on time, and business can never scale. Limited capability of current legacy system and human error pose risk to data accuracy.</p>
+      <p class="cs-body-text">Think about house mortgage loans, but for billion-dollar acquisitions with far more complexity and higher stakes. One of our internal team onboards these loans into our system and manages them for their entire lifecycle.</p>
+      <p class="cs-body-text">The team must extract 100-600 legal terms buried in a 300-500 page document with bespoke language and accurately digitize them into our system.</p>
+      <p class="cs-body-text">The extraction relies on expensive vendor and the internal review process is difficult and extremely manual.</p>
       <div class="kpi-row">
         <div class="kpi-card">
           <p class="kpi-number">~500</p>
@@ -125,6 +126,82 @@
             <p class="kpi-sublabel">On vendor</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- Gaps: that design need to close -->
+    <section class="cs-content-section">
+      <div>
+        <h2 class="cs-section-heading">Gaps <span class="accent-italic">that design need to close</span></h2>
+      </div>
+      <div class="feature-grid-wrap">
+        <ul class="simple-list">
+          <li class="feature-item">
+            <div class="feature-header">
+              <h5 class="feature-title">Gap 1</h5>
+            </div>
+            <p class="feature-desc">We still rely on expensive, error-prone third-party vendors for extraction because our platform had no intelligence of its own. Our system simply acts as a container.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <h5 class="feature-title feature-title--accent">Project Goal 1: Replace Vendors with AI Extraction</h5>
+            </div>
+            <p class="feature-desc">Implement AI to own the extraction process internally and sunset third-party vendors.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <h5 class="feature-title">Gap 2</h5>
+            </div>
+            <p class="feature-desc">The internal review workflow had no tooling to make cross-referencing checks faster</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <h5 class="feature-title feature-title--accent">Project Goal 2: Improve the Human Review Workflow</h5>
+            </div>
+            <p class="feature-desc">Redesign the internal data review experience to be more efficient and less error-prone.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Constraints & Strategic context -->
+    <section class="cs-content-section">
+      <div>
+        <h2 class="cs-section-heading">Constraints <span class="accent-italic">&amp; Strategic context</span></h2>
+      </div>
+      <div class="feature-grid-wrap">
+        <ul class="simple-list">
+          <li class="feature-item">
+            <div class="feature-header">
+              <h5 class="feature-title">User trust</h5>
+            </div>
+            <p class="feature-desc">Internal team had never used AI in this context. Trust-building had to be designed in from the start.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <h5 class="feature-title">Delivery pressure</h5>
+            </div>
+            <p class="feature-desc">Stakeholder hard deadline. Every decision had to be defensible fast.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <h5 class="feature-title">Strategic platform fit</h5>
+            </div>
+            <p class="feature-desc">One piece of a bigger platform. I made design decision that leaves room for what comes next.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <h5 class="feature-title">Pattern consistency</h5>
+            </div>
+            <p class="feature-desc">No playbook existed for AI extraction results. I designed a pattern that could hold up across domains.</p>
+          </li>
+          <li class="feature-item">
+            <div class="feature-header">
+              <h5 class="feature-title">Technical elasticity</h5>
+            </div>
+            <p class="feature-desc">AI confidence was basic at the start, with engineers rapidly building robust checks underneath. I designed for current limitations while staying flexible to surface greater sophistication over time.</p>
+          </li>
+        </ul>
       </div>
     </section>
 
