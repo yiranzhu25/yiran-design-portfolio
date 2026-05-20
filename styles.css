@@ -1228,6 +1228,7 @@ p {
 #vibe-coding .work-grid-2col {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 /* Vibe coding card thumbnails */
@@ -2094,6 +2095,9 @@ p {
   .concept-title { font-size: 32px; }
   .work-grid-2col { grid-template-columns: 1fr; gap:80px; }
   .work-card-sm-image { height: 400px; }
+  #vibe-coding .work-grid-2col { flex-direction: column; }
+  .vibe-card { width: 100%; }
+  .vibe-card .work-card-sm-image { width: 100%; height: 300px; }
   .career-entry { grid-template-columns: 1fr 2fr; }
   .career-entry > :first-child { display: none; }
   .personal-grid { grid-template-columns: 1fr 1fr; }
