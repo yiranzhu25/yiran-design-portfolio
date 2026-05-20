@@ -1172,6 +1172,20 @@ p {
 }
 .concept-arrow-btn:hover { opacity: 0.85; }
 
+/* Work visual: simple card with thumbnail */
+.work-visual-card {
+  background: var(--color-bg-secondary);
+  border-radius: 16px;
+  padding: 24px 24px 0;
+  overflow: hidden;
+  width: 100%;
+}
+.work-visual-card img {
+  width: 100%;
+  display: block;
+  border-radius: 4px 4px 0 0;
+}
+
 /* Work visual: full-width pipeline / placeholder */
 .work-visual-full {
   
@@ -1188,6 +1202,54 @@ p {
   font-size: 18px;
   color: var(--color-text-primary);
   letter-spacing: -0.36px;
+}
+
+/* Vibe coding card thumbnails */
+.vibe-card-thumb {
+  background: #f5f5f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vibe-icon-card {
+  background: #0f0f12;
+  border-radius: 24px;
+  padding: 16px;
+  box-shadow: 0px 4px 8px rgba(10,13,18,0.1), 0px 2px 4px rgba(10,13,18,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vibe-finance-dot {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vibe-finance-dot__outer {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 99px;
+  background: #5cff04;
+  opacity: 0.1;
+}
+.vibe-finance-dot__mid {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 28px;
+  background: #5cff04;
+  opacity: 0.2;
+}
+.vibe-finance-dot__inner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 28px;
+  background: #5cff04;
 }
 
 /* 2-col small work cards */
