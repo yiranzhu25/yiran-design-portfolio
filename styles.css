@@ -1780,6 +1780,17 @@ p {
   max-width: 640px;
   margin: 0;
 }
+.cs-body-list {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #121212;
+  max-width: 640px;
+  margin: 0;
+  padding-left: 27px;
+}
+.cs-body-list li {
+  margin-bottom: 0;
+}
 /* Dark KPI cards */
 .kpi-row {
   display: flex;

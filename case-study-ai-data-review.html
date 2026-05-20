@@ -74,7 +74,7 @@
         </li>
         <li>
           <span class="cs-meta-list-label">My contribution</span>
-          <p class="cs-meta-list-value">Led product design vision, design execution, and stakeholder alignment from strategies through phased delivery.</p>
+          <p class="cs-meta-list-value">Led product design vision, end-to-end research to design, and stakeholder alignment from strategies through phased delivery.</p>
         </li>
       </ul>
     </section>
@@ -103,7 +103,6 @@
       </div>
       <p class="cs-body-text">Think about house mortgage loans, but for billion-dollar acquisitions with far more complexity and higher stakes. One of our internal team onboards these loans into our system and manages them for their entire lifecycle.</p>
       <p class="cs-body-text">The team must extract 100-600 legal terms buried in a 300-500 page document with bespoke language and accurately digitize them into our system.</p>
-      <p class="cs-body-text">The extraction relies on expensive vendor and the internal review process is difficult and extremely manual.</p>
       <div class="kpi-row">
         <div class="kpi-card">
           <p class="kpi-number">~500</p>
@@ -126,42 +125,32 @@
             <p class="kpi-sublabel">On vendor</p>
           </div>
         </div>
+        <div class="kpi-card">
+          <p class="kpi-number">10</p>
+          <div>
+            <p class="kpi-label">Days</p>
+            <p class="kpi-sublabel">Consistent delay</p>
+          </div>
+        </div>
+      </div>
+      <p class="cs-body-text" style="font-weight:700;">Gaps the project needs to close</p>
+      <div>
+        <p class="cs-body-text"><strong>Gap</strong> - We rely on expensive third-party vendors for extraction because our platform had no intelligence of its own.</p>
+        <p class="cs-body-text"><strong>Project Goal</strong> - Replace Vendors with AI Extraction</p>
+      </div>
+      <div>
+        <p class="cs-body-text"><strong>Gap</strong> - Internal review is manual and redundant</p>
+        <p class="cs-body-text"><strong>Project Goal</strong> - Redesign the review experience to be more efficient and less error-prone.</p>
       </div>
     </section>
 
-    <!-- Gaps: that design need to close -->
+    <!-- Key finding -->
     <section class="cs-content-section">
       <div>
-        <h2 class="cs-section-heading">Gaps <span class="accent-italic">that design need to close</span></h2>
+        <h2 class="cs-section-heading">Key finding <span class="accent-italic">that reframe the challenge</span></h2>
       </div>
-      <div class="feature-grid-wrap">
-        <ul class="simple-list">
-          <li class="feature-item">
-            <div class="feature-header">
-              <h5 class="feature-title">Gap 1</h5>
-            </div>
-            <p class="feature-desc">We still rely on expensive, error-prone third-party vendors for extraction because our platform had no intelligence of its own. Our system simply acts as a container.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <h5 class="feature-title feature-title--accent">Project Goal 1: Replace Vendors with AI Extraction</h5>
-            </div>
-            <p class="feature-desc">Implement AI to own the extraction process internally and sunset third-party vendors.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <h5 class="feature-title">Gap 2</h5>
-            </div>
-            <p class="feature-desc">The internal review workflow had no tooling to make cross-referencing checks faster</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <h5 class="feature-title feature-title--accent">Project Goal 2: Improve the Human Review Workflow</h5>
-            </div>
-            <p class="feature-desc">Redesign the internal data review experience to be more efficient and less error-prone.</p>
-          </li>
-        </ul>
-      </div>
+      <p class="cs-body-text">I re-interviewed users on the current platform — prior research reflected legacy behavior that no longer applied.</p>
+      <p class="cs-body-text">Key finding: <strong>60% of review time was spent locating the right clause</strong>, not evaluating the data. It directly drove the decision to map every AI value to its exact document coordinate.</p>
     </section>
 
     <!-- Constraints & Strategic context -->
@@ -170,18 +159,18 @@
         <h2 class="cs-section-heading">Constraints <span class="accent-italic">&amp; Strategic context</span></h2>
       </div>
       <div class="feature-grid-wrap">
-        <ul class="simple-list">
+        <ul class="feature-list">
           <li class="feature-item">
             <div class="feature-header">
-              <h5 class="feature-title">User trust</h5>
+              <h5 class="feature-title">User trust built in phased approach</h5>
             </div>
-            <p class="feature-desc">Internal team had never used AI in this context. Trust-building had to be designed in from the start.</p>
+            <p class="feature-desc">Users weren't ready to skip data points checks because trust hadn't been established yet. I proposed full review → exception review.</p>
           </li>
           <li class="feature-item">
             <div class="feature-header">
               <h5 class="feature-title">Delivery pressure</h5>
             </div>
-            <p class="feature-desc">Stakeholder hard deadline. Every decision had to be defensible fast.</p>
+            <p class="feature-desc">Stakeholder hard deadline. I iterated fast to reach end vision.</p>
           </li>
           <li class="feature-item">
             <div class="feature-header">
@@ -199,10 +188,24 @@
             <div class="feature-header">
               <h5 class="feature-title">Technical elasticity</h5>
             </div>
-            <p class="feature-desc">AI confidence was basic at the start, with engineers rapidly building robust checks underneath. I designed for current limitations while staying flexible to surface greater sophistication over time.</p>
+            <p class="feature-desc">AI confidence was basic at the start, with engineers rapidly building robust checks. I designed for current limitations while staying flexible to surface greater sophistication over time.</p>
           </li>
         </ul>
       </div>
+    </section>
+
+    <!-- AI confidence signaling -->
+    <section class="cs-content-section">
+      <div>
+        <h2 class="cs-section-heading"><span class="accent-italic">AI confidence signaling</span> exploration</h2>
+      </div>
+      <p class="cs-body-text">I explored three directions:</p>
+      <ul class="cs-body-list">
+        <li>Raw confidence score (users didn't know how to act on it)</li>
+        <li>Binary verified/uncertain flag</li>
+        <li>Exposing current AI evaluation method</li>
+      </ul>
+      <p class="cs-body-text">I landed on method exposure first, then shifted to binary as engineering built more sophisticated logic. This kept the pattern simple now while leaving room to surface AI reasoning without overwhelming users.</p>
     </section>
 
     <!-- Solution: AI-driven exception based review -->
@@ -279,7 +282,7 @@
 
     <!-- Feature Breakdown Image -->
     <div class="cs-feature-break">
-      <img src="img/feature-break-down.png" alt="Feature breakdown">
+      <img src="img/feature-breakdown.png" alt="Feature breakdown">
     </div>
 
     <!-- Impact -->
