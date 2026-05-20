@@ -1204,6 +1204,32 @@ p {
   letter-spacing: -0.36px;
 }
 
+/* Vibe coding card: fixed 300px width, square image, title-first layout */
+.vibe-card {
+  width: 300px;
+  flex-shrink: 0;
+}
+.vibe-card .work-card-sm-image {
+  width: 300px;
+  height: 300px;
+}
+.vibe-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.vibe-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+#vibe-coding .work-grid-2col {
+  display: flex;
+  align-items: flex-start;
+}
+
 /* Vibe coding card thumbnails */
 .vibe-card-thumb {
   background: #f5f5f7;
