@@ -139,27 +139,6 @@
       .pipeline-root { min-height: unset; }
     }
   </style>
-  <style>
-    .copy-email { position: relative; }
-    .copy-email .email-tooltip {
-      position: absolute;
-      top: calc(100% + 6px);
-      left: 50%;
-      transform: translateX(-50%);
-      background: #121212;
-      color: #fff;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 6px;
-      white-space: nowrap;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 150ms ease;
-      z-index: 1000;
-    }
-    .copy-email.copied .email-tooltip { opacity: 1; }
-  </style>
 </head>
 <body>
 
@@ -167,15 +146,21 @@
   <header class="site-header">
     <div class="header-col-left">
       <span class="header-name"><strong>Yiran Zhu</strong></span>
-      <span class="header-title">Product Design @ Goldman Sachs</span>
     </div>
 
     <div class="header-col-right">
       <a href="index.html#work" class="header-link nav-scroll-link" data-section="work">Work</a>
       <a href="index.html#vibe-coding" class="header-link nav-scroll-link" data-section="vibe-coding">Vibe coding</a>
       <a href="index.html#about" class="header-link nav-scroll-link" data-section="about">About</a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
-      <a href="#" class="header-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
+      <div class="contact-menu-wrapper">
+        <button class="contact-toggle" id="contact-toggle" aria-expanded="false" aria-haspopup="true">Contact</button>
+        <div class="contact-dropdown" id="contact-dropdown" aria-hidden="true">
+          <a href="#" class="contact-dropdown-item copy-email" data-email="yiran.jour@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="contact-dropdown-item">LinkedIn</a>
+          <a href="https://github.com/yiranzhu25" target="_blank" class="contact-dropdown-item">Github</a>
+          <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="contact-dropdown-item">Resume</a>
+        </div>
+      </div>
       <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -184,8 +169,10 @@
       <a href="index.html#work" class="nav-dropdown-link nav-scroll-link" data-section="work">Work</a>
       <a href="index.html#vibe-coding" class="nav-dropdown-link nav-scroll-link" data-section="vibe-coding">Vibe coding</a>
       <a href="index.html#about" class="nav-dropdown-link nav-scroll-link" data-section="about">About</a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
       <a href="#" class="nav-dropdown-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="nav-dropdown-link">LinkedIn</a>
+      <a href="https://github.com/yiranzhu25" target="_blank" class="nav-dropdown-link">Github</a>
+      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
     </nav>
   </header>
 
@@ -195,12 +182,29 @@
     <!-- Introduction -->
     <section class="intro-section">
       <div class="intro-headline-group">
-        <p class="intro-greeting">Hi, I'm Yiran,</p>
-        <h1 class="intro-heading">Product designer with deep experience in <span class="intro-accent">enterprise-scale, global market products</span> and <span class="intro-accent">early-stage 0-to-1 builds</span>.</h1>
+        <div class="intro-greeting-row">
+          <span class="intro-greeting-name">Hi, I'm Yiran</span>
+          <img src="img/IMG_2865.JPG" alt="Yiran Zhu" class="intro-avatar">
+        </div>
+        <p class="intro-headline-sub">A product designer with 7 years of experience creating product vision that fulfills users needs and business goals.</p>
       </div>
       <div class="intro-body-group">
-        <p class="intro-body-text">I define <span class="intro-accent">product vision</span> grounded in user research and business reality, and design scalable systems that evolve with technology.</p>
-        <p class="intro-body-text">I design <span class="intro-accent">AI-powered products and use AI to build</span> alongside human insight — to move faster, frame better, and build what actually matters.</p>
+        <p class="intro-body-text">I specialize in scaling <span class="intro-accent">enterprise systems</span>, architecting <span class="intro-accent">AI-first solutions</span> and designing <span class="intro-accent">services</span> that weave products, people and processes.</p>
+        <p class="intro-body-text">Currently leading multi-year product initiatives at Goldman Sachs</p>
+        <div class="intro-social-row">
+          <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="intro-social-link">
+            <img src="img/InBug-Black.png" alt="LinkedIn">
+          </a>
+          <a href="https://github.com/yiranzhu25" target="_blank" class="intro-social-link">
+            <img src="img/GitHub_Invertocat_Black.png" alt="GitHub">
+          </a>
+          <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="intro-social-link">
+            <img src="img/article_person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Resume">
+          </a>
+          <a href="#" class="intro-social-link copy-email" data-email="yiran.jour@gmail.com">
+            <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Email">
+          </a>
+        </div>
       </div>
     </section>
 
@@ -208,19 +212,51 @@
     <section class="home-work-section" id="work">
       <h2 class="home-section-title">Selected work</h2>
 
+      <!-- GS context -->
+      <div class="gs-context-block">
+        <img src="img/goldman-sachs-2.svg" alt="Goldman Sachs" class="gs-logo">
+        <p class="gs-context-text">At Goldman Sachs, I lead design vision and execution on a commercial loan management platform that helps teams handle loans efficiently and safely — building 0→1 product, owning 3 critical domains.</p>
+      </div>
+
       <div class="work-entries">
 
         <!-- ── Entry 1: AI Data Review ── -->
         <div class="work-entry">
-          <!-- Visual: full-width thumbnail -->
-          <div class="work-visual-card">
-            <img src="img/ai-data-review-case-thumb-2.png" alt="AI Data Review Transformation thumbnail">
+          <!-- Visual: split — main thumbnail + concept prototype panel -->
+          <div class="work-visual-main-split">
+            <div class="work-visual-main-bg">
+              <img src="img/ai-data-review-case-thumb-2.png" alt="AI-powered Data Review thumbnail">
+            </div>
+            <div class="work-visual-concept-panel">
+              <div class="vibe-icon-card">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+                  <line x1="16" y1="8" x2="2" y2="22"/>
+                  <line x1="17.5" y1="15" x2="9" y2="15"/>
+                </svg>
+              </div>
+              <div class="work-visual-concept-info">
+                <div class="work-visual-concept-text">
+                  <p class="work-visual-concept-title">Legal Doc AI Digitization</p>
+                  <p class="work-visual-concept-desc">A concept prototype to demo the design without disclosing business information.</p>
+                </div>
+                <a href="https://yiranzhu25.github.io/document-concept-app" target="_blank" class="view-study-btn">
+                  View Progress
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
           <!-- Text info below visual -->
           <div class="work-entry-info">
-            <p class="work-meta-tags">AI-HITL · AI UX Patterns · Goldman Sachs · 2025-2026</p>
-            <h3 class="work-entry-title">AI Data Review Transformation</h3>
-            <p class="work-entry-desc">Designed an <strong>AI-driven data review</strong> that transformed a 7-hour manual process into a <strong>30-minute exception-based</strong> audit, reducing vendor dependency and build user trust through <strong>explainable AI</strong>.</p>
+            <p class="work-meta-tags">2025-2026 · AI-Human Interaction · Reusable UX Patterns</p>
+            <div class="work-title-row">
+              <h3 class="work-entry-title">AI-powered Data Review</h3>
+              <span class="work-badge">Phase 1 Launched</span>
+            </div>
+            <p class="work-entry-desc">Designed a feature where users review, correct, and approve data extracted by AI — cutting a 7-hour manual process down to 30 minutes.</p>
             <a href="case-study-ai-data-review.html" class="btn-dark">
               View Case Study
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -367,9 +403,12 @@
           </div>
           <!-- Text info below visual -->
           <div class="work-entry-info">
-            <p class="work-meta-tags">Systems Thinking · Product Architect · Goldman Sachs · 2024</p>
-            <h3 class="work-entry-title">Automate Cross-functional Operations</h3>
-            <p class="work-entry-desc">Unblocked a critical business bottleneck by <strong>re-engineering</strong> how cross-functional teams, tools, and data hand-offs were orchestrated — <strong>collapsing fragmented, multi-team processes</strong> into one <strong>automated workflow</strong>.</p>
+            <p class="work-meta-tags">2024 · Systems Thinking · Product Architect</p>
+            <div class="work-title-row">
+              <h3 class="work-entry-title">Shared Task Manager</h3>
+              <span class="work-badge">Launched</span>
+            </div>
+            <p class="work-entry-desc">Designed a guided automation workflow that unified four teams managing one complex task — replacing disconnected tools and handoffs with a single shared digital experience.</p>
             <a href="case-study-automate.html" class="btn-dark">
               View Case Study
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -388,10 +427,12 @@
               <img src="img/pros-case-thumb.png" alt="Design System at Scale">
             </div>
             <div class="work-card-sm-info">
-             
-                <p class="work-meta-tags">Tech · Design System · UI Design · PROS · 2019</p>
-                <h3 class="work-card-sm-title">Maintain Design System at Scale</h3>
-              
+              <div class="work-card-logo-row">
+                <img src="img/pros-logo.png" alt="PROS" class="work-card-logo">
+                <p class="work-meta-tags">2019 · Design System · UI Design</p>
+              </div>
+              <h3 class="work-card-sm-title">Maintain Design System at Scale</h3>
+              <p class="work-entry-desc">At PROS, I unified the enterprise user experience through a scalable design system, achieving accessibility and platform consistency to accelerate new product adoption.</p>
               <a href="case-study-design-system.html" class="view-study-btn">
                 View Case Study
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -407,10 +448,12 @@
               <img id="rushable-case-thumb" src="img/rushable-case-thumb.png" alt="Restaurant POS & Ordering">
             </div>
             <div class="work-card-sm-info">
-              
-                <p class="work-meta-tags">Tech · UX/UI Design · Rushable · 2022</p>
-                <h3 class="work-card-sm-title">Restaurant POS &amp; Ordering</h3>
-              
+              <div class="work-card-logo-row">
+                <img src="img/f3559182-f767-9ffd-9686-4aee937437e4.png" alt="Rushable" class="work-card-logo">
+                <p class="work-meta-tags">2022 · UX/UI Design</p>
+              </div>
+              <h3 class="work-card-sm-title">Restaurant POS &amp; Ordering</h3>
+              <p class="work-entry-desc">At Rushable, I redesigned a POS system to optimize order processing efficiency and conceptualized a zero-commission marketplace to drive restaurant discovery.</p>
               <a href="case-study-restaurant.html" class="view-study-btn">
                 View Case Study
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -442,9 +485,10 @@
           </div>
           <div class="work-card-sm-info">
             <div class="vibe-card-header">
-              <h3 class="vibe-card-title">Legal Doc AI Digitization</h3>
               <p class="work-meta-tags">Legal · Concept Prototype · 2026</p>
+              <h3 class="vibe-card-title">Legal Doc AI Digitization</h3>
             </div>
+            <p class="vibe-card-desc">A concept prototype to demo the AI data review case study design without disclosing business information.</p>
             <a href="https://yiranzhu25.github.io/document-concept-app" target="_blank" class="view-study-btn">
               View Progress
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -467,9 +511,10 @@
           </div>
           <div class="work-card-sm-info">
             <div class="vibe-card-header">
-              <h3 class="vibe-card-title">Personal Finance Tracking App</h3>
               <p class="work-meta-tags">Fintech · Mobile/Web App · 2026</p>
+              <h3 class="vibe-card-title">Personal Finance Tracking App</h3>
             </div>
+            <p class="vibe-card-desc">Personal project solving a pain point in my daily life, using AI-native approach.</p>
             <a href="https://finance-tracker-sooty-zeta-35.vercel.app/" target="_blank" class="view-study-btn">
               View Progress
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -703,6 +748,24 @@
     });
   </script>
   <script>
+    // ── Contact dropdown ────────────────────────────────────────
+    var contactToggle   = document.getElementById('contact-toggle');
+    var contactDropdown = document.getElementById('contact-dropdown');
+    if (contactToggle && contactDropdown) {
+      contactToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = contactDropdown.classList.toggle('open');
+        contactToggle.setAttribute('aria-expanded', open);
+        contactDropdown.setAttribute('aria-hidden', !open);
+      });
+      document.addEventListener('click', function() {
+        contactDropdown.classList.remove('open');
+        contactToggle.setAttribute('aria-expanded', 'false');
+        contactDropdown.setAttribute('aria-hidden', 'true');
+      });
+      contactDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+    }
+
     // ── Hamburger menu ──────────────────────────────────────────
     var hamburgerBtn = document.getElementById('hamburger-btn');
     var navDropdown  = document.getElementById('nav-dropdown');

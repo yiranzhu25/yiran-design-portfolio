@@ -15,22 +15,32 @@
   <header class="site-header">
     <div class="header-col-left">
       <a href="index.html" class="header-name header-link" style="font-weight:700;">Yiran Zhu</a>
-      <span class="header-title" style="font-size:16px; color: var(--color-text-primary);">Product Design @ Goldman Sachs</span>
     </div>
     <div class="header-col-right">
       <a href="index.html#work" class="header-link">Work</a>
+      <a href="index.html#vibe-coding" class="header-link">Vibe coding</a>
       <a href="index.html#about" class="header-link">About</a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
-      <a href="mailto:yiran.jour@gmail.com" class="header-link">Email</a>
+      <div class="contact-menu-wrapper">
+        <button class="contact-toggle" id="contact-toggle" aria-expanded="false" aria-haspopup="true">Contact</button>
+        <div class="contact-dropdown" id="contact-dropdown" aria-hidden="true">
+          <a href="#" class="contact-dropdown-item copy-email" data-email="yiran.jour@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="contact-dropdown-item">LinkedIn</a>
+          <a href="https://github.com/yiranzhu25" target="_blank" class="contact-dropdown-item">Github</a>
+          <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="contact-dropdown-item">Resume</a>
+        </div>
+      </div>
       <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="nav-dropdown" id="nav-dropdown" aria-hidden="true">
       <a href="index.html#work" class="nav-dropdown-link">Work</a>
+      <a href="index.html#vibe-coding" class="nav-dropdown-link">Vibe coding</a>
       <a href="index.html#about" class="nav-dropdown-link">About</a>
+      <a href="#" class="nav-dropdown-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="nav-dropdown-link">LinkedIn</a>
+      <a href="https://github.com/yiranzhu25" target="_blank" class="nav-dropdown-link">Github</a>
       <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
-      <a href="mailto:yiran.jour@gmail.com" class="nav-dropdown-link">Email</a>
     </nav>
   </header>
 
@@ -235,6 +245,24 @@
   </footer>
 
   <script>
+    // ── Contact dropdown ────────────────────────────────
+    var contactToggle   = document.getElementById('contact-toggle');
+    var contactDropdown = document.getElementById('contact-dropdown');
+    if (contactToggle && contactDropdown) {
+      contactToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = contactDropdown.classList.toggle('open');
+        contactToggle.setAttribute('aria-expanded', open);
+        contactDropdown.setAttribute('aria-hidden', !open);
+      });
+      document.addEventListener('click', function() {
+        contactDropdown.classList.remove('open');
+        contactToggle.setAttribute('aria-expanded', 'false');
+        contactDropdown.setAttribute('aria-hidden', 'true');
+      });
+      contactDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+    }
+
     var hamburgerBtn = document.getElementById('hamburger-btn');
     var navDropdown  = document.getElementById('nav-dropdown');
     if (hamburgerBtn && navDropdown) {
@@ -248,6 +276,22 @@
         hamburgerBtn.setAttribute('aria-expanded', 'false');
       });
     }
+
+    // ── Email copy ──────────────────────────────────────
+    document.querySelectorAll('.copy-email').forEach(function(link) {
+      var tooltip = document.createElement('span');
+      tooltip.className = 'email-tooltip';
+      tooltip.textContent = 'Copied';
+      link.appendChild(tooltip);
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var email = this.dataset.email;
+        navigator.clipboard.writeText(email).then(function() {
+          link.classList.add('copied');
+          setTimeout(function() { link.classList.remove('copied'); }, 1500);
+        });
+      });
+    });
   </script>
   <script src="animations.js"></script>
 </body>

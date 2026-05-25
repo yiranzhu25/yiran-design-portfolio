@@ -910,6 +910,71 @@ p {
 }
 .nav-dropdown-link:hover { background: var(--color-bg-secondary); }
 .nav-dropdown-link.header-link--active { font-weight: 700; }
+
+/* Contact dropdown */
+.contact-menu-wrapper {
+  position: relative;
+}
+.contact-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  transition: opacity var(--duration-fast) var(--ease-default);
+}
+.contact-toggle:hover { opacity: 0.6; }
+.contact-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 8px 0;
+  min-width: 160px;
+  z-index: 200;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+.contact-dropdown.open { display: block; }
+.contact-dropdown-item {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #302B27;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--duration-fast) var(--ease-default);
+}
+.contact-dropdown-item:hover { background: var(--color-bg-secondary); }
+
+/* Copy email tooltip (global) */
+.copy-email { position: relative; }
+.copy-email .email-tooltip {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #121212;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  z-index: 1000;
+}
+.copy-email.copied .email-tooltip { opacity: 1; }
+
 .header-name {
   font-size: 16px;
   color: var(--color-text-primary);
@@ -947,7 +1012,7 @@ p {
   padding: 64px;
   display: flex;
   flex-direction: column;
-  gap: 240px;
+  gap: 180px;
   align-items: center;
 }
 
@@ -965,6 +1030,7 @@ p {
   gap: 48px;
   width: 100%;
   max-width: 1200px;
+  padding: 0 64px;
 }
 .intro-headline-group {
   display: flex;
@@ -1002,6 +1068,178 @@ p {
   color: #302B27;
 }
 
+.intro-social-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+.intro-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+  transition: opacity var(--duration-fast) var(--ease-default);
+}
+.intro-social-link:hover { opacity: 1; }
+.intro-social-link img { width: 24px; height: 24px; }
+
+/* Intro section — new design */
+.intro-greeting-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.intro-greeting-name {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #302B27;
+  white-space: nowrap;
+}
+.intro-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.intro-headline-sub {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #302B27;
+  width: 100%;
+}
+
+/* GS context block */
+.gs-context-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  /*padding: 0 64px;*/
+  align-items: start
+}
+.gs-logo {
+  height: 28px;
+  width: auto;
+}
+.gs-context-text {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #302B27;
+  letter-spacing: -0.36px;
+}
+
+/* Split visual: AI Data Review thumbnail + concept panel */
+.work-visual-main-split {
+  display: flex;
+  gap: 32px;
+  align-items: stretch; /* both columns share the same height */
+  width: 100%;
+}
+.work-visual-main-bg {
+  flex: 1;
+  min-width: 0;
+  background: var(--color-bg-secondary);
+  border-radius: 16px;
+  padding: 24px 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* image sits at the bottom of the card */
+  overflow: hidden;
+}
+.work-visual-main-bg img {
+  width: 100%;
+  display: block;
+  border-radius: 4px 4px 0 0;
+  object-fit: cover;
+}
+.work-visual-concept-panel {
+  width: 300px;
+  flex-shrink: 0;
+  background: var(--color-bg-secondary);
+  border-radius: 16px;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+  justify-content: center;
+  /* height is dictated by the flex container (align-items: stretch) */
+}
+@media (max-width: 768px) {
+  .work-visual-concept-panel { display: none; }
+}
+.work-visual-concept-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 24px;
+  width: 100%;
+}
+.work-visual-concept-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.work-visual-concept-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+.work-visual-concept-desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
+/* Work title + badge row */
+.work-title-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.work-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(70, 102, 255, 0.1);
+  border: 1px solid #4666FF;
+  color: #4666FF;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 999px;
+  padding: 5px 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Logo row in 2-col cards */
+.work-card-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.work-card-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Vibe card description */
+.vibe-card-desc {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text-primary);
+}
+
 /* Work section */
 .home-work-section {
   display: flex;
@@ -1009,6 +1247,7 @@ p {
   gap: 80px;
   max-width: 1200px;
   padding:0 64px;
+  width: 100%;
 }
 .home-section-title {
   font-size: 36px;
@@ -2074,7 +2313,7 @@ p {
   .home-main { padding: 40px; gap: 180px; }
   .work-visual-split-right { width: 240px; padding: 40px; }
   .concept-title { font-size: 36px; }
-  .home-work-section {padding: 0; width: 100%;}
+  .home-work-section,.career-section, .intro-section, .personal-section {padding: 0; width: 100%;}
 }
 
 @media (max-width: 768px) {
@@ -2166,6 +2405,7 @@ p {
   .personal-photo { aspect-ratio: 16 / 9; }
   .personal-text-col{font-size: 14px;}
   .site-header .header-col-right > a.header-link { display: none; }
+  .site-header .header-col-right .contact-menu-wrapper { display: none; }
   .site-footer {
     grid-template-columns: 1fr;
     padding: 20px 24px;

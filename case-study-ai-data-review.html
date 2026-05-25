@@ -3,12 +3,379 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Data Review Transformation — Yiran Zhu</title>
+  <title>AI-Powered Data Review — Yiran Zhu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap">
   <link rel="stylesheet" href="styles.css">
- 
+
+  <style>
+    /* ── Page-specific styles for AI Data Review v2 ── */
+
+    /* Hero image section */
+    .cs2-hero {
+      background: #f5f3f5;
+      width: 100%;
+      padding: 64px 40px 16px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+    .cs2-hero-img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Sections wrapper */
+    .cs2-sections-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Standard content section */
+    .cs2-section {
+      width: 100%;
+      max-width: 1068px;
+      padding: 80px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      box-sizing: border-box;
+    }
+    .cs2-section--accordion {
+      padding: 32px;
+    }
+
+    /* Title section: 2-col layout */
+    .cs2-section--title {
+      flex-direction: row;
+      gap: 48px;
+      align-items: flex-start;
+      padding: 80px 32px;
+      overflow: hidden;
+    }
+    .cs2-title-left {
+      flex: 1;
+      min-width: 500px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .cs2-title-heading {
+      font-size: 64px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -1.28px;
+      color: #121212;
+      margin: 0;
+    }
+    .cs2-title-desc {
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.6;
+      letter-spacing: -0.4px;
+      color: #121212;
+      margin: 0;
+    }
+    .cs2-badge-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .cs2-badge {
+      display: inline-flex;
+      align-items: center;
+      background: #f5f5f7;
+      border: 1px solid #e5e7eb;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #6b7280;
+      white-space: nowrap;
+    }
+
+    /* Metadata list */
+    .cs2-meta-list {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      align-self: flex-start;
+    }
+    .cs2-meta-list li {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-top: 8px;
+    }
+    .cs2-meta-list li:first-child {
+      border-top: 1px solid rgba(0,0,0,0.15);
+      padding-top: 24px;
+    }
+    .cs2-meta-label {
+      font-size: 16px;
+      font-weight: 600;
+      color: #121212;
+      letter-spacing: -0.32px;
+      line-height: 1;
+    }
+    .cs2-meta-value {
+      font-size: 16px;
+      color: #6b7280;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* Accordion */
+    .cs2-accordion {
+      background: #fff;
+      border: 1px solid #d9d9d9;
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .cs2-accordion-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      text-align: left;
+      gap: 8px;
+    }
+    .cs2-accordion-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e1e1e;
+      line-height: 1.4;
+      flex: 1;
+    }
+    .cs2-accordion-chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      transition: transform 250ms ease;
+    }
+    .cs2-accordion-chevron.open {
+      transform: rotate(180deg);
+    }
+    .cs2-accordion-body {
+      font-size: 16px;
+      color: #6b7280;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .cs2-accordion-body[hidden] { display: none; }
+
+    /* Section headline (label + big heading) */
+    .cs2-headline {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 640px;
+      width: 100%;
+    }
+    .cs2-overline {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.4;
+      color: #121212;
+      margin: 0;
+    }
+    .cs2-section-heading {
+      font-size: 36px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.72px;
+      color: #121212;
+      margin: 0;
+    }
+    .cs2-accent {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #4666ff;
+    }
+    .cs2-accent-dark {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #121212;
+    }
+
+    /* Body text */
+    .cs2-body {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #121212;
+      max-width: 640px;
+      margin: 0;
+    }
+    .cs2-body-full {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #121212;
+      margin: 0;
+    }
+    .cs2-body strong, .cs2-body-semibold {
+      font-weight: 600;
+    }
+
+    /* Inline lists */
+    .cs2-body-list {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.45;
+      color: #121212;
+      max-width: 640px;
+      margin: 0;
+      padding-left: 27px;
+    }
+    .cs2-body-list li {
+      margin-bottom: 0;
+    }
+
+    /* Inline image (full section width) */
+    .cs2-img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Two-column challenge blocks */
+    .cs2-challenge-row {
+      display: flex;
+      gap: 32px;
+      width: 100%;
+    }
+    .cs2-challenge-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 8px;
+      border-radius: 16px;
+      min-width: 0;
+    }
+    .cs2-challenge-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.6;
+      color: #121212;
+      margin: 0;
+    }
+    .cs2-challenge-desc {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: -0.09px;
+      color: #121212;
+      margin: 0;
+    }
+
+    /* Key insights 2-column grid */
+    .cs2-insights-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,3fr);
+      width: 100%;
+    }
+    .cs2-insights-list {
+      grid-column: 2;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 24px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .cs2-insight-item {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 8px;
+      border-radius: 16px;
+    }
+    .cs2-insight-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.6;
+      color: #121212;
+      margin: 0;
+    }
+    .cs2-insight-desc {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 1.45;
+      letter-spacing: -0.09px;
+      color: #121212;
+      margin: 0;
+    }
+
+    /* Full-width image breaks */
+    .cs2-fullwidth-img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+    .cs2-fullwidth-img img {
+      width: 100%;
+      display: block;
+    }
+
+    /* KPI cards (re-using existing kpi-row/kpi-card) */
+
+    /* Impact cards (re-using existing impact-row/impact-card-new) */
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .cs2-section--title {
+        flex-direction: column;
+      }
+      .cs2-title-left {
+        min-width: unset;
+      }
+      .cs2-title-heading {
+        font-size: 48px;
+      }
+      .cs2-challenge-row {
+        flex-direction: column;
+        gap: 24px;
+      }
+      .cs2-insights-grid {
+        grid-template-columns: 1fr;
+      }
+      .cs2-insights-list {
+        grid-column: 1;
+      }
+    }
+    @media (max-width: 600px) {
+      .cs2-hero { padding: 40px 24px 12px; }
+      .cs2-section { padding: 48px 24px; gap: 24px; }
+      .cs2-section--accordion { padding: 24px; }
+      .cs2-section--title { padding: 48px 24px; }
+      .cs2-title-heading { font-size: 36px; }
+      .cs2-section-heading { font-size: 28px; }
+      .cs2-body, .cs2-body-full, .cs2-body-list { font-size: 16px; }
+      .cs2-challenge-title, .cs2-challenge-desc { font-size: 16px; }
+      .cs2-insight-title, .cs2-insight-desc { font-size: 16px; }
+      .cs2-insights-list { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -16,93 +383,151 @@
   <header class="site-header">
     <div class="header-col-left">
       <a href="index.html" class="header-name header-link" style="font-weight:700;">Yiran Zhu</a>
-      <span class="header-title" style="font-size:16px; color: var(--color-text-primary);">Product Design @ Goldman Sachs</span>
     </div>
     <div class="header-col-right">
       <a href="index.html#work" class="header-link">Work</a>
+      <a href="index.html#vibe-coding" class="header-link">Vibe coding</a>
       <a href="index.html#about" class="header-link">About</a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link">Resume</a>
-      <a href="mailto:yiran.jour@gmail.com" class="header-link">Email</a>
+      <div class="contact-menu-wrapper">
+        <button class="contact-toggle" id="contact-toggle" aria-expanded="false" aria-haspopup="true">Contact</button>
+        <div class="contact-dropdown" id="contact-dropdown" aria-hidden="true">
+          <a href="#" class="contact-dropdown-item copy-email" data-email="yiran.jour@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="contact-dropdown-item">LinkedIn</a>
+          <a href="https://github.com/yiranzhu25" target="_blank" class="contact-dropdown-item">Github</a>
+          <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="contact-dropdown-item">Resume</a>
+        </div>
+      </div>
       <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
     <nav class="nav-dropdown" id="nav-dropdown" aria-hidden="true">
       <a href="index.html#work" class="nav-dropdown-link">Work</a>
+      <a href="index.html#vibe-coding" class="nav-dropdown-link">Vibe coding</a>
       <a href="index.html#about" class="nav-dropdown-link">About</a>
+      <a href="#" class="nav-dropdown-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="nav-dropdown-link">LinkedIn</a>
+      <a href="https://github.com/yiranzhu25" target="_blank" class="nav-dropdown-link">Github</a>
       <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
-      <a href="mailto:yiran.jour@gmail.com" class="nav-dropdown-link">Email</a>
     </nav>
   </header>
 
-  <!-- ── Hero: Case Thumbnail ──────────────────────── -->
-  <div class="cs-hero-thumb-wrap">
-    <img class="cs-hero-thumb" src="img/ai-data-review-case-thumb-2.png" alt="AI Data Review Transformation">
+  <!-- ── Hero image ──────────────────────────────────── -->
+  <div class="cs2-hero">
+    <img class="cs2-hero-img" src="img/ai-data-review-case-thumb-2.png" alt="AI-Powered Data Review">
   </div>
 
-  <!-- ── Sections ─────────────────────────────────────── -->
-  <div class="cs-sections-wrap">
+  <!-- ── All content sections ────────────────────────── -->
+  <div class="cs2-sections-wrap">
 
-    <!-- Title + Metadata -->
-    <section class="cs-content-section cs-content-section--title">
-      <div class="cs-title-left">
-        <h1 class="cs-title-heading">
-          <em class="type-hero-accent">AI Data Review</em> Transformation
+    <!-- ── Title + Metadata ── -->
+    <section class="cs2-section cs2-section--title">
+
+      <!-- Left: heading, desc, badges -->
+      <div class="cs2-title-left">
+        <h1 class="cs2-title-heading">
+          <em class="cs2-accent">AI-Powered</em> Data Review
         </h1>
-        <p class="cs-title-desc">Designed an AI-driven data review that transformed a 7-hour manual process into a 30-minute exception-based audit, reducing vendor dependency and build user trust through explainable AI.</p>
-        <div class="tags">
-          <span class="tag">AI-HITL</span>
-          <span class="tag">AI UX Patterns</span>
+        <p class="cs2-title-desc">Designed a feature where users review, correct, and approve data extracted by AI — cutting a 7-hour manual process down to 30 minutes, reducing vendor dependency and build user trust through explainable AI.</p>
+        <div class="cs2-badge-row">
+          <span class="cs2-badge">AI-Human Interaction</span>
+          <span class="cs2-badge">Reusable UX Patterns</span>
         </div>
       </div>
-      <ul class="cs-meta-list">
+
+      <!-- Right: metadata list -->
+      <ul class="cs2-meta-list">
         <li>
-          <span class="cs-meta-list-label">Company</span>
-          <p class="cs-meta-list-value">Goldman Sachs</p>
+          <span class="cs2-meta-label">Company</span>
+          <p class="cs2-meta-value">Goldman Sachs</p>
         </li>
         <li>
-          <span class="cs-meta-list-label">Role</span>
-          <p class="cs-meta-list-value">Product Design</p>
+          <span class="cs2-meta-label">Role</span>
+          <p class="cs2-meta-value">Product Design Owner</p>
         </li>
         <li>
-          <span class="cs-meta-list-label">Timeline</span>
-          <p class="cs-meta-list-value">July 2025 - Ongoing</p>
+          <span class="cs2-meta-label">Timeline</span>
+          <p class="cs2-meta-value">July 2025 - Ongoing, Phase 1 Launched</p>
         </li>
         <li>
-          <span class="cs-meta-list-label">Team</span>
-          <p class="cs-meta-list-value">PM, engineers, legal consultant and SME</p>
+          <span class="cs2-meta-label">Team</span>
+          <p class="cs2-meta-value">PM, engineers, legal consultant and SME</p>
         </li>
         <li>
-          <span class="cs-meta-list-label">My contribution</span>
-          <p class="cs-meta-list-value">Led product design vision, end-to-end research to design, and stakeholder alignment from strategies through phased delivery.</p>
+          <span class="cs2-meta-label">My contribution</span>
+          <p class="cs2-meta-value">Led product design vision, end-to-end research to design, and stakeholder alignment from strategies through phased delivery.</p>
         </li>
       </ul>
     </section>
 
-    <!-- Confidentiality Note -->
-    <section class="cs-content-section cs-content-section--accordion">
-      <div class="accordion" data-accordion>
-        <button class="accordion-header" aria-expanded="false" aria-controls="acc-ai-body">
-          <span>Confidentiality &amp; Design Note</span>
-          <span class="accordion-arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M5 7.5L10 12.5L15 7.5" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
+    <!-- ── Confidentiality Accordion ── -->
+    <section class="cs2-section cs2-section--accordion">
+      <div class="cs2-accordion">
+        <button class="cs2-accordion-header" aria-expanded="true" aria-controls="acc-conf-body" id="acc-conf-btn">
+          <span class="cs2-accordion-title">Confidentiality &amp; Design Note</span>
+          <svg class="cs2-accordion-chevron open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M5 12.5L10 7.5L15 12.5" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </button>
-        <div class="accordion-body" id="acc-ai-body" hidden>
-          <p>To comply with NDA requirements, this case study omits proprietary business logic and utilizes a modified design system. The UX logic, information architecture, and business impact represent the actual work delivered. Full case study can be shared privately.</p>
+        <p class="cs2-accordion-body" id="acc-conf-body">To comply with NDA requirements, this case study omits proprietary business logic and utilizes a modified design system. The UX logic, information architecture, and business impact represent the actual work delivered. Full case study can be shared privately.</p>
+      </div>
+    </section>
+
+    <!-- ── Project Context ── -->
+    <section class="cs2-section">
+      <div class="cs2-headline">
+        <p class="cs2-overline">Project context</p>
+        <h2 class="cs2-section-heading">Onboarding a loan — <em class="cs2-accent">Read the rulebook before playing the game</em></h2>
+      </div>
+      <p class="cs2-body">Once Goldman Sachs closes a loan, our internal teams start onboard and manage the loan. The first thing to onboard a loan is to take all financial terms in the loan contract and digitize them into a system. This contract is the rulebook for how the teams should manage the loan.</p>
+      <img class="cs2-img" src="img/Frame 55.png" alt="Loan onboarding process overview">
+      <p class="cs2-body">The process has two steps:</p>
+      <p class="cs2-body">
+        Step 1: A vendor extract financial terms from raw documents<br>
+        Step 2: Our loan team review all terms for accuracy
+      </p>
+      <img class="cs2-img" src="img/Frame 56 (1).png" alt="Two-step review process">
+      <p class="cs2-body-full">The challenges we face are:</p>
+      <div class="cs2-challenge-row">
+        <div class="cs2-challenge-item">
+          <h5 class="cs2-challenge-title">Vendor dependency</h5>
+          <p class="cs2-challenge-desc">Our platform now is a container to display these financial terms but has no intelligence to extract financial terms. We rely on vendor which is slow, expensive and error-prone</p>
+        </div>
+        <div class="cs2-challenge-item">
+          <h5 class="cs2-challenge-title">Manual review</h5>
+          <p class="cs2-challenge-desc">The review team had to manually cross-check hundreds of terms against raw legal documents, running 10 days late because of this labor intense process and sheer volume of loans.</p>
         </div>
       </div>
     </section>
 
-    <!-- Problem: Business cannot scale -->
-    <section class="cs-content-section">
-      <div>
-        <h2 class="cs-section-heading">Problem <span class="accent-italic">Business cannot scale</span></h2>
+    <!-- ── Problem Space ── -->
+    <section class="cs2-section">
+      <div class="cs2-headline">
+        <p class="cs2-overline">Problem space</p>
+        <h2 class="cs2-section-heading"><em class="cs2-accent">Locating hundreds of rules</em> in the hundred-page-long rulebook is difficult</h2>
       </div>
-      <p class="cs-body-text">Think about house mortgage loans, but for billion-dollar acquisitions with far more complexity and higher stakes. One of our internal team onboards these loans into our system and manages them for their entire lifecycle.</p>
-      <p class="cs-body-text">The team must extract 100-600 legal terms buried in a 300-500 page document with bespoke language and accurately digitize them into our system.</p>
+      <p class="cs2-body">I facilitated user sessions to identify the key efficiency and risk gaps and gathered metrics to understand the size of the problem.</p>
+      <p class="cs2-body">Key insights:</p>
+      <div class="cs2-insights-grid">
+        <ul class="cs2-insights-list">
+          <li class="cs2-insight-item">
+            <h5 class="cs2-insight-title">Biggest efficiency gap</h5>
+            <p class="cs2-insight-desc">Reviewers spent 60% of their time just locating the right terms in hundred-page contracts.</p>
+          </li>
+          <li class="cs2-insight-item">
+            <h5 class="cs2-insight-title">Biggest risk gap</h5>
+            <p class="cs2-insight-desc">No error prevention or system checks for users to rely on.</p>
+          </li>
+          <li class="cs2-insight-item">
+            <h5 class="cs2-insight-title">A new concern</h5>
+            <p class="cs2-insight-desc">How would users trust that AI interpreted terms correctly?</p>
+          </li>
+        </ul>
+      </div>
+      <img class="cs2-img" src="img/Frame 57.png" alt="User research findings">
+      <p class="cs2-body-full">Metrics that tells why current experience is so painful:</p>
+
+      <!-- KPI cards -->
       <div class="kpi-row">
         <div class="kpi-card">
           <p class="kpi-number">~500</p>
@@ -133,165 +558,54 @@
           </div>
         </div>
       </div>
-      <p class="cs-body-text" style="font-weight:700;">Gaps the project needs to close</p>
-      <div>
-        <p class="cs-body-text"><strong>Gap</strong> - We rely on expensive third-party vendors for extraction because our platform had no intelligence of its own.</p>
-        <p class="cs-body-text"><strong>Project Goal</strong> - Replace Vendors with AI Extraction</p>
-      </div>
-      <div>
-        <p class="cs-body-text"><strong>Gap</strong> - Internal review is manual and redundant</p>
-        <p class="cs-body-text"><strong>Project Goal</strong> - Redesign the review experience to be more efficient and less error-prone.</p>
-      </div>
     </section>
 
-    <!-- Key finding -->
-    <section class="cs-content-section">
-      <div>
-        <h2 class="cs-section-heading">Key finding <span class="accent-italic">that reframe the challenge</span></h2>
+    <!-- ── Design the Vision ── -->
+    <section class="cs2-section" style="padding-bottom: 32px;">
+      <div class="cs2-headline">
+        <p class="cs2-overline">Design the vision</p>
+        <h2 class="cs2-section-heading"><em class="cs2-accent">Exception-based</em> human audit</h2>
       </div>
-      <p class="cs-body-text">I re-interviewed users on the current platform — prior research reflected legacy behavior that no longer applied.</p>
-      <p class="cs-body-text">Key finding: <strong>60% of review time was spent locating the right clause</strong>, not evaluating the data. It directly drove the decision to map every AI value to its exact document coordinate.</p>
-    </section>
-
-    <!-- Constraints & Strategic context -->
-    <section class="cs-content-section">
-      <div>
-        <h2 class="cs-section-heading">Constraints <span class="accent-italic">&amp; Strategic context</span></h2>
-      </div>
-      <div class="feature-grid-wrap">
-        <ul class="feature-list">
-          <li class="feature-item">
-            <div class="feature-header">
-              <h5 class="feature-title">User trust built in phased approach</h5>
-            </div>
-            <p class="feature-desc">Users weren't ready to skip data points checks because trust hadn't been established yet. I proposed full review → exception review.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <h5 class="feature-title">Delivery pressure</h5>
-            </div>
-            <p class="feature-desc">Stakeholder hard deadline. I iterated fast to reach end vision.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <h5 class="feature-title">Strategic platform fit</h5>
-            </div>
-            <p class="feature-desc">One piece of a bigger platform. I made design decision that leaves room for what comes next.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <h5 class="feature-title">Pattern consistency</h5>
-            </div>
-            <p class="feature-desc">No playbook existed for AI extraction results. I designed a pattern that could hold up across domains.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <h5 class="feature-title">Technical elasticity</h5>
-            </div>
-            <p class="feature-desc">AI confidence was basic at the start, with engineers rapidly building robust checks. I designed for current limitations while staying flexible to surface greater sophistication over time.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- AI confidence signaling -->
-    <section class="cs-content-section">
-      <div>
-        <h2 class="cs-section-heading"><span class="accent-italic">AI confidence signaling</span> exploration</h2>
-      </div>
-      <p class="cs-body-text">I explored three directions:</p>
-      <ul class="cs-body-list">
-        <li>Raw confidence score (users didn't know how to act on it)</li>
-        <li>Binary verified/uncertain flag</li>
-        <li>Exposing current AI evaluation method</li>
+      <p class="cs2-body">As the design owner, I owned end-to-end design of two interconnected challenges — replacing the vendor with AI extraction, and redesigning the human review experience around it.</p>
+      <p class="cs2-body" style="font-weight:600;">Challenge 1: Introducing AI extraction</p>
+      <p class="cs2-body">Core design questions:</p>
+      <ul class="cs2-body-list">
+        <li>How to surface AI output?</li>
+        <li>What does it look like when AI is confident vs. uncertain?</li>
+        <li>How does AI hand off to a human reviewer in a way that builds trust?</li>
       </ul>
-      <p class="cs-body-text">I landed on method exposure first, then shifted to binary as engineering built more sophisticated logic. This kept the pattern simple now while leaving room to surface AI reasoning without overwhelming users.</p>
+      <p class="cs2-body">I experimented two directions, and landed on <strong>Direction 2 for its strategic fit for other use cases across our platform.</strong></p>
     </section>
 
-    <!-- Solution: AI-driven exception based review -->
-    <section class="cs-content-section">
-      <div>
-        <h2 class="cs-section-heading">Solution <span class="accent-italic">AI-driven exception based review</span></h2>
-      </div>
-      <p class="cs-body-text">As the sole designer, I redesigned the experience to move from fully manual review to AI-driven exception-based auditing.</p>
-      <p class="cs-body-text">I built a concept prototype in a different context to demonstrate the problem I tried to solve without business information, using AI-native development process. It's still in progress.</p>
-      <a href="https://yiranzhu25.github.io/document-concept-app" class="btn-demo">
-        View Vibe Coding Demo
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <div class="feature-grid-wrap">
-        <ul class="feature-list">
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M12 4.02002C7.60002 4.02002 4.02002 7.60002 4.02002 12C4.02002 16.4 7.60002 19.98 12 19.98C16.4 19.98 19.98 16.4 19.98 12C19.98 7.60002 16.4 4.02002 12 4.02002ZM11.39 19V13.5H8.25002L12.75 5.00002V10.5H15.75L11.39 19Z" fill="#4666FF"/>
-                <path d="M12 2.02002C6.49002 2.02002 2.02002 6.49002 2.02002 12C2.02002 17.51 6.49002 21.98 12 21.98C17.51 21.98 21.98 17.51 21.98 12C21.98 6.49002 17.51 2.02002 12 2.02002ZM12 19.98C7.60002 19.98 4.02002 16.4 4.02002 12C4.02002 7.60002 7.60002 4.02002 12 4.02002C16.4 4.02002 19.98 7.60002 19.98 12C19.98 16.4 16.4 19.98 12 19.98ZM12.75 5.00002L8.25002 13.5H11.39V19L15.75 10.5H12.75V5.00002Z" fill="#4666FF"/>
-              </svg>
-              
-              <h5 class="feature-title">Efficiency gain</h5>
-            </div>
-            <p class="feature-desc">Mapping data to their original document coordinates addressed user's biggest time spent during review</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M12.2201 19.8491C12.0401 20.0291 11.7201 20.0591 11.5101 19.8491C11.3301 19.6691 11.3001 19.3491 11.5101 19.1391L14.9001 15.7491L13.4901 14.3391L10.1001 17.7291C9.91006 17.9291 9.59006 17.9191 9.39006 17.7291C9.18006 17.5191 9.21006 17.1991 9.39006 17.0191L12.7801 13.6291L11.3701 12.2191L7.98006 15.6091C7.80006 15.7891 7.48006 15.8191 7.27006 15.6091C7.08006 15.4191 7.08006 15.0991 7.27006 14.8991L10.6601 11.5091L9.24006 10.0991L5.85006 13.4891C5.67006 13.6691 5.35006 13.6991 5.14006 13.4891C4.95006 13.2891 4.95006 12.9791 5.14006 12.7791L9.52006 8.39914L11.3901 10.2591C12.3401 11.2091 13.9801 11.1991 14.9301 10.2591C15.9101 9.27914 15.9101 7.69914 14.9301 6.71914L13.0701 4.85914L13.3501 4.57914C14.1301 3.79914 15.4001 3.79914 16.1801 4.57914L20.4201 8.81914C21.2001 9.59914 21.2001 10.8691 20.4201 11.6491L12.2201 19.8491Z" fill="#4666FF"/>
-                <path d="M12.2201 19.85C12.0401 20.03 11.7201 20.06 11.5101 19.85C11.3301 19.67 11.3001 19.35 11.5101 19.14L14.9001 15.75L13.4901 14.34L10.1001 17.73C9.91009 17.93 9.59009 17.92 9.39009 17.73C9.18009 17.52 9.21009 17.2 9.39009 17.02L12.7801 13.63L11.3701 12.22L7.98009 15.61C7.80009 15.79 7.48009 15.82 7.27009 15.61C7.08009 15.42 7.08009 15.1 7.27009 14.9L10.6601 11.51L9.24009 10.1L5.85009 13.49C5.67009 13.67 5.35009 13.7 5.14009 13.49C4.95009 13.29 4.95009 12.98 5.14009 12.78L9.52009 8.4L11.3901 10.26C12.3401 11.21 13.9801 11.2 14.9301 10.26C15.9101 9.28 15.9101 7.7 14.9301 6.72L13.0701 4.86L13.3501 4.58C14.1301 3.8 15.4001 3.8 16.1801 4.58L20.4201 8.82C21.2001 9.6 21.2001 10.87 20.4201 11.65L12.2201 19.85ZM21.8301 13.07C23.3901 11.51 23.3901 8.98 21.8301 7.41L17.5901 3.17C16.0301 1.61 13.5001 1.61 11.9301 3.17L11.6501 3.45L11.3701 3.17C9.81009 1.61 7.28009 1.61 5.71009 3.17L2.17009 6.71C0.750092 8.13 0.620092 10.34 1.77009 11.9L3.22009 10.45C2.83009 9.7 2.96009 8.75 3.59009 8.12L7.13009 4.58C7.91009 3.8 9.18009 3.8 9.96009 4.58L13.5201 8.14C13.7001 8.32 13.7301 8.64 13.5201 8.85C13.3101 9.06 12.9901 9.03 12.8101 8.85L9.52009 5.57L3.72009 11.36C2.74009 12.33 2.74009 13.92 3.72009 14.9C4.11009 15.29 4.61009 15.53 5.14009 15.6C5.21009 16.12 5.44009 16.62 5.84009 17.02C6.24009 17.42 6.74009 17.65 7.26009 17.72C7.33009 18.24 7.56009 18.74 7.96009 19.14C8.36009 19.54 8.86009 19.77 9.38009 19.84C9.45009 20.38 9.69009 20.87 10.0801 21.26C10.5501 21.73 11.1801 21.99 11.8501 21.99C12.5201 21.99 13.1501 21.73 13.6201 21.26L21.8301 13.07Z" fill="#4666FF"/>
-              </svg>
-              <h5 class="feature-title">Trust in AI</h5>
-            </div>
-            <p class="feature-desc">Explainable AI and confidence-based filter allows users to bypass verified data and focus on uncertain answers</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M9 10C9.82843 10 10.5 9.32843 10.5 8.5C10.5 7.67157 9.82843 7 9 7C8.17157 7 7.5 7.67157 7.5 8.5C7.5 9.32843 8.17157 10 9 10Z" fill="#4666FF"/>
-                <path opacity="0.3" d="M4.33984 17H13.6598C12.8198 16.42 10.7898 15.75 8.99984 15.75C7.20984 15.75 5.17984 16.42 4.33984 17Z" fill="#4666FF"/>
-                <path d="M9 12C10.93 12 12.5 10.43 12.5 8.5C12.5 6.57 10.93 5 9 5C7.07 5 5.5 6.57 5.5 8.5C5.5 10.43 7.07 12 9 12ZM9 7C9.83 7 10.5 7.67 10.5 8.5C10.5 9.33 9.83 10 9 10C8.17 10 7.5 9.33 7.5 8.5C7.5 7.67 8.17 7 9 7ZM9 13.75C6.66 13.75 2 14.92 2 17.25V19H16V17.25C16 14.92 11.34 13.75 9 13.75ZM4.34 17C5.18 16.42 7.21 15.75 9 15.75C10.79 15.75 12.82 16.42 13.66 17H4.34ZM16.04 13.81C17.2 14.65 18 15.77 18 17.25V19H22V17.25C22 15.23 18.5 14.08 16.04 13.81ZM15 12C16.93 12 18.5 10.43 18.5 8.5C18.5 6.57 16.93 5 15 5C14.46 5 13.96 5.13 13.5 5.35C14.13 6.24 14.5 7.33 14.5 8.5C14.5 9.67 14.13 10.76 13.5 11.65C13.96 11.87 14.46 12 15 12Z" fill="#4666FF"/>
-              </svg>
-             
-              <h5 class="feature-title">Overhead reduction</h5>
-            </div>
-            <p class="feature-desc">Redefined operational workflow from 2-person double check to single-user oversight</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M12 4.14062L6 6.39062V11.0906C6 15.0906 8.55 18.7906 12 19.9206C15.45 18.7906 18 15.1006 18 11.0906V6.39062L12 4.14062ZM12 17.0006C9.24 17.0006 7 14.7606 7 12.0006C7 9.24063 9.24 7.00063 12 7.00063C14.76 7.00063 17 9.24063 17 12.0006C17 14.7606 14.76 17.0006 12 17.0006ZM13.65 14.3506L11.5 12.2006V9.00063H12.5V11.7906L14.35 13.6406L13.65 14.3506Z" fill="#4666FF"/>
-                <path d="M12 2L4 5V11.09C4 16.14 7.41 20.85 12 22C16.59 20.85 20 16.14 20 11.09V5L12 2ZM18 11.09C18 15.09 15.45 18.79 12 19.92C8.55 18.79 6 15.1 6 11.09V6.39L12 4.14L18 6.39V11.09ZM12 7C9.24 7 7 9.24 7 12C7 14.76 9.24 17 12 17C14.76 17 17 14.76 17 12C17 9.24 14.76 7 12 7ZM13.65 14.35L11.5 12.2V9H12.5V11.79L14.35 13.64L13.65 14.35Z" fill="#4666FF"/>
-              </svg>
-              <h5 class="feature-title">Increased accuracy</h5>
-            </div>
-            <p class="feature-desc">Limit manual touchpoint reduced human error, and robust real time data validation prevented unverified data getting into system</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <g opacity="0.3">
-                  <path d="M19 9.50009L15.5 6.00009C15.5 5.35009 15.59 4.71009 15.76 4.09009C14.79 4.34009 14 5.06009 13.67 6.00009H7.5C5.57 6.00009 4 7.57009 4 9.50009C4 11.3801 5.22 16.1501 6.01 19.0001H8V17.0001H14V19.0001H16.01L17.56 13.8501L20 13.0301V9.50009H19ZM13 9.00009H8V7.00009H13V9.00009ZM16 11.0001C15.45 11.0001 15 10.5501 15 10.0001C15 9.45009 15.45 9.00009 16 9.00009C16.55 9.00009 17 9.45009 17 10.0001C17 10.5501 16.55 11.0001 16 11.0001Z" fill="#4666FF"/>
-                </g>
-                <path d="M15 10C15 9.45 15.45 9 16 9C16.55 9 17 9.45 17 10C17 10.55 16.55 11 16 11C15.45 11 15 10.55 15 10ZM8 9H13V7H8V9ZM22 7.5V14.47L19.18 15.41L17.5 21H12V19H10V21H4.5C4.5 21 2 12.54 2 9.5C2 6.46 4.46 4 7.5 4H12.5C13.41 2.79 14.86 2 16.5 2C17.33 2 18 2.67 18 3.5C18 3.71 17.96 3.9 17.88 4.08C17.74 4.42 17.62 4.81 17.56 5.23L19.83 7.5H22ZM20 9.5H19L15.5 6C15.5 5.35 15.59 4.71 15.76 4.09C14.79 4.34 14 5.06 13.67 6H7.5C5.57 6 4 7.57 4 9.5C4 11.38 5.22 16.15 6.01 19H8V17H14V19H16.01L17.56 13.85L20 13.03V9.5Z" fill="#4666FF"/>
-              </svg>
-              <h5 class="feature-title">Cost saving</h5>
-            </div>
-            <p class="feature-desc">In-house AI solution cut the millions of vendor cost</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Feature Breakdown Image -->
-    <div class="cs-feature-break">
-      <img src="img/feature-breakdown.png" alt="Feature breakdown">
+    <!-- Full-width: AI direction exploration -->
+    <div class="cs2-fullwidth-img">
+      <img src="img/Frame 58 (1).png" alt="AI extraction direction exploration">
     </div>
 
-    <!-- Impact -->
-    <section class="cs-content-section">
-      <div>
-        <h2 class="cs-section-heading">Impact</h2>
+    <!-- ── Challenge 2 text ── -->
+    <section class="cs2-section" style="padding-top: 32px; padding-bottom: 32px;">
+      <p class="cs2-body" style="font-weight:600;">Challenge 2: Human review experience</p>
+      <p class="cs2-body">Core design questions:</p>
+      <ul class="cs2-body-list">
+        <li>How do we eliminate the biggest pain — scrolling through hundreds of pages to find one source?</li>
+        <li>What tools support reviewers without replacing their judgment?</li>
+        <li>How can reviewers override AI output easily and move through review fast without sacrificing accuracy?</li>
+      </ul>
+      <p class="cs2-body">Here's a overview of key design decisions:</p>
+    </section>
+
+    <!-- Full-width: Feature breakdown -->
+    <div class="cs2-fullwidth-img">
+      <img src="img/Frame 59.png" alt="Key design decisions for human review experience">
+    </div>
+
+    <!-- ── Impact ── -->
+    <section class="cs2-section">
+      <div class="cs2-headline" style="max-width:100%;">
+        <h2 class="cs2-section-heading">Impact</h2>
       </div>
 
-      <!-- Blue cards row: Phased Delivery - Measured -->
+      <!-- Blue cards: Phased Delivery - Measured -->
       <div class="impact-row">
         <div class="impact-card-new impact-card-new--blue">
           <p class="impact-overline">PHASED DELIVERY - MEASURED</p>
@@ -305,7 +619,7 @@
         </div>
       </div>
 
-      <!-- Green cards row: Full Vision - Projected -->
+      <!-- Green cards: Full Vision - Projected -->
       <div class="impact-row">
         <div class="impact-card-new impact-card-new--green">
           <p class="impact-overline">FULL VISION - PROJECTED</p>
@@ -324,18 +638,17 @@
         </div>
       </div>
 
-      <!-- Dark full-width card: First across-platform AI pattern -->
+      <!-- Dark full-width card -->
       <div class="impact-row">
         <div class="impact-card-new impact-card-new--dark">
           <p class="impact-overline">FIRST</p>
-          <p class="impact-number-new">Across platform AI pattern</p>
+          <p class="impact-number-new impact-number-new--large">Across platform AI pattern</p>
           <p class="impact-label-new">For AI human interaction on AI extraction output</p>
         </div>
       </div>
-
     </section>
 
-  </div><!-- /cs-sections-wrap -->
+  </div><!-- /cs2-sections-wrap -->
 
   <!-- ── Footer ───────────────────────────────────────── -->
   <footer class="site-footer">
@@ -346,13 +659,31 @@
       <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="header-link"><img src="img/InBug-Black.png"></a>
       <a href="https://github.com/yiranzhu25" target="_blank" class="header-link"><img src="img/GitHub_Invertocat_Black.png"></a>
       <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link"><img src="img/article_person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
-      <a href="#" class="header-link header-link-bold copy-email" data-email="yiran.jour@gmail.com">
+      <a href="#" class="header-link copy-email" data-email="yiran.jour@gmail.com">
         <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
     </div>
   </footer>
 
   <script>
-    // Hamburger menu
+    // ── Contact dropdown ────────────────────────────────
+    var contactToggle   = document.getElementById('contact-toggle');
+    var contactDropdown = document.getElementById('contact-dropdown');
+    if (contactToggle && contactDropdown) {
+      contactToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = contactDropdown.classList.toggle('open');
+        contactToggle.setAttribute('aria-expanded', open);
+        contactDropdown.setAttribute('aria-hidden', !open);
+      });
+      document.addEventListener('click', function() {
+        contactDropdown.classList.remove('open');
+        contactToggle.setAttribute('aria-expanded', 'false');
+        contactDropdown.setAttribute('aria-hidden', 'true');
+      });
+      contactDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+    }
+
+    // ── Hamburger menu ──────────────────────────────────
     var hamburgerBtn = document.getElementById('hamburger-btn');
     var navDropdown  = document.getElementById('nav-dropdown');
     if (hamburgerBtn && navDropdown) {
@@ -360,26 +691,44 @@
         e.stopPropagation();
         var open = navDropdown.classList.toggle('open');
         hamburgerBtn.setAttribute('aria-expanded', open);
+        navDropdown.setAttribute('aria-hidden', !open);
       });
       document.addEventListener('click', function() {
         navDropdown.classList.remove('open');
         hamburgerBtn.setAttribute('aria-expanded', 'false');
+        navDropdown.setAttribute('aria-hidden', 'true');
       });
+      navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
     }
 
-    // Accordion
-    document.querySelectorAll('[data-accordion]').forEach(function(acc) {
-      var btn  = acc.querySelector('.accordion-header');
-      var body = acc.querySelector('.accordion-body');
-      var arrow = acc.querySelector('.accordion-arrow');
-      if (!btn || !body) return;
-      btn.addEventListener('click', function() {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        body.hidden = expanded;
-        if (arrow) arrow.style.transform = expanded ? '' : 'rotate(180deg)';
+    // ── Email copy ──────────────────────────────────────
+    document.querySelectorAll('.copy-email').forEach(function(link) {
+      var tooltip = document.createElement('span');
+      tooltip.className = 'email-tooltip';
+      tooltip.textContent = 'Copied';
+      link.appendChild(tooltip);
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var email = this.dataset.email;
+        navigator.clipboard.writeText(email).then(function() {
+          link.classList.add('copied');
+          setTimeout(function() { link.classList.remove('copied'); }, 1500);
+        });
       });
     });
+
+    // ── Accordion ───────────────────────────────────────
+    var accBtn  = document.getElementById('acc-conf-btn');
+    var accBody = document.getElementById('acc-conf-body');
+    var accIcon = accBtn ? accBtn.querySelector('.cs2-accordion-chevron') : null;
+    if (accBtn && accBody) {
+      accBtn.addEventListener('click', function() {
+        var expanded = accBtn.getAttribute('aria-expanded') === 'true';
+        accBtn.setAttribute('aria-expanded', String(!expanded));
+        accBody.hidden = expanded;
+        if (accIcon) accIcon.classList.toggle('open', !expanded);
+      });
+    }
   </script>
 </body>
 </html>
