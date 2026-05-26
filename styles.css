@@ -1007,6 +1007,76 @@ p {
   color: var(--color-text-primary);
 }
 
+/* ─── Password gate page ──────────────────────────────────── */
+.pw-gate {
+  min-height: calc(100vh - 100px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px;
+}
+.pw-gate-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 480px;
+  width: 100%;
+}
+.pw-lock-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+}
+.pw-nda-text {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  margin: 0;
+}
+.pw-linkedin-link {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-left: 6px;
+  opacity: 0.7;
+  transition: opacity var(--duration-fast) var(--ease-default);
+}
+.pw-linkedin-link:hover { opacity: 1; }
+.pw-linkedin-link img { width: 20px; height: 20px; }
+.pw-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.pw-input {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 16px;
+  font-family: var(--font-primary);
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-default);
+}
+.pw-input:focus { border-color: var(--color-text-primary); }
+.pw-input.error { border-color: #E53E3E; }
+.pw-error {
+  font-size: 14px;
+  color: #E53E3E;
+  margin: 0;
+  display: none;
+}
+.pw-error.visible { display: block; }
+
 /* Main content */
 .home-main {
   padding: 64px;
@@ -1278,6 +1348,14 @@ p {
   font-weight: 400;
   color: var(--color-text-secondary);
   line-height: 1.4;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.work-meta-lock {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
 }
 .work-entry-title {
   font-size: 28px;
