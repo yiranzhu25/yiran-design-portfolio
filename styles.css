@@ -1384,7 +1384,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .cs2-body {
   font-size: var(--text-body);
   line-height: var(--leading-body);
-  color: var(--ink-850);
+  color: var(--fg);
   max-width: var(--measure);
   margin: 0;
 }
@@ -1765,7 +1765,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .cs2-field-body {
   font-size: var(--text-body);
-  color: var(--ink-850);
+  color: var(--fg);
   line-height: var(--leading-body);
   margin: 0;
 }
