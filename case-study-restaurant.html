@@ -1,294 +1,248 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
+  <script>if(!sessionStorage.getItem('pf-unlocked')){window.location.replace('password.html');}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Restaurant Operations &amp; Consumer Ordering — Yiran Zhu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Instrument+Serif:ital@0;1&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>(function(){var s=localStorage.getItem('pf-theme');var d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
 </head>
 <body>
 
-  <!-- ── Header ───────────────────────────────────────── -->
-  <header class="site-header">
-    <div class="header-col-left">
-      <a href="index.html" class="header-name header-link" style="font-weight:700;">Yiran Zhu</a>
-    </div>
-    <div class="header-col-right">
-      <a href="index.html#work" class="header-link">Work</a>
-      <a href="index.html#vibe-coding" class="header-link">Vibe coding</a>
-      <a href="index.html#about" class="header-link">About</a>
-      <div class="contact-menu-wrapper">
-        <button class="contact-toggle" id="contact-toggle" aria-expanded="false" aria-haspopup="true">Contact</button>
-        <div class="contact-dropdown" id="contact-dropdown" aria-hidden="true">
-          <a href="#" class="contact-dropdown-item copy-email" data-email="yiran.jour@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="contact-dropdown-item">LinkedIn</a>
-          <a href="https://github.com/yiranzhu25" target="_blank" class="contact-dropdown-item">Github</a>
-          <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="contact-dropdown-item">Resume</a>
-        </div>
-      </div>
-      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+  <!-- ── Desktop header ─────────────────────────────────── -->
+  <header class="pf-header">
+    <a href="index.html" class="pf-wordmark">
+      Yiran Zhu
+    </a>
+    <div class="pf-header-controls">
+      <nav class="pf-header-nav">
+        <a href="index.html#work" class="pf-header-nav-link">Work</a>
+        <a href="index.html#vibe-coding" class="pf-header-nav-link">Vibe coding</a>
+        <a href="index.html#about" class="pf-header-nav-link">About</a>
+        <a href="#" class="pf-btn pf-btn--primary pf-header-cta copy-email" data-email="yiran.jour@gmail.com">
+          <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor" style="flex-shrink:0;"><circle cx="3" cy="3" r="3"/></svg>
+          Contact
+        </a>
+      </nav>
+      <!-- Theme toggle -->
+      <button class="pf-iconbtn" id="theme-toggle" aria-label="Toggle theme">
+        <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
     </div>
-    <nav class="nav-dropdown" id="nav-dropdown" aria-hidden="true">
-      <a href="index.html#work" class="nav-dropdown-link">Work</a>
-      <a href="index.html#vibe-coding" class="nav-dropdown-link">Vibe coding</a>
-      <a href="index.html#about" class="nav-dropdown-link">About</a>
-      <a href="#" class="nav-dropdown-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="nav-dropdown-link">LinkedIn</a>
-      <a href="https://github.com/yiranzhu25" target="_blank" class="nav-dropdown-link">Github</a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
-    </nav>
   </header>
 
-  <!-- ── Hero: full-bleed rounded image ────────────────── -->
-  <section class="cs-hero-fullbleed">
-    <img src="img/rushable-case-thumb.jpg" alt="Restaurant Operations & Consumer Ordering" class="cs-hero-fullbleed-img">
-  </section>
-
-  <!-- ── Sections ─────────────────────────────────────── -->
-  <div class="cs-sections-wrap">
-
-    <!-- Title + Metadata -->
-    <section class="cs-content-section cs-content-section--title">
-      <div class="cs-title-left">
-        <h1 class="cs-title-heading">Restaurant <em class="type-hero-accent">Operations &amp; Consumer Ordering</em></h1>
-        <p class="cs-title-desc">Contributed to a redesign of high-volume POS system to optimize order processing efficiency and conceptualized a zero-commission marketplace to drive restaurant discovery.</p>
-        <div class="tags">
-          <span class="tag">Tech</span>
-          <span class="tag">B2B</span>
-          <span class="tag">UX/UI Design</span>
-        </div>
-      </div>
-      <ul class="cs-meta-list">
-        <li>
-          <span class="cs-meta-list-label">Client</span>
-          <p class="cs-meta-list-value">Rushable</p>
-        </li>
-        <li>
-          <span class="cs-meta-list-label">Role</span>
-          <p class="cs-meta-list-value">UX/UI Design</p>
-        </li>
-        <li>
-          <span class="cs-meta-list-label">Timeline</span>
-          <p class="cs-meta-list-value">2022</p>
-        </li>
-        <li>
-          <span class="cs-meta-list-label">Team</span>
-          <p class="cs-meta-list-value">Teamed up with another designer, worked with founder</p>
-        </li>
-        <li>
-          <span class="cs-meta-list-label">My contribution</span>
-          <p class="cs-meta-list-value">Competitor analysis, user flow mapping, UX enhancement, concept design, UI component upgrade</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Confidentiality Note -->
-    <section class="cs-content-section cs-content-section--accordion">
-      <div class="accordion" data-accordion>
-        <button class="accordion-header" aria-expanded="false" aria-controls="acc-rest-body">
-          <span>Confidentiality &amp; Design Note</span>
-          <span class="accordion-arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M5 7.5L10 12.5L15 7.5" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </button>
-        <div class="accordion-body" id="acc-rest-body" hidden>
-          <p>To comply with NDA requirements, this case study omits proprietary business information and use public available images.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Background text -->
-    <section class="cs-content-section">
-      <p class="cs-body-text">Rushable is an all-in-one digital operating system for restaurants, offering commission-free online ordering, marketing automation, and POS-integrated management tools to help owners bypass third-party delivery fees.</p>
-      <p class="cs-body-text">During the time when I was a freelance designer, I helped tackle two distinct challenges for Rushable: streamlining chaotic restaurant operations and designing a consumer discovery platform.</p>
-    </section>
-
-    <!-- Project 1: Reducing cognitive load in high-volume POS -->
-    <section class="cs-content-section">
-      <h2 class="cs-section-heading">Project 1: <span class="accent-italic">Reducing cognitive load</span> in high-volume POS</h2>
-      <div class="feature-grid-wrap">
-        <ul class="feature-list" style="grid-template-columns: 1fr;">
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M16.49 10H12.35L10.86 13.74L10.35 15H9H7.3L5.08 20H19.35L16.49 10Z" fill="#10B981"/>
-                <path d="M18 8H11L9 13H6L2 22H22L18 8ZM7.3 15H9H10.35L10.85 13.74L12.35 10H16.49L19.35 20H5.08L7.3 15Z" fill="#10B981"/>
-                <path d="M15 1H13V5H15V1Z" fill="#10B981"/>
-                <path d="M18.9496 2.64035L16.1212 5.46875L17.5354 6.88295L20.3638 4.05455L18.9496 2.64035Z" fill="#10B981"/>
-                <path d="M9.05385 2.6367L7.63965 4.0509L10.468 6.8793L11.8822 5.4651L9.05385 2.6367Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">Challenge</h5>
-            </div>
-            <p class="feature-desc">Critical order details, special requests, and prep-time controls were hidden or not efficient, leading to missed instructions and delayed pickups.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M14.5 9.5C14.5 6.47 12.03 4 9 4C5.97 4 3.5 6.47 3.5 9.5C3.5 11.97 4.99 13.39 5.85 14H12.15C13.01 13.39 14.5 11.97 14.5 9.5Z" fill="#10B981"/>
-                <path d="M7 20H11C11 21.1 10.1 22 9 22C7.9 22 7 21.1 7 20ZM5 19H13V17H5V19ZM16.5 9.5C16.5 13.32 13.84 15.36 12.73 16H5.27C4.16 15.36 1.5 13.32 1.5 9.5C1.5 5.36 4.86 2 9 2C13.14 2 16.5 5.36 16.5 9.5ZM14.5 9.5C14.5 6.47 12.03 4 9 4C5.97 4 3.5 6.47 3.5 9.5C3.5 11.97 4.99 13.39 5.85 14H12.15C13.01 13.39 14.5 11.97 14.5 9.5ZM21.37 7.37L20 8L21.37 8.63L22 10L22.63 8.63L24 8L22.63 7.37L22 6L21.37 7.37ZM19 6L19.94 3.94L22 3L19.94 2.06L19 0L18.06 2.06L16 3L18.06 3.94L19 6Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">Solution</h5>
-            </div>
-            <p class="feature-desc">Further segregated different level of data into multi-panel layout; introduced an additional mode for automated time adjustment, and architected the hierarchy of special vs normal sections.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M12.35 16.1804L7.82005 11.6504L5.30005 18.7004L12.35 16.1804Z" fill="#10B981"/>
-                <path d="M2 22L16 17L7 8L2 22ZM12.35 16.18L5.3 18.7L7.82 11.65L12.35 16.18Z" fill="#10B981"/>
-                <path d="M14.53 12.5306L20.12 6.94062C20.61 6.45062 21.4 6.45062 21.89 6.94062L22.48 7.53063L23.54 6.47062L22.95 5.88063C21.88 4.81062 20.13 4.81062 19.06 5.88063L13.47 11.4706L14.53 12.5306Z" fill="#10B981"/>
-                <path d="M9.47 7.47094L10.53 8.53094L11.12 7.94094C12.19 6.87094 12.19 5.12094 11.12 4.05094L10.53 3.46094L9.47 4.53094L10.06 5.12094C10.54 5.60094 10.54 6.40094 10.06 6.88094L9.47 7.47094Z" fill="#10B981"/>
-                <path d="M17.06 11.8806L15.47 13.4706L16.53 14.5306L18.12 12.9406C18.61 12.4506 19.4 12.4506 19.89 12.9406L21.5 14.5506L22.56 13.4906L20.95 11.8806C19.87 10.8106 18.13 10.8106 17.06 11.8806Z" fill="#10B981"/>
-                <path d="M15.06 5.88094L11.47 9.47094L12.53 10.5309L16.12 6.94094C17.19 5.87094 17.19 4.12094 16.12 3.05094L14.53 1.46094L13.47 2.52094L15.06 4.11094C15.54 4.60094 15.54 5.40094 15.06 5.88094Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">Outcome</h5>
-            </div>
-            <p class="feature-desc">Addressed top sales-reported friction points, reducing customer complaints.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-  </div><!-- /cs-sections-wrap -->
-
-  <!-- ── Full-width POS screenshot ──────────────────── -->
-  <div style="width:100%; overflow:hidden; line-height:0;">
-    <img src="img/rushable-example.webp" alt="Rushable POS interface" style="width:100%; height:auto; display:block;">
+  <!-- ── Mobile topbar ──────────────────────────────────── -->
+  <div class="pf-topbar">
+    <a href="index.html" class="pf-wordmark">Yiran Zhu</a>
+    <div style="display:flex;align-items:center;gap:var(--space-2);">
+      <button class="pf-iconbtn" id="theme-toggle-mobile" aria-label="Toggle theme">
+        <svg id="theme-icon-sun-m" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-moon-m" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="pf-menu-btn" id="menu-btn" aria-expanded="false" aria-haspopup="true">
+        Menu
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="pf-dropdown" id="pf-dropdown" aria-hidden="true">
+    <div class="pf-dropdown-head">
+      <a href="index.html" class="pf-wordmark">Yiran Zhu</a>
+      <button class="pf-iconbtn" id="close-menu" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="pf-dropdown-list">
+      <a href="index.html#work" class="pf-dropdown-link">
+        <span class="pf-navindex">01</span>Work
+      </a>
+      <a href="index.html#vibe-coding" class="pf-dropdown-link">
+        <span class="pf-navindex">02</span>Vibe coding
+      </a>
+      <a href="index.html#about" class="pf-dropdown-link">
+        <span class="pf-navindex">03</span>About
+      </a>
+      <a href="#" class="pf-dropdown-link copy-email" data-email="yiran.jour@gmail.com">
+        <span class="pf-navindex">04</span>Contact
+      </a>
+    </div>
   </div>
 
-  <div class="cs-sections-wrap">
+  <!-- ── Two-column shell ───────────────────────────────── -->
+  <div class="pf-shell">
 
-    <!-- Project 2: The Zero Commission Marketplace -->
-    <section class="cs-content-section">
-      <h2 class="cs-section-heading">Project 2: The <span class="accent-italic">Zero Commission</span> Marketplace</h2>
-      <div class="feature-grid-wrap">
-        <ul class="feature-list" style="grid-template-columns: 1fr;">
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M16.49 10H12.35L10.86 13.74L10.35 15H9H7.3L5.08 20H19.35L16.49 10Z" fill="#10B981"/>
-                <path d="M18 8H11L9 13H6L2 22H22L18 8ZM7.3 15H9H10.35L10.85 13.74L12.35 10H16.49L19.35 20H5.08L7.3 15Z" fill="#10B981"/>
-                <path d="M15 1H13V5H15V1Z" fill="#10B981"/>
-                <path d="M18.9496 2.64035L16.1212 5.46875L17.5354 6.88295L20.3638 4.05455L18.9496 2.64035Z" fill="#10B981"/>
-                <path d="M9.05385 2.6367L7.63965 4.0509L10.468 6.8793L11.8822 5.4651L9.05385 2.6367Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">Opportunity</h5>
-            </div>
-            <p class="feature-desc">Create a consumer-facing search engine to drive order traffic without charging restaurants high commissions.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M14.5 9.5C14.5 6.47 12.03 4 9 4C5.97 4 3.5 6.47 3.5 9.5C3.5 11.97 4.99 13.39 5.85 14H12.15C13.01 13.39 14.5 11.97 14.5 9.5Z" fill="#10B981"/>
-                <path d="M7 20H11C11 21.1 10.1 22 9 22C7.9 22 7 21.1 7 20ZM5 19H13V17H5V19ZM16.5 9.5C16.5 13.32 13.84 15.36 12.73 16H5.27C4.16 15.36 1.5 13.32 1.5 9.5C1.5 5.36 4.86 2 9 2C13.14 2 16.5 5.36 16.5 9.5ZM14.5 9.5C14.5 6.47 12.03 4 9 4C5.97 4 3.5 6.47 3.5 9.5C3.5 11.97 4.99 13.39 5.85 14H12.15C13.01 13.39 14.5 11.97 14.5 9.5ZM21.37 7.37L20 8L21.37 8.63L22 10L22.63 8.63L24 8L22.63 7.37L22 6L21.37 7.37ZM19 6L19.94 3.94L22 3L19.94 2.06L19 0L18.06 2.06L16 3L18.06 3.94L19 6Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">Strategy</h5>
-            </div>
-            <p class="feature-desc">Conceptualized a lightweight funnel that prioritize price transparency as a unique value proposition.</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M12.35 16.1804L7.82005 11.6504L5.30005 18.7004L12.35 16.1804Z" fill="#10B981"/>
-                <path d="M2 22L16 17L7 8L2 22ZM12.35 16.18L5.3 18.7L7.82 11.65L12.35 16.18Z" fill="#10B981"/>
-                <path d="M14.53 12.5306L20.12 6.94062C20.61 6.45062 21.4 6.45062 21.89 6.94062L22.48 7.53063L23.54 6.47062L22.95 5.88063C21.88 4.81062 20.13 4.81062 19.06 5.88063L13.47 11.4706L14.53 12.5306Z" fill="#10B981"/>
-                <path d="M9.47 7.47094L10.53 8.53094L11.12 7.94094C12.19 6.87094 12.19 5.12094 11.12 4.05094L10.53 3.46094L9.47 4.53094L10.06 5.12094C10.54 5.60094 10.54 6.40094 10.06 6.88094L9.47 7.47094Z" fill="#10B981"/>
-                <path d="M17.06 11.8806L15.47 13.4706L16.53 14.5306L18.12 12.9406C18.61 12.4506 19.4 12.4506 19.89 12.9406L21.5 14.5506L22.56 13.4906L20.95 11.8806C19.87 10.8106 18.13 10.8106 17.06 11.8806Z" fill="#10B981"/>
-                <path d="M15.06 5.88094L11.47 9.47094L12.53 10.5309L16.12 6.94094C17.19 5.87094 17.19 4.12094 16.12 3.05094L14.53 1.46094L13.47 2.52094L15.06 4.11094C15.54 4.60094 15.54 5.40094 15.06 5.88094Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">Outcome</h5>
-            </div>
-            <p class="feature-desc">Although the project was paused to prioritize B2B features, the design established the UX framework for Rushable's long-term consumer acquisition strategy.</p>
-          </li>
-        </ul>
+    <!-- Left sidebar -->
+    <aside class="pf-sidenav">
+      <div>
+        <a href="index.html" class="pf-back">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Work
+        </a>
+        <nav class="pf-navlist" style="margin-top: var(--space-6);">
+          <a href="#overview" class="pf-navlink" data-nav-target="overview">
+            <span class="pf-navindex">01</span>Overview
+          </a>
+          <a href="#background" class="pf-navlink" data-nav-target="background">
+            <span class="pf-navindex">02</span>Background
+          </a>
+          <a href="#pos" class="pf-navlink" data-nav-target="pos">
+            <span class="pf-navindex">03</span>POS Redesign
+          </a>
+          <a href="#marketplace" class="pf-navlink" data-nav-target="marketplace">
+            <span class="pf-navindex">04</span>Marketplace
+          </a>
+        </nav>
       </div>
-    </section>
+    </aside>
 
-  </div><!-- /cs-sections-wrap -->
+    <!-- Main content -->
+    <main class="pf-main">
 
-  <!-- ── Footer ───────────────────────────────────────── -->
+      <!-- ── 01 Overview ──────────────────────────────────── -->
+      <section id="overview" class="cs2-section cs2-section--first">
+
+        <div class="cs2-overview-header">
+          <!-- Title -->
+          <h1 class="cs2-project-title">Restaurant Operations: Redesigned a High-Volume POS to Reduce Cognitive Load and Conceptualized a <em>Zero-Commission Marketplace</em> for Rushable</h1>
+
+          <!-- Tags -->
+          <div class="pf-tags">
+            <span class="pf-tag">B2B</span>
+            <span class="pf-tag">UX/UI Design</span>
+            <span class="pf-tag">Consumer Product</span>
+          </div>
+
+          <!-- Overview table -->
+          <div class="cs2-overview-table">
+
+            <div class="cs-meta-right">
+              <div class="cs-meta-field">
+                <span class="cs-meta-label">Client</span>
+                <span class="cs-meta-value">Rushable</span>
+              </div>
+              <div class="cs-meta-field">
+                <span class="cs-meta-label">Role</span>
+                <span class="cs-meta-value">UX/UI Design</span>
+              </div>
+              <div class="cs-meta-field">
+                <span class="cs-meta-label">Timeline</span>
+                <span class="cs-meta-value">2022</span>
+              </div>
+              <div class="cs-meta-field">
+                <span class="cs-meta-label">Team</span>
+                <span class="cs-meta-value">Teamed up with another designer, worked with founder</span>
+              </div>
+              <div class="cs-meta-field">
+                <span class="cs-meta-label">My contribution</span>
+                <span class="cs-meta-value">Competitor analysis, user flow mapping, UX enhancement, concept design, UI component upgrade</span>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- /cs2-overview-header -->
+
+
+
+      </section>
+
+      <!-- ── 02 Background ─────────────────────────────────── -->
+      <section id="background" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[01 Background]</h2>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">About Rushable</h3>
+          <p class="cs2-body">Rushable is an all-in-one digital operating system for restaurants, offering commission-free online ordering, marketing automation, and POS-integrated management tools to help owners bypass third-party delivery fees.</p>
+        </div>
+
+        <img src="img/rushable/rushable-case-thumb.jpg" alt="Rushable product overview" class="cs2-img">
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">My Role</h3>
+          <p class="cs2-body">During the time when I was a freelance designer, I helped tackle two distinct challenges for Rushable: streamlining chaotic restaurant operations and designing a consumer discovery platform.</p>
+        </div>
+
+        <div class="cs2-sub-group">
+          <p class="cs2-body">Confidentiality Note: To comply with NDA requirements, this case study omits proprietary business information and uses publicly available images.</p>
+        </div>
+
+      </section>
+
+      <!-- ── 03 POS Redesign ────────────────────────────────── -->
+      <section id="pos" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[02 Project 1]</h2>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Reducing Cognitive Load in High-Volume POS</h3>
+          <h3 class="cs2-sub-heading">Challenge</h3>
+          <p class="cs2-body">Critical order details, special requests, and prep-time controls were hidden or inefficient, leading to missed instructions and delayed pickups during high-volume service periods.</p>
+        </div>
+
+        <img src="img/rushable/rushable-competitor-analysis.png" alt="Rushable competitor analysis" class="cs2-img">
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Solution</h3>
+          <p class="cs2-body">Further segregated different levels of data into a multi-panel layout; introduced an additional mode for automated time adjustment, and architected the hierarchy of special versus normal sections to surface critical information at the right moment.</p>
+        </div>
+        <img src="img/rushable/rushable-example.webp" alt="Rushable POS interface" class="cs2-img">
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Outcome</h3>
+          <p class="cs2-body">Addressed top sales-reported friction points, reducing customer complaints and improving order processing efficiency during peak service periods.</p>
+        </div>
+
+      </section>
+
+      <!-- ── 04 Marketplace ─────────────────────────────────── -->
+      <section id="marketplace" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[03 Project 2]</h2>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">The Zero Commission Marketplace</h3>
+          <h3 class="cs2-sub-heading">Opportunity</h3>
+          <p class="cs2-body">Create a consumer-facing search engine to drive order traffic directly to restaurants without charging them the high commissions that third-party platforms impose.</p>
+        </div>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Strategy</h3>
+          <p class="cs2-body">Conceptualized a lightweight discovery funnel that prioritized price transparency as a unique value proposition — positioning Rushable's marketplace as the ethical alternative to commission-heavy aggregators.</p>
+        </div>
+
+        <img src="img/rushable/rushable-marketplace-website.png" alt="Rushable marketplace website design" class="cs2-img">
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Outcome</h3>
+          <p class="cs2-body">Although the project was paused to prioritize B2B features, the design established the UX framework for Rushable's long-term consumer acquisition strategy.</p>
+        </div>
+
+      </section>
+
+    </main>
+  </div><!-- /pf-shell -->
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
   <footer class="site-footer">
-    <div class="header-col-left">
-      <span class="header-name">© 2026 · Designed in Figma, built with Claude Code + Figma MCP, deployed on Github.</span>
-    </div>
-    <div class="header-col-right">
-      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="header-link"><img src="img/InBug-Black.png"></a>
-      <a href="https://github.com/yiranzhu25" target="_blank" class="header-link"><img src="img/GitHub_Invertocat_Black.png"></a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link"><img src="img/article_person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
-      <a href="#" class="header-link header-link-bold copy-email" data-email="yiran.jour@gmail.com">
-        <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
+    <span class="footer-name">© 2026 · Design and built with Claude, deployed on Github </span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="intro-social-link" aria-label="LinkedIn">
+        <img src="img/InBug-Black.png" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/yiranzhu25" target="_blank" class="intro-social-link" aria-label="GitHub">
+        <img src="img/GitHub_Invertocat_Black.png" alt="GitHub">
+      </a>
+      <a href="#" class="intro-social-link copy-email" data-email="yiran.jour@gmail.com" aria-label="Email">
+        <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Email">
+      </a>
     </div>
   </footer>
 
-  <script>
-    // ── Contact dropdown ────────────────────────────────
-    var contactToggle   = document.getElementById('contact-toggle');
-    var contactDropdown = document.getElementById('contact-dropdown');
-    if (contactToggle && contactDropdown) {
-      contactToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = contactDropdown.classList.toggle('open');
-        contactToggle.setAttribute('aria-expanded', open);
-        contactDropdown.setAttribute('aria-hidden', !open);
-      });
-      document.addEventListener('click', function() {
-        contactDropdown.classList.remove('open');
-        contactToggle.setAttribute('aria-expanded', 'false');
-        contactDropdown.setAttribute('aria-hidden', 'true');
-      });
-      contactDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
-    }
-
-    var hamburgerBtn = document.getElementById('hamburger-btn');
-    var navDropdown  = document.getElementById('nav-dropdown');
-    if (hamburgerBtn && navDropdown) {
-      hamburgerBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = navDropdown.classList.toggle('open');
-        hamburgerBtn.setAttribute('aria-expanded', open);
-      });
-      document.addEventListener('click', function() {
-        navDropdown.classList.remove('open');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-      });
-    }
-
-    // ── Email copy ──────────────────────────────────────
-    document.querySelectorAll('.copy-email').forEach(function(link) {
-      var tooltip = document.createElement('span');
-      tooltip.className = 'email-tooltip';
-      tooltip.textContent = 'Copied';
-      link.appendChild(tooltip);
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var email = this.dataset.email;
-        navigator.clipboard.writeText(email).then(function() {
-          link.classList.add('copied');
-          setTimeout(function() { link.classList.remove('copied'); }, 1500);
-        });
-      });
-    });
-
-    document.querySelectorAll('[data-accordion]').forEach(function(acc) {
-      var btn  = acc.querySelector('.accordion-header');
-      var body = acc.querySelector('.accordion-body');
-      var arrow = acc.querySelector('.accordion-arrow');
-      if (!btn || !body) return;
-      btn.addEventListener('click', function() {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        body.hidden = expanded;
-        if (arrow) arrow.style.transform = expanded ? '' : 'rotate(180deg)';
-      });
-    });
-  </script>
-  <script src="animations.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>

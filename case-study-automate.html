@@ -1,701 +1,604 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
+  <script>if(!sessionStorage.getItem('pf-unlocked')){window.location.replace('password.html');}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Automate Cross-Functional Operations — Yiran Zhu</title>
+  <title>Shared Task Manager — Yiran Zhu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-
-  <!-- Pipeline Animation Styles (scoped to .pipeline-root) -->
-  <style>
-    .pipeline-root * { box-sizing: border-box; margin: 0; padding: 0; }
-    .pipeline-root {
-      background: #0D0F1A;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      padding: 28px 20px;
-      width: 100%;
-      min-height: 400px;
-      overflow: hidden;
-    }
-    .pipeline-root .wrapper { width: 100%; max-width: 1380px; display: flex; flex-direction: column; }
-    .pipeline-root .stages-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      position: relative;
-      flex: 1;
-    }
-    .pipeline-root .stage-col { display: flex; flex-direction: column; gap: 10px; }
-    .pipeline-root .stage-col .card { flex: 1; }
-    .pipeline-root .team-col { display: flex; align-items: center; gap: 6px; padding: 0 2px; justify-content:center;}
-    .pipeline-root .tdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .pipeline-root .tdot.p { background: #7B5CF5; box-shadow: 0 0 6px rgba(123,92,245,0.65); }
-    .pipeline-root .tdot.g { background: #3EFFA0; box-shadow: 0 0 6px rgba(62,255,160,0.65); }
-    .pipeline-root .tname { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.85); }
-    .pipeline-root .stage-hdr {
-      background: #252836; border-radius: 6px; text-align: center;
-      padding: 7px 6px; font-size: 9px; font-weight: 500; color: rgba(255,255,255,0.82);
-    }
-    .pipeline-root .card {
-      background: #1A1D2E; border-radius: 11px; padding: 10px;
-      border: 1px solid rgba(255,255,255,0.065); position: relative;
-    }
-    .pipeline-root .card-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; }
-    .pipeline-root .bar-icon { width: 20px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .pipeline-root .bar-btn {
-      background: #1A1D2E; border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 12px; padding: 3px 9px; font-size: 8px;
-      font-weight: 600; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 4px;
-    }
-    .pipeline-root .s2-body { display: flex; gap: 7px; align-items: stretch; }
-    .pipeline-root .doc-panel {
-      flex: 1.35; background: #20233A; border-radius: 6px; padding: 7px 6px;
-      display: flex; flex-direction: column; gap: 3.5px;
-    }
-    .pipeline-root .dl { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
-    .pipeline-root .dl.f { width: 100%; }
-    .pipeline-root .dl.e { width: 85%; }
-    .pipeline-root .dl.m { width: 70%; }
-    .pipeline-root .dl.s { width: 55%; }
-    .pipeline-root .dl.hl { background: rgba(123,92,245,0.42); position: relative; overflow: hidden; }
-    .pipeline-root .dl.hl::after {
-      content: ''; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(160,120,255,0.72), transparent);
-      animation: pipeline-doc-sweep 2.6s ease-in-out infinite;
-    }
-    @keyframes pipeline-doc-sweep {
-      0%  { left: -80%; }
-      55% { left: 130%; }
-      100%{ left: 130%; }
-    }
-    .pipeline-root .pills-col { flex: 1; display: flex; flex-direction: column; gap: 5px; justify-content: space-around; }
-    .pipeline-root .s3-map-area { display: flex; gap: 6px; margin-bottom: 8px; align-items: flex-start; }
-    .pipeline-root .s3-col { flex: 1; display: flex; flex-direction: column; gap: 5px; }
-    .pipeline-root .s3-table-wrap { background: #20233A; border-radius: 6px; padding: 6px; }
-    .pipeline-root .s3-trow { display: flex; gap: 4px; margin-bottom: 3px; }
-    .pipeline-root .s3-trow:last-child { margin-bottom: 0; }
-    .pipeline-root .s3-th { flex:1; height:9px; border-radius:2px; background:rgba(62,255,160,0.22); }
-    .pipeline-root .s3-td { flex:1; height:7px; border-radius:2px; background:rgba(255,255,255,0.08); }
-    .pipeline-root .s4-body { padding-top: 2px; }
-    .pipeline-root .select-row { display: flex; gap: 5px; margin-bottom: 8px; }
-    .pipeline-root .select-pill {
-      flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13);
-      border-radius: 5px; padding: 5px 7px; font-size: 7px; font-weight: 500;
-      color: rgba(255,255,255,0.45); letter-spacing: 0.07em;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .pipeline-root .sel-arrow { opacity: 0.5; font-size: 6px; }
-    .pipeline-root .s4-pills { display: flex; flex-direction: column; gap: 5px; }
-    .pipeline-root .s5-usd-block { background: #20233A; border-radius: 6px; padding: 7px 8px; margin-bottom: 8px; }
-    .pipeline-root .usd-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
-    .pipeline-root .usd-row:last-child { margin-bottom: 0; }
-    .pipeline-root .usd-bar {
-      width: 26px; height: 10px; border-radius: 3px; background: rgba(62,255,160,0.28);
-      flex-shrink: 0; position: relative; overflow: hidden;
-    }
-    .pipeline-root .usd-bar::after {
-      content: ''; position: absolute; top: 0; left: -80%; width: 55%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(62,255,160,0.55), transparent);
-      animation: pipeline-usd-sweep 1.9s ease-in-out infinite;
-    }
-    @keyframes pipeline-usd-sweep {
-      0%  { left: -80%; }
-      65% { left: 130%; }
-      100%{ left: 130%; }
-    }
-    .pipeline-root .usd-amt { font-size: 8px; font-weight: 700; font-family: 'SF Mono', 'Fira Code', monospace; white-space: nowrap; }
-    .pipeline-root .usd-pos { color: #3EFFA0; }
-    .pipeline-root .usd-neg { color: #FF6B6B; }
-    .pipeline-root .s5-pills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 8px; }
-    .pipeline-root .s5-table-wrap { background: #20233A; border-radius: 6px; padding: 6px; }
-    .pipeline-root .s5-trow { display: flex; gap: 4px; margin-bottom: 3px; }
-    .pipeline-root .s5-trow:last-child { margin-bottom: 0; }
-    .pipeline-root .s5-th { flex:1; height:9px; border-radius:2px; background:rgba(62,255,160,0.22); }
-    .pipeline-root .s5-td { flex:1; height:7px; border-radius:2px; background:rgba(255,255,255,0.08); }
-    .pipeline-root .pill {
-      background: #FFFFFF; border-radius: 5px; padding: 5px 6px;
-      display: flex; align-items: center; gap: 5px; min-height: 20px;
-    }
-    .pipeline-root .pill.g-fill { background: rgba(62,255,160,0.13); border: 1px solid rgba(62,255,160,0.27); }
-    .pipeline-root .pill.g-fill .pill-line { background: rgba(62,255,160,0.38); }
-    .pipeline-root .pill.small { padding: 4px 5px; min-height: 17px; }
-    .pipeline-root .pdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-    .pipeline-root .pdot.p { background: #7B5CF5; box-shadow: 0 0 4px rgba(123,92,245,0.8); }
-    .pipeline-root .pdot.g { background: #3EFFA0; box-shadow: 0 0 4px rgba(62,255,160,0.8); }
-    .pipeline-root .pill-line { flex: 1; height: 3px; border-radius: 2px; background: rgba(26,29,46,0.13); }
-    .pipeline-root .conn-svg {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 20;
-    }
-    @media (max-width: 768px) {
-      .pipeline-root { min-height: unset; }
-    }
-  </style>
+  <script>(function(){var s=localStorage.getItem('pf-theme');var d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
 </head>
 <body>
 
-  <!-- ── Header ───────────────────────────────────────── -->
-  <header class="site-header">
-    <div class="header-col-left">
-      <a href="index.html" class="header-name header-link" style="font-weight:700;">Yiran Zhu</a>
-    </div>
-    <div class="header-col-right">
-      <a href="index.html#work" class="header-link">Work</a>
-      <a href="index.html#vibe-coding" class="header-link">Vibe coding</a>
-      <a href="index.html#about" class="header-link">About</a>
-      <div class="contact-menu-wrapper">
-        <button class="contact-toggle" id="contact-toggle" aria-expanded="false" aria-haspopup="true">Contact</button>
-        <div class="contact-dropdown" id="contact-dropdown" aria-hidden="true">
-          <a href="#" class="contact-dropdown-item copy-email" data-email="yiran.jour@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="contact-dropdown-item">LinkedIn</a>
-          <a href="https://github.com/yiranzhu25" target="_blank" class="contact-dropdown-item">Github</a>
-          <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="contact-dropdown-item">Resume</a>
-        </div>
-      </div>
-      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+  <!-- ── Desktop header ─────────────────────────────────── -->
+  <header class="pf-header">
+    <a href="index.html" class="pf-wordmark">
+      Yiran Zhu
+    </a>
+    <div class="pf-header-controls">
+      <nav class="pf-header-nav">
+        <a href="index.html#work" class="pf-header-nav-link">Work</a>
+        <a href="index.html#vibe-coding" class="pf-header-nav-link">Vibe coding</a>
+        <a href="index.html#about" class="pf-header-nav-link">About</a>
+        <a href="#" class="pf-btn pf-btn--primary pf-header-cta copy-email" data-email="yiran.jour@gmail.com">
+          <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor" style="flex-shrink:0;"><circle cx="3" cy="3" r="3"/></svg>
+          Contact
+        </a>
+      </nav>
+      <!-- Theme toggle -->
+      <button class="pf-iconbtn" id="theme-toggle" aria-label="Toggle theme">
+        <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
     </div>
-    <nav class="nav-dropdown" id="nav-dropdown" aria-hidden="true">
-      <a href="index.html#work" class="nav-dropdown-link">Work</a>
-      <a href="index.html#vibe-coding" class="nav-dropdown-link">Vibe coding</a>
-      <a href="index.html#about" class="nav-dropdown-link">About</a>
-      <a href="#" class="nav-dropdown-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="nav-dropdown-link">LinkedIn</a>
-      <a href="https://github.com/yiranzhu25" target="_blank" class="nav-dropdown-link">Github</a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
-    </nav>
   </header>
 
-  <!-- ── Hero: Pipeline Animation ─────────────────────── -->
-  <div style="width: 100%; overflow: hidden; display: flex; justify-content: center;">
-    <div style="width: 100%;">
-      <div class="pipeline-root" id="pipeline-root-cs">
-        <div class="wrapper">
-          <div class="stages-grid" id="cards-grid">
-            <div class="stage-col">
-              <div class="team-col"><div class="tdot p"></div><span class="tname">Team A</span></div>
-              <div class="stage-hdr">Stage 1: Data review</div>
-              <div class="card" id="s2">
-                <div class="card-bar">
-                  <div class="bar-icon"><img src="img/pdf_icon.png" width="18" height="18" alt="PDF"></div>
-                  <div class="bar-btn">Extract <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M5 0.8L6.12 3.52L9.05 3.9L6.9 5.99L7.48 9.05L5 7.6L2.52 9.05L3.1 5.99L0.95 3.9L3.88 3.52L5 0.8Z" fill="rgba(255,255,255,0.88)"/></svg></div>
-                </div>
-                <div class="s2-body">
-                  <div class="doc-panel" id="doc-panel">
-                    <div class="dl f"></div><div class="dl e"></div>
-                    <div class="dl hl f" id="hl0"></div><div class="dl s"></div>
-                    <div class="dl f"></div><div class="dl hl e" id="hl1"></div>
-                    <div class="dl m"></div><div class="dl f"></div>
-                    <div class="dl hl f" id="hl2"></div><div class="dl s"></div>
-                    <div class="dl e"></div><div class="dl f"></div>
-                    <div class="dl hl m" id="hl3"></div><div class="dl f"></div><div class="dl s"></div>
-                    <div class="dl f"></div><div class="dl e"></div>
-                    <div class="dl m"></div><div class="dl hl f"></div><div class="dl s"></div>
-                    <div class="dl f"></div><div class="dl e"></div>
-                    <div class="dl hl e"></div><div class="dl m"></div><div class="dl f"></div>
-                  </div>
-                  <div class="pills-col" id="s2-pills">
-                    <div class="pill" id="s2p0"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill" id="s2p1"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill" id="s2p2"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill" id="s2p3"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="stage-col">
-              <div class="team-col"><div class="tdot g"></div><span class="tname">Team B</span></div>
-              <div class="stage-hdr">Stage 2: Map</div>
-              <div class="card" id="s3">
-                <div class="card-bar">
-                  <div class="bar-icon"><img src="img/excel_icon.png" width="18" height="18" alt="Excel"></div>
-                  <div class="bar-btn">Upload ↑</div>
-                </div>
-                <div class="s3-map-area">
-                  <div class="s3-col" id="s3-left">
-                    <div class="pill" id="s3l0"><div class="pdot g"></div><div class="pill-line"></div></div>
-                    <div class="pill" id="s3l1"><div class="pdot g"></div><div class="pill-line"></div></div>
-                    <div class="pill" id="s3l2"><div class="pdot g"></div><div class="pill-line"></div></div>
-                    <div class="pill"><div class="pdot g"></div><div class="pill-line"></div></div>
-                    <div class="pill"><div class="pdot g"></div><div class="pill-line"></div></div>
-                  </div>
-                  <div class="s3-col" id="s3-right">
-                    <div class="pill g-fill" id="s3r0"><div class="pill-line"></div></div>
-                    <div class="pill g-fill" id="s3r1"><div class="pill-line"></div></div>
-                    <div class="pill g-fill" id="s3r2"><div class="pill-line"></div></div>
-                    <div class="pill g-fill"><div class="pill-line"></div></div>
-                    <div class="pill g-fill"><div class="pill-line"></div></div>
-                  </div>
-                </div>
-                <div class="s3-table-wrap" id="s3-table">
-                  <div class="s3-trow"><div class="s3-th"></div><div class="s3-th"></div><div class="s3-th"></div></div>
-                  <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
-                  <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
-                  <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
-                  <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
-                </div>
-              </div>
-            </div>
-            <div class="stage-col">
-              <div class="team-col"><div class="tdot g"></div><span class="tname">Team B</span></div>
-              <div class="stage-hdr">Stage 3: New Set up</div>
-              <div class="card" id="s4">
-                <div class="s4-body">
-                  <div class="select-row">
-                    <div class="select-pill">SELECT <span class="sel-arrow">▾</span></div>
-                    <div class="select-pill">SELECT <span class="sel-arrow">▾</span></div>
-                  </div>
-                  <div class="s4-pills" id="s4-pills">
-                    <div class="pill" id="s4p0"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill" id="s4p1"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill" id="s4p2"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill" id="s4p3"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                    <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="stage-col">
-              <div class="team-col"><div class="tdot g"></div><span class="tname">Team B Manager</span></div>
-              <div class="stage-hdr">Stage 4: Approve all</div>
-              <div class="card" id="s5">
-                <div class="s5-usd-block">
-                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+20,000.00 USD</span></div>
-                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+14,394.00 USD</span></div>
-                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">−9,027.00 USD</span></div>
-                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+6,800.00 USD</span></div>
-                  <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">−3,512.00 USD</span></div>
-                </div>
-                <div class="s5-pills-grid" id="s5-pills">
-                  <div class="pill small" id="s5p0"><div class="pdot p"></div><div class="pill-line"></div></div>
-                  <div class="pill small" id="s5p1"><div class="pdot p"></div><div class="pill-line"></div></div>
-                  <div class="pill small" id="s5p2"><div class="pdot p"></div><div class="pill-line"></div></div>
-                  <div class="pill small" id="s5p3"><div class="pdot p"></div><div class="pill-line"></div></div>
-                  <div class="pill small"><div class="pdot p"></div><div class="pill-line"></div></div>
-                  <div class="pill small"><div class="pdot p"></div><div class="pill-line"></div></div>
-                </div>
-                <div class="s5-table-wrap" id="s5-table">
-                  <div class="s5-trow"><div class="s5-th"></div><div class="s5-th"></div><div class="s5-th"></div></div>
-                  <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
-                  <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
-                  <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
-                  <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
-                </div>
-              </div>
-            </div>
-            <svg class="conn-svg" id="conn-svg" xmlns="http://www.w3.org/2000/svg"></svg>
-          </div>
-        </div>
-      </div>
+  <!-- ── Mobile topbar ──────────────────────────────────── -->
+  <div class="pf-topbar">
+    <a href="index.html" class="pf-wordmark">Yiran Zhu</a>
+    <div style="display:flex;align-items:center;gap:var(--space-2);">
+      <button class="pf-iconbtn" id="theme-toggle-mobile" aria-label="Toggle theme">
+        <svg id="theme-icon-sun-m" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-moon-m" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="pf-menu-btn" id="menu-btn" aria-expanded="false" aria-haspopup="true">
+        Menu
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="pf-dropdown" id="pf-dropdown" aria-hidden="true">
+    <div class="pf-dropdown-head">
+      <a href="index.html" class="pf-wordmark">Yiran Zhu</a>
+      <button class="pf-iconbtn" id="close-menu" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="pf-dropdown-list">
+      <a href="index.html#work" class="pf-dropdown-link">
+        <span class="pf-navindex">01</span>Work
+      </a>
+      <a href="index.html#vibe-coding" class="pf-dropdown-link">
+        <span class="pf-navindex">02</span>Vibe coding
+      </a>
+      <a href="index.html#about" class="pf-dropdown-link">
+        <span class="pf-navindex">03</span>About
+      </a>
+      <a href="#" class="pf-dropdown-link copy-email" data-email="yiran.jour@gmail.com">
+        <span class="pf-navindex">04</span>Contact
+      </a>
     </div>
   </div>
 
-  <!-- ── Sections ─────────────────────────────────────── -->
-  <div class="cs-sections-wrap">
+  <!-- ── Two-column shell ───────────────────────────────── -->
+  <div class="pf-shell">
 
-    <!-- Title + Metadata -->
-    <section class="cs-content-section cs-content-section--title">
-      <div class="cs-title-left">
-        <h1 class="cs-title-heading">
-          <em class="type-hero-accent">Automate</em> Cross-Functional Operations
-        </h1>
-        <p class="cs-title-desc">Unblocked a critical business bottleneck by reengineering how cross-functional teams, tools, and data handoffs were orchestrated — collapsing fragmented, multi-team processes into one automated workflow.</p>
-        <div class="tags">
-          <span class="tag">Systems Thinking</span>
-          <span class="tag">Product Architect</span>
-        </div>
-      </div>
-      <ul class="cs-meta-list">
-        <li>
-          <span class="cs-meta-list-label">Company</span>
-          <p class="cs-meta-list-value">Goldman Sachs</p>
-        </li>
-        <li>
-          <span class="cs-meta-list-label">Role</span>
-          <p class="cs-meta-list-value">Product Design</p>
-        </li>
-        <li>
-          <span class="cs-meta-list-label">Timeline</span>
-          <p class="cs-meta-list-value">Jan 2024 - Sep 2024</p>
-        </li>
-        <li>
-          <span class="cs-meta-list-label">Team</span>
-          <p class="cs-meta-list-value">Designer for research support, PM, engineers and SME</p>
-        </li>
-        <li>
-          <span class="cs-meta-list-label">My contribution</span>
-          <p class="cs-meta-list-value">Led product architect, design vision &amp; execution, and stakeholder buy-in</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Confidentiality Note -->
-    <section class="cs-content-section cs-content-section--accordion">
-      <div class="accordion" data-accordion>
-        <button class="accordion-header" aria-expanded="false" aria-controls="acc-auto-body">
-          <span>Confidentiality &amp; Design Note</span>
-          <span class="accordion-arrow">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M5 7.5L10 12.5L15 7.5" stroke="#1E1E1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
-        </button>
-        <div class="accordion-body" id="acc-auto-body" hidden>
-          <p>To comply with NDA requirements, this case study omits proprietary business logic and utilizes a modified design system. The UX logic, information architecture, and business impact represent the actual work delivered. Full case study can be shared privately.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Problem: A critical Scalability bottleneck -->
-    <section class="cs-content-section">
+    <!-- Left sidebar -->
+    <aside class="pf-sidenav">
       <div>
-        <h2 class="cs-section-heading">A critical <span class="accent-italic">Scalability</span> bottleneck</h2>
+        <a href="index.html" class="pf-back">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Work
+        </a>
+        <nav class="pf-navlist" style="margin-top: var(--space-6);">
+          <a href="#overview" class="pf-navlink" data-nav-target="overview">
+            <span class="pf-navindex">01</span>Overview
+          </a>
+          <a href="#background" class="pf-navlink" data-nav-target="background">
+            <span class="pf-navindex">02</span>Background
+          </a>
+          <a href="#research" class="pf-navlink" data-nav-target="research">
+            <span class="pf-navindex">03</span>Research
+          </a>
+          <a href="#architecture" class="pf-navlink" data-nav-target="architecture">
+            <span class="pf-navindex">04</span>Architecture
+          </a>
+          <a href="#design" class="pf-navlink" data-nav-target="design">
+            <span class="pf-navindex">05</span>Design
+          </a>
+          <a href="#outcome" class="pf-navlink" data-nav-target="outcome">
+            <span class="pf-navindex">06</span>Outcome
+          </a>
+        </nav>
       </div>
-      <p class="cs-body-text">A critical operational process was challenged when handling a sudden surge in client requests triggered by shifting market conditions. This process is a high-stakes, manual ordeal because of its nuance in nature. Human error only was discovered after data in the system, which caused additional correction work and regulatory violations. Business stakeholders turned to our strategic platform for help.</p>
-      <div class="kpi-row">
-        <div class="kpi-card">
-          <p class="kpi-number">14</p>
-          <div>
-            <p class="kpi-label">Days</p>
-            <p class="kpi-sublabel">Time to complete</p>
+    </aside>
+
+    <!-- Main content -->
+    <main class="pf-main">
+
+      <!-- ── 01 Overview ──────────────────────────────────── -->
+      <section id="overview" class="cs2-section cs2-section--first">
+
+        <div class="cs2-overview-header">
+
+          <!-- Title -->
+          <h1 class="cs2-project-title">Shared Task Manager: Collapsed a 14-day, 4-team Process into <em>One Day</em> by Redesigning How Cross-Functional Teams, Tools, and Data Handoffs Were Orchestrated at Goldman Sachs</h1>
+
+          <!-- Tags -->
+          <div class="pf-tags">
+            <span class="pf-tag">Systems Thinking</span>
+            <span class="pf-tag">Product Architect</span>
+          </div>
+
+          <!-- Overview table -->
+          <div class="cs2-overview-table">
+
+            <div class="cs-meta-right">
+              <div class="cs-meta-field">
+                <span class="cs-meta-label">Company</span>
+                <span class="cs-meta-value">Goldman Sachs</span>
+              </div>
+              <div class="cs-meta-field">
+                <span class="cs-meta-label">Timeline</span>
+                <span class="cs-meta-value">Jan 2024 – Sep 2024</span>
+              </div>
+              <div class="cs-meta-field">
+                <span class="cs-meta-label">Team</span>
+                <span class="cs-meta-value">PM, engineers, SME, and a research-support designer</span>
+              </div>
+              <div class="cs-meta-field">
+                <span class="cs-meta-label">My contribution</span>
+                <span class="cs-meta-value">Led research, product architecture, design vision and execution, and stakeholder buy-in</span>
+              </div>
+            </div>
+
+            <!-- Measured Outcome -->
+            <div class="cs2-metrics-block">
+              <span class="cs2-metrics-label">Measured Outcome</span>
+              <div class="cs2-metrics-grid">
+                <div class="cs2-metric-item">
+                  <span class="cs2-metric-item-val">14 days → 1 day</span>
+                  <span class="cs2-metric-item-desc">Completion time</span>
+                </div>
+                <div class="cs2-metric-item">
+                  <span class="cs2-metric-item-val">9 → 1</span>
+                  <span class="cs2-metric-item-desc">Tools consolidated</span>
+                </div>
+                <div class="cs2-metric-item">
+                  <span class="cs2-metric-item-val">Zero</span>
+                  <span class="cs2-metric-item-desc">Manual data edits</span>
+                </div>
+                <div class="cs2-metric-item">
+                  <span class="cs2-metric-item-val">4×</span>
+                  <span class="cs2-metric-item-desc">Platform onboarding speed</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- /cs2-overview-header -->
+
+        <!-- Jump to design -->
+        <div>
+          <a href="#design" class="pf-btn pf-btn--ghost">
+            Jump to design solution
+            <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+
+      </section>
+
+      <!-- ── 02 Background ─────────────────────────────────── -->
+      <section id="background" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[01 Background]</h2>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Business Background</h3>
+          <p class="cs2-body">Goldman Sachs helps large corporations arrange commercial loans. When financial markets get volatile, borrowers often renegotiate their loan terms — for example, requesting a lower interest rate — to avoid defaulting. These renegotiations are called amendments, and they trigger a complex internal coordination process.</p>
+        </div>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Business and Stakeholder Problems</h3>
+          <p class="cs2-body">Every amendment involves the borrower, Goldman Sachs, and thousands of individual lenders. Inside Goldman Sachs, four internal teams — client, data, servicing, and trading — had to coordinate to complete the process.</p>
+          <p class="cs2-body">The work was entirely manual, hard to follow, and always under tight deadlines. A single data error could cost the firm millions. Missing a deadline risked losing the client entirely.</p>
+          <div class="cs2-metrics-block">
+            <span class="cs2-metrics-label">Baseline metrics from user research · On the Old System</span>
+            <div class="cs2-metrics-grid">
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">14 days</span>
+                <span class="cs2-metric-item-desc">To complete one amendment</span>
+              </div>
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">9 tools</span>
+                <span class="cs2-metric-item-desc">Across 4 separate teams</span>
+              </div>
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">18</span>
+                <span class="cs2-metric-item-desc">Manual data-entry points</span>
+              </div>
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">10</span>
+                <span class="cs2-metric-item-desc">Team handoffs per process</span>
+              </div>
+            </div>
+          </div>
+          <p class="cs2-body">Amendments are also highly unique — borrowers can restructure their loans in many different ways, and each request determined what every team needed to do. This made the process so complex it could only be handled by the most senior team members.</p>
+          <p class="cs2-body">When market volatility drove a surge in amendment requests in late 2023, the teams relying on legacy tools failed to keep up with the volume. Business stakeholders came to our platform to fast-track a replacement and eventually move off legacy systems entirely.</p>
+        </div>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">My Role</h3>
+          <p class="cs2-body">As lead designer and design owner across multiple products on our platform, I owned the research, led requirement refinement, shaped the core workflows, drove stakeholder buy-in, and designed the experience 0→1.</p>
+        </div>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">My Approach</h3>
+          <p class="cs2-body">Replicating a broken process digitally would yield zero value. I treated this not as an interface problem, but as a service architecture problem.</p>
+          <p class="cs2-body">I organized my approach around three priorities:</p>
+          <ul class="cs2-body" style="padding-left: 1.25rem; display: flex; flex-direction: column; gap: var(--space-2);">
+            <li>Auditing the full multi-team workflow to understand the root causes of the ecosystem failure</li>
+            <li>Mapping business logic with SMEs to define what could be automated versus what needed user input and oversight</li>
+            <li>Working closely with PM, engineers, and stakeholders to negotiate trade-offs and get buy-in</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- ── 03 Research ────────────────────────────────────── -->
+      <section id="research" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[02 Research]</h2>
+
+        <div class="cs2-sub-group">
+          <p class="cs2-body">I led 14 user and SME interviews across all four teams, with support from another designer. My research goals were:</p>
+          <div class="cs2-insight-grid">
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">True user intent</span>
+              <p class="cs2-insight-desc">What each team actually needed to accomplish, separate from what legacy tools forced them to do</p>
+            </div>
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">Root cause analysis</span>
+              <p class="cs2-insight-desc">Where risk and inefficiency entered the process</p>
+            </div>
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">Domain knowledge</span>
+              <p class="cs2-insight-desc">The undocumented business rules driving different amendment scenarios</p>
+            </div>
           </div>
         </div>
-        <div class="kpi-card">
-          <p class="kpi-number">9</p>
-          <div>
-            <p class="kpi-label">Different tools</p>
-            <p class="kpi-sublabel">Across 4 separate teams</p>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Clarifying User Intent</h3>
+          <p class="cs2-body">The existing workflow was shaped by legacy tool limitations, not by what teams actually needed to accomplish. I separated tasks essential to each team's responsibilities from the workarounds they'd invented to compensate.</p>
+          <img src="img/task-manager-case-study/user-intent.png" alt="User action breakdown" class="cs2-img">
+        </div>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Root Cause Analysis</h3>
+          <p class="cs2-body">I mapped the full workflow across all four teams into a service blueprint to identify where teams suffered most.</p>
+          <img src="img/task-manager-case-study/task-manager-service-blueprint.png" alt="Service blueprint mapping the full amendment workflow across all four teams" class="cs2-img">
+          <p class="cs2-body">Three root causes emerged from the audit:</p>
+          <div class="cs2-insight-grid">
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">Root cause 1</span>
+              <p class="cs2-insight-desc"><strong>Workflow sequencing put the wrong team last.</strong> The data team's review was supposed to govern the data the servicing team used. But data team's review took 10–14 days, while servicing had to complete their work in a single day. The result: servicing moved forward without approved data, and data team signed off two weeks after the deadline. Unapproved data led to wrong notices and payments worth millions of dollars.</p>
+            </div>
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">Root cause 2</span>
+              <p class="cs2-insight-desc"><strong>Manual data processing created high-volume, high-stakes error risk.</strong> The servicing team spent 70% of their time manually checking thousands of rows in spreadsheets, then re-entering that data by hand into separate systems. Every step was a new opportunity for error.</p>
+            </div>
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">Root cause 3</span>
+              <p class="cs2-insight-desc"><strong>One team existed entirely as a human workaround.</strong> The trading team had no substantive role in the amendment process. They were involved only because the legacy system couldn't support one specific servicing task — so servicing had invented a workaround that required trading to perform it in a separate application.</p>
+            </div>
           </div>
         </div>
-        <div class="kpi-card">
-          <p class="kpi-number">18</p>
-          <div>
-            <p class="kpi-label">Manual touchpoints</p>
-            <p class="kpi-sublabel">Per process</p>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">User Scenarios Research</h3>
+          <p class="cs2-body">Amendments are highly variable. Clients can restructure their loan in dozens of ways, and the specific request changes what data comes in, what each team processes, and what decisions they need to make.</p>
+          <p class="cs2-body">I asked SMEs to walk me through real scenarios, surfacing undocumented business rules, conditional decision points, and data inputs and outputs for each. I synthesized these into a scenario matrix to identify patterns that could be standardized and automated versus where users needed input and guidance.</p>
+          <img src="img/task-manager-case-study/task-manager-user-scenario-matrix.png" alt="User scenario matrix mapping amendment types to team tasks, data inputs, and decision points" class="cs2-img">
+        </div>
+
+      </section>
+
+      <!-- ── 04 Architecture ───────────────────────────────── -->
+      <section id="architecture" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[03 Hypothesis &amp; Architecture]</h2>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Hypothesis</h3>
+          <div class="cs2-hypothesis">
+            <p class="cs2-hypothesis-text">If we sequence teams correctly so data is reviewed and approved before downstream work begins — and replace manual data processing with system automation — we can eliminate missed-deadline risk, prevent data errors, and ensure accurate notices and payments. Brought together in a single guided experience, teams can handle increasing volume without growing headcount, and junior members can do work that previously required years of experience.</p>
           </div>
         </div>
-        <div class="kpi-card">
-          <p class="kpi-number">10</p>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Workflow Re-Architecture</h3>
+          <p class="cs2-body">The core structural fix was an architectural reversal: bring the data team in first — so they capture and approve the governing loan data before the servicing team begins their work.</p>
+          <img src="img/task-manager-case-study/workflow-rearchitecture.png" alt="Old and new workflow" class="cs2-img">
+        </div>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Stakeholder Alignment</h3>
+          <p class="cs2-body">The data team's leadership pushed back. Moving earlier in the process meant committing to tighter deadlines and reprioritizing their workload — neither of which they had agreed to.</p>
+          <p class="cs2-body">I facilitated a cross-functional workshop with the lead PM, SMEs, and lead engineer to develop operational strategies that could make this feasible. The lead PM and I then took those strategies directly to data team leadership and secured buy-in — pairing the ask with a concrete operational plan and a commitment to address their efficiency gaps in a more holistic way going forward.</p>
+          <p class="cs2-body">How I addressed the data team's efficiency gap by designing an AI-powered solution</p>
           <div>
-            <p class="kpi-label">Manual data transfers</p>
-            <p class="kpi-sublabel">Between teams</p>
+            <a href="case-study-ai-data-review.html" class="pf-btn pf-btn--ghost">
+              Read AI case study
+              <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Strategy: Bring one team in earlier -->
-    <section class="cs-content-section">
-      <div>
-        <h2 class="cs-section-heading">Strategy <span class="accent-italic">Bring one team in earlier</span></h2>
-      </div>
-      <p class="cs-body-text">I led the fundamental rethinking of how these cross-functional teams interacted, moving beyond interface design to redesign the core operational workflow.</p>
-      <p class="cs-body-text">I used service blueprint to identify a critical timing risk, leading to an architectural reversal where one team was brought in earlier.</p>
-      <div class="feature-grid-wrap">
-        <ul class="feature-list">
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M19.03 3.56005C17.36 2.17005 15.29 1.26005 13 1.05005V3.06005C14.73 3.25005 16.31 3.94005 17.61 4.98005L19.03 3.56005Z" fill="#10B981"/>
-                <path d="M11 3.06005V1.05005C8.70997 1.25005 6.63997 2.17005 4.96997 3.56005L6.38997 4.98005C7.68997 3.94005 9.26997 3.25005 11 3.06005Z" fill="#10B981"/>
-                <path d="M4.98005 6.39009L3.56005 4.97009C2.17005 6.64009 1.26005 8.71009 1.05005 11.0001H3.06005C3.25005 9.27009 3.94005 7.69009 4.98005 6.39009Z" fill="#10B981"/>
-                <path d="M20.94 11.0001H22.95C22.74 8.71009 21.83 6.64009 20.44 4.97009L19.02 6.39009C20.06 7.69009 20.75 9.27009 20.94 11.0001Z" fill="#10B981"/>
-                <path d="M7 12L10.44 13.56L12 17L13.56 13.56L17 12L13.56 10.44L12 7L10.44 10.44L7 12Z" fill="#10B981"/>
-                <path d="M12 21.0005C8.89 21.0005 6.15 19.4105 4.54 17.0005H7V15.0005H1V21.0005H3V18.3005C4.99 21.1405 8.27 23.0005 12 23.0005C16.87 23.0005 21 19.8305 22.44 15.4405L20.48 14.9905C19.25 18.4805 15.92 21.0005 12 21.0005Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">Enabled automation</h5>
-            </div>
-            <p class="feature-desc">Capturing governing rules and data upfront enabled downstream processing automation</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg calss="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M12 4.02002C7.60002 4.02002 4.02002 7.60002 4.02002 12C4.02002 16.4 7.60002 19.98 12 19.98C16.4 19.98 19.98 16.4 19.98 12C19.98 7.60002 16.4 4.02002 12 4.02002ZM11.39 19V13.5H8.25002L12.75 5.00002V10.5H15.75L11.39 19Z" fill="#10B981"/>
-                <path d="M12 2.02002C6.49002 2.02002 2.02002 6.49002 2.02002 12C2.02002 17.51 6.49002 21.98 12 21.98C17.51 21.98 21.98 17.51 21.98 12C21.98 6.49002 17.51 2.02002 12 2.02002ZM12 19.98C7.60002 19.98 4.02002 16.4 4.02002 12C4.02002 7.60002 7.60002 4.02002 12 4.02002C16.4 4.02002 19.98 7.60002 19.98 12C19.98 16.4 16.4 19.98 12 19.98ZM12.75 5.00002L8.25002 13.5H11.39V19L15.75 10.5H12.75V5.00002Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">Efficiency unlocked</h5>
-            </div>
-            <p class="feature-desc">The reversed order shifted team's priority, which turned a process of 14 days into a one-day timely completion</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M9 10C9.82843 10 10.5 9.32843 10.5 8.5C10.5 7.67157 9.82843 7 9 7C8.17157 7 7.5 7.67157 7.5 8.5C7.5 9.32843 8.17157 10 9 10Z" fill="#10B981"/>
-                <path opacity="0.3" d="M4.34009 17H13.6601C12.8201 16.42 10.7901 15.75 9.00009 15.75C7.21009 15.75 5.18009 16.42 4.34009 17Z" fill="#10B981"/>
-                <path d="M9 12C10.93 12 12.5 10.43 12.5 8.5C12.5 6.57 10.93 5 9 5C7.07 5 5.5 6.57 5.5 8.5C5.5 10.43 7.07 12 9 12ZM9 7C9.83 7 10.5 7.67 10.5 8.5C10.5 9.33 9.83 10 9 10C8.17 10 7.5 9.33 7.5 8.5C7.5 7.67 8.17 7 9 7ZM9 13.75C6.66 13.75 2 14.92 2 17.25V19H16V17.25C16 14.92 11.34 13.75 9 13.75ZM4.34 17C5.18 16.42 7.21 15.75 9 15.75C10.79 15.75 12.82 16.42 13.66 17H4.34ZM16.04 13.81C17.2 14.65 18 15.77 18 17.25V19H22V17.25C22 15.23 18.5 14.08 16.04 13.81ZM15 12C16.93 12 18.5 10.43 18.5 8.5C18.5 6.57 16.93 5 15 5C14.46 5 13.96 5.13 13.5 5.35C14.13 6.24 14.5 7.33 14.5 8.5C14.5 9.67 14.13 10.76 13.5 11.65C13.96 11.87 14.46 12 15 12Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">0 manual data reconciliations</h5>
-            </div>
-            <p class="feature-desc">Front-loaded real time data validation in one system eliminated human errors and after-match data reconciliation</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path opacity="0.3" d="M3.01001 12L12.01 21L21 12L12 3L3.01001 12ZM14 7.5L17.5 11L14 14.5V12H10V15H8.00001V11C8.00001 10.45 8.45001 10 9.00001 10H14V7.5Z" fill="#10B981"/>
-                <path d="M13.4199 1.58005C12.6699 0.83005 11.3499 0.82005 10.5899 1.58005L1.58988 10.5801C0.809883 11.3601 0.809883 12.6201 1.58988 13.4001L10.5899 22.4C10.9799 22.79 11.4899 22.98 11.9999 22.98C12.5099 22.98 13.0199 22.79 13.4099 22.4L22.3999 13.4101C23.1799 12.6501 23.1899 11.3801 22.4199 10.5901L13.4199 1.58005ZM12.0099 20.99L3.00988 11.9901L12.0099 2.99005L21.0099 11.9901L12.0099 20.99ZM7.99988 11.0001V15.0001H9.99988V12.0001H13.9999V14.5001L17.4999 11.0001L13.9999 7.50005V10.0001H8.99988C8.44988 10.0001 7.99988 10.4501 7.99988 11.0001Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">User instructed automation</h5>
-            </div>
-            <p class="feature-desc">Let users give instructions to system automation to eliminate manual labor while covering nuance cases</p>
-          </li>
-          <li class="feature-item">
-            <div class="feature-header">
-              <svg class="feature-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <path d="M19.5 9.5C18.47 9.5 17.6 10.12 17.21 11H14.29C13.9 10.12 13.03 9.5 12 9.5C10.97 9.5 10.1 10.12 9.71 11H6.79C6.4 10.12 5.53 9.5 4.5 9.5C3.12 9.5 2 10.62 2 12C2 13.38 3.12 14.5 4.5 14.5C5.53 14.5 6.4 13.88 6.79 13H9.71C10.1 13.88 10.97 14.5 12 14.5C13.03 14.5 13.9 13.88 14.29 13H17.21C17.6 13.88 18.47 14.5 19.5 14.5C20.88 14.5 22 13.38 22 12C22 10.62 20.88 9.5 19.5 9.5Z" fill="#10B981"/>
-              </svg>
-              <h5 class="feature-title">Guided experience in one tool</h5>
-            </div>
-            <p class="feature-desc">Unified a convoluted process into a guided experience in one workflow, removing the needs for tooling and workarounds.</p>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Impact -->
-    <section class="cs-content-section">
-      <div>
-        <h2 class="cs-section-heading">Impact</h2>
-      </div>
-
-      <!-- Row 1: Completion Time + Process Consolidation -->
-      <div class="impact-row">
-        <div class="impact-card-new impact-card-new--blue">
-          <p class="impact-overline">COMPLETION TIME REDUCTION</p>
-          <p class="impact-number-new">14 → 1</p>
-          <p class="impact-label-new">Business days</p>
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">New Experience End Vision</h3>
+          <p class="cs2-body">With the workflow re-sequenced and root causes identified, the design challenge was ensuring the new system was intuitive at scale — standardized for the 80% of common scenarios while remaining flexible for edge cases.</p>
+          <p class="cs2-body">I worked directly with engineers throughout to push automation as far as possible. One key outcome: engineers confirmed the system could fully replace the trading team's workaround, eliminating their role from the process entirely.</p>
         </div>
-        <div class="impact-card-new impact-card-new--blue">
-          <p class="impact-overline">PROCESS CONSOLIDATION</p>
-          <p class="impact-number-new">9 → 1</p>
-          <p class="impact-label-new">Tools used</p>
+
+      </section>
+
+      <!-- ── 05 Design solutions ────────────────────────── -->
+      <section id="design" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[04 Design Solutions]</h2>
+
+        <!-- Design 1 -->
+        <div class="cs2-pillar">
+          <div class="cs2-pillar-header">
+            <span class="cs2-pillar-num">Design 1</span>
+            <h3 class="cs2-pillar-title">Shared Task Manager with System Guardrails</h3>
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Before</span>
+              <p class="cs2-field-body">Teams juggled 9 tools, manually re-entered the same data across multiple applications, and relied on offline communication to coordinate who was doing what and when.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">After</span>
+              <p class="cs2-field-body">A single guided workflow where each step leads to the next. Roles and responsibilities are defined per team. Each team enters only the data they own, and that data carries forward automatically — no re-entry, no reconciliation.</p>
+            </div>
+          </div>
+          <div class="pf-switcher" role="tablist" aria-label="Design 1 feature views">
+            <div class="pf-switcher-thumb"></div>
+            <button class="is-active" role="tab" aria-selected="true" data-tab-group="design1" data-tab-target="design1-guided">Guided Task Manager</button>
+            <button role="tab" aria-selected="false" data-tab-group="design1" data-tab-target="design1-roles">Tasks by Team</button>
+            <button role="tab" aria-selected="false" data-tab-group="design1" data-tab-target="design1-data">Data Auto Carry Forward</button>
+          </div>
+          <div id="design1-guided" class="cs2-tab-panel" role="tabpanel">
+            <div class="cs2-video-wrap">
+              <video muted playsinline preload="metadata" style="width: 100%; display: block;">
+                <source src="img/task-manager-case-study/task-manager-guided.mp4" type="video/mp4">
+              </video>
+              <button class="cs2-video-btn" aria-label="Play/Pause">
+                <svg class="cs2-video-icon-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg class="cs2-video-icon-pause" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="design1-roles" class="cs2-tab-panel" role="tabpanel" hidden>
+            <img src="img/task-manager-case-study/task-manager-roles-responsibility.png" alt="Tasks organized by team — showing role-based responsibilities within the shared workflow" class="cs2-img">
+          </div>
+          <div id="design1-data" class="cs2-tab-panel" role="tabpanel" hidden>
+            <img src="img/task-manager-case-study/task-manager-data-automation.png" alt="Data entered by one team carries forward automatically — no re-entry across steps" class="cs2-img">
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Why it mattered</span>
+              <p class="cs2-field-body">Eliminated tool-switching, overlapping work, and data inconsistency. The step-by-step structure made a process that once required years of experience learnable by junior team members.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Trade-off</span>
+              <p class="cs2-field-body">Saving a partial draft mid-task was out of scope for the initial build. I aligned with SME users on the constraint and designed a warning modal to prevent navigation away before task completion — reducing incomplete-state risk without the engineering overhead.</p>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <!-- Row 2: Data Integrity + Strategic Growth -->
-      <div class="impact-row">
-        <div class="impact-card-new impact-card-new--blue">
-          <p class="impact-overline">DATA INTEGRITY</p>
-          <p class="impact-number-new">Zero</p>
-          <p class="impact-label-new">Manual data transfer / manipulation / reconciliation</p>
+        <!-- Design 2 -->
+        <div class="cs2-pillar">
+          <div class="cs2-pillar-header">
+            <span class="cs2-pillar-num">Design 2</span>
+            <h3 class="cs2-pillar-title">Automating Heavy Data Processing</h3>
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Before</span>
+              <p class="cs2-field-body">The servicing team manually verified thousands of rows of lender data from a client spreadsheet, then hand-entered it into the system to calculate each lender's payments and involvement.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">After</span>
+              <p class="cs2-field-body">The system ingests the spreadsheet directly, runs calculations automatically, and surfaces a validation layer for users to review and approve — rather than enter.</p>
+            </div>
+          </div>
+          <div class="cs2-video-wrap">
+            <video muted playsinline preload="metadata" style="width: 100%; display: block;">
+              <source src="img/task-manager-case-study/task-manager-spreadsheet-automation.mp4" type="video/mp4">
+            </video>
+            <button class="cs2-video-btn" aria-label="Play/Pause">
+              <svg class="cs2-video-icon-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <svg class="cs2-video-icon-pause" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Why it mattered</span>
+              <p class="cs2-field-body">Eliminated the highest-volume manual task in the process — and the highest risk for error. Real-time validation catches issues before they reach notices or payments. Time to complete this step: 1–4 hours → 10 minutes.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Trade-off</span>
+              <p class="cs2-field-body">A full in-system data editing interface was out of scope for the deadline. I aligned with users on a fallback: when the system flags an error, users fix it in the source spreadsheet and re-upload. Not ideal long-term, but it protected data integrity without blocking launch.</p>
+            </div>
+          </div>
         </div>
-        <div class="impact-card-new impact-card-new--blue">
-          <p class="impact-overline">STRATEGIC GROWTH</p>
-          <p class="impact-number-new">4X</p>
-          <p class="impact-label-new">Speed up platform onboarding</p>
+
+        <!-- Design 3 -->
+        <div class="cs2-pillar">
+          <div class="cs2-pillar-header">
+            <span class="cs2-pillar-num">Design 3</span>
+            <h3 class="cs2-pillar-title">User-Instructed Automation for Edge Cases</h3>
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Before</span>
+              <p class="cs2-field-body">When an amendment didn't fit a standard pattern, there was no structured path forward. Users relied on senior expertise and offline problem-solving — creating delays, inconsistency, and a dependency on the most experienced people on the team.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">After</span>
+              <p class="cs2-field-body">For cases the system can't interpret on its own, users give the system direct instructions. The system applies them automatically for the remainder of that amendment — no engineering ticket, no workaround required.</p>
+             
+            </div>
+          </div>
+          <div class="pf-switcher" role="tablist" aria-label="Design 3 examples">
+            <div class="pf-switcher-thumb"></div>
+            <button class="is-active" role="tab" aria-selected="true" data-tab-group="design3" data-tab-target="design3-ex1">Example 1</button>
+            <button role="tab" aria-selected="false" data-tab-group="design3" data-tab-target="design3-ex2">Example 2</button>
+          </div>
+          <div id="design3-ex1" class="cs2-tab-panel" role="tabpanel">
+            <img src="img/task-manager-case-study/task-manager-user-instruction-mapping.png" alt="User-instructed automation example 1: mapping non-standard column headers" class="cs2-img">
+          </div>
+          <div id="design3-ex2" class="cs2-tab-panel" role="tabpanel" hidden>
+            <img src="img/task-manager-case-study/task-manager-user-instruction-servicing.png" alt="User-instructed automation example 2: servicing edge case instruction" class="cs2-img">
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Why it mattered</span>
+              <p class="cs2-field-body">The scenario matrix showed that true edge cases were real but rare. The goal wasn't to engineer every possible variation — it was to ensure the 80% ran automatically and the 20% stayed manageable without developer involvement. This kept the system scalable without making it brittle.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Trade-off</span>
+              <p class="cs2-field-body">User instructions are amendment-specific and don't persist across different amendments — persisting them would require a rules-management system that was out of scope. Users are informed of this upfront so expectations are set.</p>
+            </div>
+          </div>
         </div>
-      </div>
 
-    </section>
+      </section>
 
-  </div><!-- /cs-sections-wrap -->
+      <!-- ── 06 Outcome ────────────────────────────────────── -->
+      <section id="outcome" class="cs2-section">
 
-  <!-- ── Footer ───────────────────────────────────────── -->
+        <h2 class="cs2-section-heading">[05 Outcome]</h2>
+
+        <div class="cs2-sub-group">
+          <p class="cs2-body">After launch, the feature successfully processed amendments for a month — prompting business leadership to fast-track migrating their loan portfolio off the legacy system. Onboarding ran 4× faster than before.</p>
+          <p class="cs2-body">Ten months after launch, the feature had processed 80% of all amendment requests coming into the business.</p>
+        </div>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Impact</h3>
+          <div class="cs2-metric-rows">
+            <div class="cs2-metric-row">
+              <span class="cs2-metric-label">Completion time</span>
+              <div class="cs2-metric-value">
+                <span class="cs2-metric-before">14 business days</span>
+                <span class="cs2-metric-after">1 business day</span>
+              </div>
+            </div>
+            <div class="cs2-metric-row">
+              <span class="cs2-metric-label">Tools used</span>
+              <div class="cs2-metric-value">
+                <span class="cs2-metric-before">9 tools across 4 teams</span>
+                <span class="cs2-metric-after">1 unified platform</span>
+              </div>
+            </div>
+            <div class="cs2-metric-row">
+              <span class="cs2-metric-label">Data integrity</span>
+              <div class="cs2-metric-value">
+                <span class="cs2-metric-after">Zero manual data transfer, manipulation, or reconciliation</span>
+              </div>
+            </div>
+            <div class="cs2-metric-row">
+              <span class="cs2-metric-label">Platform onboarding</span>
+              <div class="cs2-metric-value">
+                <span class="cs2-metric-after">4× faster</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs2-sub-group">
+            <p class="cs2-body">A note on what came next: The data team's efficiency gap — the one I committed to addressing as part of getting their buy-in — became its own product.</p>
+          <div>
+            <a href="case-study-ai-data-review.html" class="pf-btn pf-btn--ghost">
+              Read AI case study
+              <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+  </div><!-- /pf-shell -->
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
   <footer class="site-footer">
-    <div class="header-col-left">
-      <span class="header-name">© 2026 · Designed in Figma, built with Claude Code + Figma MCP, deployed on Github.</span>
-    </div>
-    <div class="header-col-right">
-      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="header-link"><img src="img/InBug-Black.png"></a>
-      <a href="https://github.com/yiranzhu25" target="_blank" class="header-link"><img src="img/GitHub_Invertocat_Black.png"></a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link"><img src="img/article_person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
-      <a href="#" class="header-link header-link-bold copy-email" data-email="yiran.jour@gmail.com">
-        <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
+    <span class="footer-name">© 2026 · Design and built with Claude, deployed on Github </span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="intro-social-link" aria-label="LinkedIn">
+        <img src="img/InBug-Black.png" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/yiranzhu25" target="_blank" class="intro-social-link" aria-label="GitHub">
+        <img src="img/GitHub_Invertocat_Black.png" alt="GitHub">
+      </a>
+      <a href="#" class="intro-social-link copy-email" data-email="yiran.jour@gmail.com" aria-label="Email">
+        <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Email">
+      </a>
     </div>
   </footer>
 
-  <!-- Pipeline Animation JS -->
+  <script src="main.js"></script>
   <script>
-    let _animEl  = null;
-    let _animCSS = '';
-    let _uid     = 0;
-    const PURPLE = '#9747FF';
-    const GREEN  = '#3EFFA0';
+  (function () {
+    document.querySelectorAll('.cs2-video-wrap').forEach(function (wrap) {
+      var video = wrap.querySelector('video');
+      var btn   = wrap.querySelector('.cs2-video-btn');
 
-    function buildLines() {
-      if (_animEl) _animEl.remove();
-      _animEl  = document.createElement('style');
-      document.head.appendChild(_animEl);
-      _animCSS = '';
-      _uid     = 0;
-
-      const svg  = document.getElementById('conn-svg');
-      const grid = document.getElementById('cards-grid');
-      if (!svg || !grid) return;
-      const gr = grid.getBoundingClientRect();
-      svg.innerHTML = '';
-
-      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-      defs.innerHTML = `
-        <filter id="glow-p" x="-200%" y="-200%" width="500%" height="500%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="glow-g" x="-200%" y="-200%" width="500%" height="500%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>`;
-      svg.appendChild(defs);
-
-      function R(el) {
-        const b = el.getBoundingClientRect();
-        return { l: b.left-gr.left, t: b.top-gr.top, r: b.right-gr.left, b: b.bottom-gr.top,
-                 cx: b.left-gr.left+b.width/2, cy: b.top-gr.top+b.height/2 };
-      }
-      function mkPath(d, stroke, opacity, extra) {
-        const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        p.setAttribute('d', d); p.setAttribute('stroke', stroke);
-        p.setAttribute('stroke-width', '1'); p.setAttribute('fill', 'none');
-        p.setAttribute('stroke-opacity', opacity);
-        if (extra) Object.entries(extra).forEach(([k,v]) => p.setAttribute(k,v));
-        return p;
-      }
-      function drawLine(d, x1, y1, color, filterId, duration, delay, addStartDot) {
-        svg.appendChild(mkPath(d, color, '0.25'));
-        const pulse = mkPath(d, color, '1', { 'stroke-linecap':'round', 'filter':`url(#${filterId})` });
-        svg.appendChild(pulse);
-        const len = pulse.getTotalLength() || 200;
-        const seg = Math.max(18, Math.min(55, len * 0.18));
-        pulse.setAttribute('stroke-dasharray', `${seg} ${len+1}`);
-        const name = `p${++_uid}`;
-        _animCSS += `@keyframes ${name}{from{stroke-dashoffset:${(len+seg).toFixed(1)}}to{stroke-dashoffset:0}}`;
-        pulse.style.animation = `${name} ${duration}s ${delay}s linear infinite`;
-        if (addStartDot) {
-          const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-          dot.setAttribute('cx', x1); dot.setAttribute('cy', y1); dot.setAttribute('r', '2.5');
-          dot.setAttribute('fill', color); dot.setAttribute('opacity', '0.55');
-          svg.appendChild(dot);
-        }
-      }
-      function hBez(x1, y1, x2, y2, color, fId, dur, dly, dot) {
-        const cp = (x2-x1)*0.5;
-        drawLine(`M${x1} ${y1} C${x1+cp} ${y1},${x2-cp} ${y2},${x2} ${y2}`, x1, y1, color, fId, dur, dly, dot);
-      }
-      function topArc(x1, y1, x2, y2, apex, color, fId, dur, dly) {
-        drawLine(`M${x1} ${y1} C${x1} ${apex},${x2} ${apex},${x2} ${y2}`, x1, y1, color, fId, dur, dly, true);
+      function setPlaying(playing) {
+        wrap.classList.toggle('is-playing', playing);
       }
 
-      const hls  = [0,1,2,3].map(i => document.getElementById('hl'+i));
-      const s2ps = [0,1,2,3].map(i => document.getElementById('s2p'+i));
-      hls.forEach((hl,i) => {
-        if (!hl || !s2ps[i]) return;
-        const h = R(hl), p = R(s2ps[i]);
-        hBez(h.r, h.cy, p.l, p.cy, PURPLE, 'glow-p', 0.9, i*0.18, false);
-      });
-
-      const s3ls = [0,1,2].map(i => document.getElementById('s3l'+i));
-      const s3rs = [0,1,2].map(i => document.getElementById('s3r'+i));
-      s3ls.forEach((lEl,i) => {
-        if (!lEl || !s3rs[i]) return;
-        const l = R(lEl), rv = R(s3rs[i]);
-        hBez(l.r, l.cy, rv.l, rv.cy, GREEN, 'glow-g', 0.75, i*0.12, false);
-      });
-
-      const s4ps = [0,1,2,3].map(i => document.getElementById('s4p'+i));
-      s2ps.forEach((pEl,i) => {
-        if (!pEl || !s4ps[i]) return;
-        const p = R(pEl), t = R(s4ps[i]);
-        topArc(p.r, p.cy, t.l, t.cy, -(42+i*10), PURPLE, 'glow-p', 2.0, i*0.28);
-      });
-
-      const s5ps = [0,1,2,3].map(i => document.getElementById('s5p'+i));
-      s4ps.forEach((pEl,i) => {
-        if (!pEl || !s5ps[i]) return;
-        const p = R(pEl), t = R(s5ps[i]);
-        hBez(p.r, p.cy, t.l, t.cy, PURPLE, 'glow-p', 1.4, i*0.18, true);
-      });
-
-      const s3t = R(document.getElementById('s3-table'));
-      const s5t = R(document.getElementById('s5-table'));
-      [-12, 0, 12].forEach((off,i) => {
-        const x1=s3t.cx+off, y1=s3t.b, x2=s5t.cx+off, y2=s5t.b;
-        const drop = 50+i*9;
-        drawLine(`M${x1} ${y1} C${x1} ${y1+drop},${x2} ${y2+drop},${x2} ${y2}`, x1, y1, GREEN, 'glow-g', 2.0, i*0.15, true);
-      });
-
-      _animEl.textContent = _animCSS;
-    }
-
-    window.addEventListener('load', buildLines);
-    window.addEventListener('resize', () => {
-      clearTimeout(window._rt);
-      window._rt = setTimeout(buildLines, 90);
-    });
-
-    // ── Contact dropdown ────────────────────────────────
-    var contactToggle   = document.getElementById('contact-toggle');
-    var contactDropdown = document.getElementById('contact-dropdown');
-    if (contactToggle && contactDropdown) {
-      contactToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = contactDropdown.classList.toggle('open');
-        contactToggle.setAttribute('aria-expanded', open);
-        contactDropdown.setAttribute('aria-hidden', !open);
-      });
-      document.addEventListener('click', function() {
-        contactDropdown.classList.remove('open');
-        contactToggle.setAttribute('aria-expanded', 'false');
-        contactDropdown.setAttribute('aria-hidden', 'true');
-      });
-      contactDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
-    }
-
-    // Hamburger menu
-    var hamburgerBtn = document.getElementById('hamburger-btn');
-    var navDropdown  = document.getElementById('nav-dropdown');
-    if (hamburgerBtn && navDropdown) {
-      hamburgerBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = navDropdown.classList.toggle('open');
-        hamburgerBtn.setAttribute('aria-expanded', open);
-      });
-      document.addEventListener('click', function() {
-        navDropdown.classList.remove('open');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-      });
-    }
-
-    // ── Email copy ──────────────────────────────────────
-    document.querySelectorAll('.copy-email').forEach(function(link) {
-      var tooltip = document.createElement('span');
-      tooltip.className = 'email-tooltip';
-      tooltip.textContent = 'Copied';
-      link.appendChild(tooltip);
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var email = this.dataset.email;
-        navigator.clipboard.writeText(email).then(function() {
-          link.classList.add('copied');
-          setTimeout(function() { link.classList.remove('copied'); }, 1500);
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            video.play().then(function () { setPlaying(true); }).catch(function () {});
+          } else {
+            video.pause();
+            setPlaying(false);
+          }
         });
-      });
-    });
+      }, { threshold: 0.5 });
+      observer.observe(wrap);
 
-    // Accordion
-    document.querySelectorAll('[data-accordion]').forEach(function(acc) {
-      var btn  = acc.querySelector('.accordion-header');
-      var body = acc.querySelector('.accordion-body');
-      var arrow = acc.querySelector('.accordion-arrow');
-      if (!btn || !body) return;
-      btn.addEventListener('click', function() {
-        var expanded = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', String(!expanded));
-        body.hidden = expanded;
-        if (arrow) arrow.style.transform = expanded ? '' : 'rotate(180deg)';
+      btn.addEventListener('click', function () {
+        if (video.paused) {
+          video.play().then(function () { setPlaying(true); }).catch(function () {});
+        } else {
+          video.pause();
+          setPlaying(false);
+        }
+      });
+
+      video.addEventListener('ended', function () { setPlaying(false); });
+    });
+  }());
+
+  (function () {
+    document.querySelectorAll('.pf-switcher').forEach(function (sw) {
+      var thumb = sw.querySelector('.pf-switcher-thumb');
+      var btns  = sw.querySelectorAll('button');
+
+      function moveThumb(btn) {
+        thumb.style.left  = btn.offsetLeft + 'px';
+        thumb.style.width = btn.offsetWidth + 'px';
+      }
+
+      var active = sw.querySelector('button.is-active') || btns[0];
+      moveThumb(active);
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () { moveThumb(btn); });
       });
     });
+  }());
   </script>
-  <script src="animations.js"></script>
+
 </body>
 </html>

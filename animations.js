@@ -7,6 +7,7 @@
     // Work section
     '.home-section-title',
     '.work-entry',
+    '.work-card-entry',
     '.work-card-sm',
     // Career section
     '.career-heading',

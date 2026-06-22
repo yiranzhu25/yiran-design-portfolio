@@ -1,734 +1,642 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
+  <script>if(!sessionStorage.getItem('pf-unlocked')){window.location.replace('password.html');}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI-Powered Data Review — Yiran Zhu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,900;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-
-  <style>
-    /* ── Page-specific styles for AI Data Review v2 ── */
-
-    /* Hero image section */
-    .cs2-hero {
-      background: #f5f3f5;
-      width: 100%;
-      padding: 64px 40px 16px;
-      box-sizing: border-box;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-    }
-    .cs2-hero-img {
-      width: 100%;
-      display: block;
-      object-fit: cover;
-    }
-
-    /* Sections wrapper */
-    .cs2-sections-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-
-    /* Standard content section */
-    .cs2-section {
-      width: 100%;
-      max-width: 1068px;
-      padding: 80px 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      box-sizing: border-box;
-    }
-    .cs2-section--accordion {
-      padding: 32px;
-    }
-
-    /* Title section: 2-col layout */
-    .cs2-section--title {
-      flex-direction: row;
-      gap: 48px;
-      align-items: flex-start;
-      padding: 80px 32px;
-      overflow: hidden;
-    }
-    .cs2-title-left {
-      flex: 1;
-      min-width: 500px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-    }
-    .cs2-title-heading {
-      font-size: 64px;
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -1.28px;
-      color: #121212;
-      margin: 0;
-    }
-    .cs2-title-desc {
-      font-size: 20px;
-      font-weight: 400;
-      line-height: 1.6;
-      letter-spacing: -0.4px;
-      color: #121212;
-      margin: 0;
-    }
-    .cs2-badge-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .cs2-badge {
-      display: inline-flex;
-      align-items: center;
-      background: #f5f5f7;
-      border: 1px solid #e5e7eb;
-      border-radius: 999px;
-      padding: 5px 12px;
-      font-size: 14px;
-      font-weight: 500;
-      color: #6b7280;
-      white-space: nowrap;
-    }
-
-    /* Metadata list */
-    .cs2-meta-list {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      align-self: flex-start;
-    }
-    .cs2-meta-list li {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      padding-top: 8px;
-    }
-    .cs2-meta-list li:first-child {
-      border-top: 1px solid rgba(0,0,0,0.15);
-      padding-top: 24px;
-    }
-    .cs2-meta-label {
-      font-size: 16px;
-      font-weight: 600;
-      color: #121212;
-      letter-spacing: -0.32px;
-      line-height: 1;
-    }
-    .cs2-meta-value {
-      font-size: 16px;
-      color: #6b7280;
-      line-height: 1.65;
-      margin: 0;
-    }
-
-    /* Accordion */
-    .cs2-accordion {
-      background: #fff;
-      border: 1px solid #d9d9d9;
-      border-radius: 8px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .cs2-accordion-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 0;
-      text-align: left;
-      gap: 8px;
-    }
-    .cs2-accordion-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1e1e1e;
-      line-height: 1.4;
-      flex: 1;
-    }
-    .cs2-accordion-chevron {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      transition: transform 250ms ease;
-    }
-    .cs2-accordion-chevron.open {
-      transform: rotate(180deg);
-    }
-    .cs2-accordion-body {
-      font-size: 16px;
-      color: #6b7280;
-      line-height: 1.6;
-      margin: 0;
-    }
-    .cs2-accordion-body[hidden] { display: none; }
-
-    /* Section headline (label + big heading) */
-    .cs2-headline {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      max-width: 640px;
-      width: 100%;
-    }
-    .cs2-overline {
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.4;
-      color: #121212;
-      margin: 0;
-    }
-    .cs2-section-heading {
-      font-size: 36px;
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: -0.72px;
-      color: #121212;
-      margin: 0;
-    }
-    .cs2-accent {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-style: italic;
-      font-weight: 400;
-      color: #4666ff;
-    }
-    .cs2-accent-dark {
-      font-family: 'Instrument Serif', Georgia, serif;
-      font-style: italic;
-      font-weight: 400;
-      color: #121212;
-    }
-
-    /* Body text */
-    .cs2-body {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.6;
-      color: #121212;
-      max-width: 640px;
-      margin: 0;
-    }
-    .cs2-body-full {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.6;
-      color: #121212;
-      margin: 0;
-    }
-    .cs2-body strong, .cs2-body-semibold {
-      font-weight: 600;
-    }
-
-    /* Inline lists */
-    .cs2-body-list {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.45;
-      color: #121212;
-      max-width: 640px;
-      margin: 0;
-      padding-left: 27px;
-    }
-    .cs2-body-list li {
-      margin-bottom: 0;
-    }
-
-    /* Inline image (full section width) */
-    .cs2-img {
-      width: 100%;
-      display: block;
-    }
-
-    /* Two-column challenge blocks */
-    .cs2-challenge-row {
-      display: flex;
-      gap: 32px;
-      width: 100%;
-    }
-    .cs2-challenge-item {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 8px;
-      border-radius: 16px;
-      min-width: 0;
-    }
-    .cs2-challenge-title {
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.6;
-      color: #121212;
-      margin: 0;
-    }
-    .cs2-challenge-desc {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.45;
-      letter-spacing: -0.09px;
-      color: #121212;
-      margin: 0;
-    }
-
-    /* Key insights 2-column grid */
-    .cs2-insights-grid {
-      display: grid;
-      grid-template-columns: minmax(0,1fr) minmax(0,3fr);
-      width: 100%;
-    }
-    .cs2-insights-list {
-      grid-column: 2;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 24px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .cs2-insight-item {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 8px;
-      border-radius: 16px;
-    }
-    .cs2-insight-title {
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1.6;
-      color: #121212;
-      margin: 0;
-    }
-    .cs2-insight-desc {
-      font-size: 18px;
-      font-weight: 400;
-      line-height: 1.45;
-      letter-spacing: -0.09px;
-      color: #121212;
-      margin: 0;
-    }
-
-    /* Full-width image breaks */
-    .cs2-fullwidth-img {
-      width: 100%;
-      flex-shrink: 0;
-    }
-    .cs2-fullwidth-img img {
-      width: 100%;
-      display: block;
-    }
-
-    /* KPI cards (re-using existing kpi-row/kpi-card) */
-
-    /* Impact cards (re-using existing impact-row/impact-card-new) */
-
-    /* ── Responsive ── */
-    @media (max-width: 900px) {
-      .cs2-section--title {
-        flex-direction: column;
-      }
-      .cs2-title-left {
-        min-width: unset;
-      }
-      .cs2-title-heading {
-        font-size: 48px;
-      }
-      .cs2-challenge-row {
-        flex-direction: column;
-        gap: 24px;
-      }
-      .cs2-insights-grid {
-        grid-template-columns: 1fr;
-      }
-      .cs2-insights-list {
-        grid-column: 1;
-      }
-    }
-    @media (max-width: 600px) {
-      .cs2-hero { padding: 40px 24px 12px; }
-      .cs2-section { padding: 48px 24px; gap: 24px; }
-      .cs2-section--accordion { padding: 24px; }
-      .cs2-section--title { padding: 48px 24px; }
-      .cs2-title-heading { font-size: 36px; }
-      .cs2-section-heading { font-size: 28px; }
-      .cs2-body, .cs2-body-full, .cs2-body-list { font-size: 16px; }
-      .cs2-challenge-title, .cs2-challenge-desc { font-size: 16px; }
-      .cs2-insight-title, .cs2-insight-desc { font-size: 16px; }
-      .cs2-insights-list { grid-template-columns: 1fr; }
-    }
-  </style>
+  <script>(function(){var s=localStorage.getItem('pf-theme');var d=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));})();</script>
 </head>
 <body>
 
-  <!-- ── Header ───────────────────────────────────────── -->
-  <header class="site-header">
-    <div class="header-col-left">
-      <a href="index.html" class="header-name header-link" style="font-weight:700;">Yiran Zhu</a>
-    </div>
-    <div class="header-col-right">
-      <a href="index.html#work" class="header-link">Work</a>
-      <a href="index.html#vibe-coding" class="header-link">Vibe coding</a>
-      <a href="index.html#about" class="header-link">About</a>
-      <div class="contact-menu-wrapper">
-        <button class="contact-toggle" id="contact-toggle" aria-expanded="false" aria-haspopup="true">Contact</button>
-        <div class="contact-dropdown" id="contact-dropdown" aria-hidden="true">
-          <a href="#" class="contact-dropdown-item copy-email" data-email="yiran.jour@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="contact-dropdown-item">LinkedIn</a>
-          <a href="https://github.com/yiranzhu25" target="_blank" class="contact-dropdown-item">Github</a>
-          <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="contact-dropdown-item">Resume</a>
-        </div>
-      </div>
-      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+  <!-- ── Desktop header ─────────────────────────────────── -->
+  <header class="pf-header">
+    <a href="index.html" class="pf-wordmark">
+      Yiran Zhu
+    </a>
+    <div class="pf-header-controls">
+      <nav class="pf-header-nav">
+        <a href="index.html#work" class="pf-header-nav-link">Work</a>
+        <a href="index.html#vibe-coding" class="pf-header-nav-link">Vibe coding</a>
+        <a href="index.html#about" class="pf-header-nav-link">About</a>
+        <a href="#" class="pf-btn pf-btn--primary pf-header-cta copy-email" data-email="yiran.jour@gmail.com">
+          <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor" style="flex-shrink:0;"><circle cx="3" cy="3" r="3"/></svg>
+          Contact
+        </a>
+      </nav>
+      <!-- Theme toggle -->
+      <button class="pf-iconbtn" id="theme-toggle" aria-label="Toggle theme">
+        <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
     </div>
-    <nav class="nav-dropdown" id="nav-dropdown" aria-hidden="true">
-      <a href="index.html#work" class="nav-dropdown-link">Work</a>
-      <a href="index.html#vibe-coding" class="nav-dropdown-link">Vibe coding</a>
-      <a href="index.html#about" class="nav-dropdown-link">About</a>
-      <a href="#" class="nav-dropdown-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="nav-dropdown-link">LinkedIn</a>
-      <a href="https://github.com/yiranzhu25" target="_blank" class="nav-dropdown-link">Github</a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
-    </nav>
   </header>
 
-  <!-- ── Hero image ──────────────────────────────────── -->
-  <div class="cs2-hero">
-    <img class="cs2-hero-img" src="img/ai-data-review-case-thumb-2.png" alt="AI-Powered Data Review">
+  <!-- ── Mobile topbar ──────────────────────────────────── -->
+  <div class="pf-topbar">
+    <a href="index.html" class="pf-wordmark">Yiran Zhu</a>
+    <div style="display:flex;align-items:center;gap:var(--space-2);">
+      <button class="pf-iconbtn" id="theme-toggle-mobile" aria-label="Toggle theme">
+        <svg id="theme-icon-sun-m" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-moon-m" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="pf-menu-btn" id="menu-btn" aria-expanded="false" aria-haspopup="true">
+        Menu
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="pf-dropdown" id="pf-dropdown" aria-hidden="true">
+    <div class="pf-dropdown-head">
+      <a href="index.html" class="pf-wordmark">Yiran Zhu</a>
+      <button class="pf-iconbtn" id="close-menu" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="pf-dropdown-list">
+      <a href="index.html#work" class="pf-dropdown-link">
+        <span class="pf-navindex">01</span>Work
+      </a>
+      <a href="index.html#vibe-coding" class="pf-dropdown-link">
+        <span class="pf-navindex">02</span>Vibe coding
+      </a>
+      <a href="index.html#about" class="pf-dropdown-link">
+        <span class="pf-navindex">03</span>About
+      </a>
+      <a href="#" class="pf-dropdown-link copy-email" data-email="yiran.jour@gmail.com">
+        <span class="pf-navindex">04</span>Contact
+      </a>
+    </div>
   </div>
 
-  <!-- ── All content sections ────────────────────────── -->
-  <div class="cs2-sections-wrap">
+  <!-- ── Two-column shell ───────────────────────────────── -->
+  <div class="pf-shell">
 
-    <!-- ── Title + Metadata ── -->
-    <section class="cs2-section cs2-section--title">
+    <!-- Left sidebar -->
+    <aside class="pf-sidenav">
+      <div>
+        <a href="index.html" class="pf-back">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Work
+        </a>
+        <nav class="pf-navlist" style="margin-top: var(--space-6);">
+          <a href="#overview" class="pf-navlink" data-nav-target="overview">
+            <span class="pf-navindex">01</span>Overview
+          </a>
+          <a href="#background" class="pf-navlink" data-nav-target="background">
+            <span class="pf-navindex">02</span>Background
+          </a>
+          <a href="#research" class="pf-navlink" data-nav-target="research">
+            <span class="pf-navindex">03</span>Research
+          </a>
+          <a href="#strategy" class="pf-navlink" data-nav-target="strategy">
+            <span class="pf-navindex">04</span>Strategy
+          </a>
+          <a href="#design" class="pf-navlink" data-nav-target="design">
+            <span class="pf-navindex">05</span>Design
+          </a>
+          <a href="#outcome" class="pf-navlink" data-nav-target="outcome">
+            <span class="pf-navindex">06</span>Outcome
+          </a>
+        </nav>
+      </div>
+    
+    </aside>
 
-      <!-- Left: heading, desc, badges -->
-      <div class="cs2-title-left">
-        <h1 class="cs2-title-heading">
-          <em class="cs2-accent">AI-Powered</em> Data Review
-        </h1>
-        <p class="cs2-title-desc">Designed a feature where users review, correct, and approve data extracted by AI — cutting a 7-hour manual process down to 30 minutes, reducing vendor dependency and build user trust through explainable AI.</p>
-        <div class="cs2-badge-row">
-          <span class="cs2-badge">AI-Human Interaction</span>
-          <span class="cs2-badge">Reusable UX Patterns</span>
+    <!-- Main content -->
+    <main class="pf-main">
+
+      <!-- ── 01 Overview ──────────────────────────────────── -->
+      <section id="overview" class="cs2-section cs2-section--first">
+
+      
+        <div class="cs2-overview-header">
+        <!-- Title -->
+        <h1 class="cs2-project-title">Loan Data Review: Delivered $600k+ in Annual Savings for Goldman Sachs by Designing a Trusted, <em>AI-Powered Loan Data Review Product</em></h1>
+
+          <!-- Tags -->
+          <div class="pf-tags">
+            <span class="pf-tag">AI-Human Interaction</span>
+            <span class="pf-tag">Reusable UX Patterns</span>
+          </div>
+
+        <!-- Overview table: meta + metrics grouped to avoid section gap -->
+        <div class="cs2-overview-table">
+
+          <div class="cs-meta-right">
+            <div class="cs-meta-field">
+              <span class="cs-meta-label">Company</span>
+              <span class="cs-meta-value">Goldman Sachs</span>
+            </div>
+            <div class="cs-meta-field">
+              <span class="cs-meta-label">Role</span>
+              <span class="cs-meta-value">Product Design Owner</span>
+            </div>
+            <div class="cs-meta-field">
+              <span class="cs-meta-label">Timeline</span>
+              <span class="cs-meta-value">July 2025 – Ongoing<br>Phase 1 Launched, now part of strategic platform</span>
+            </div>
+            <div class="cs-meta-field">
+              <span class="cs-meta-label">Team</span>
+              <span class="cs-meta-value">PM, engineers, legal consultant and SME</span>
+            </div>
+            <div class="cs-meta-field">
+              <span class="cs-meta-label">My contribution</span>
+              <span class="cs-meta-value">Led product design vision, end-to-end research to design, and stakeholder alignment from strategies through phased delivery.</span>
+            </div>
+            <div class="cs-meta-field">
+              <span class="cs-meta-label">Design system</span>
+              <span class="cs-meta-value">Established an AI-human data review UI and interaction pattern across the strategic platform</span>
+            </div>
+          </div>
+
+          <!-- Measured Outcome - Phase 1 -->
+          <div class="cs2-metrics-block">
+            <span class="cs2-metrics-label">Measured Outcome · Phase 1</span>
+            <div class="cs2-metrics-grid">
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">24hrs → 15mins</span>
+                <span class="cs2-metric-item-desc">Wait time reduction</span>
+              </div>
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">40%</span>
+                <span class="cs2-metric-item-desc">Review time reduction</span>
+              </div>
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">90% → 98%</span>
+                <span class="cs2-metric-item-desc">Accuracy</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projected Impact - Full Rollout -->
+          <div class="cs2-metrics-block">
+            <span class="cs2-metrics-label">Projected Impact · Full Rollout</span>
+            <div class="cs2-metrics-grid">
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">$600K+</span>
+                <span class="cs2-metric-item-desc">Annual savings</span>
+              </div>
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">92%</span>
+                <span class="cs2-metric-item-desc">Review time reduction</span>
+              </div>
+              <div class="cs2-metric-item">
+                <span class="cs2-metric-item-val">10,000+</span>
+                <span class="cs2-metric-item-desc">Hours saved per year</span>
+              </div>
+            </div>
+          </div>
+
         </div>
-      </div>
+        </div><!-- /cs2-overview-header -->
 
-      <!-- Right: metadata list -->
-      <ul class="cs2-meta-list">
-        <li>
-          <span class="cs2-meta-label">Company</span>
-          <p class="cs2-meta-value">Goldman Sachs</p>
-        </li>
-        <li>
-          <span class="cs2-meta-label">Role</span>
-          <p class="cs2-meta-value">Product Design Owner</p>
-        </li>
-        <li>
-          <span class="cs2-meta-label">Timeline</span>
-          <p class="cs2-meta-value">July 2025 - Ongoing, Phase 1 Launched</p>
-        </li>
-        <li>
-          <span class="cs2-meta-label">Team</span>
-          <p class="cs2-meta-value">PM, engineers, legal consultant and SME</p>
-        </li>
-        <li>
-          <span class="cs2-meta-label">My contribution</span>
-          <p class="cs2-meta-value">Led product design vision, end-to-end research to design, and stakeholder alignment from strategies through phased delivery.</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- ── Confidentiality Accordion ── -->
-    <section class="cs2-section cs2-section--accordion">
-      <div class="cs2-accordion">
-        <button class="cs2-accordion-header" aria-expanded="true" aria-controls="acc-conf-body" id="acc-conf-btn">
-          <span class="cs2-accordion-title">Confidentiality &amp; Design Note</span>
-          <svg class="cs2-accordion-chevron open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M5 12.5L10 7.5L15 12.5" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <p class="cs2-accordion-body" id="acc-conf-body">To comply with NDA requirements, this case study omits proprietary business logic and utilizes a modified design system. The UX logic, information architecture, and business impact represent the actual work delivered. Full case study can be shared privately.</p>
-      </div>
-    </section>
-
-    <!-- ── Project Context ── -->
-    <section class="cs2-section">
-      <div class="cs2-headline">
-        <p class="cs2-overline">Project context</p>
-        <h2 class="cs2-section-heading">Onboarding a loan — <em class="cs2-accent">Read the rulebook before playing the game</em></h2>
-      </div>
-      <p class="cs2-body">Once Goldman Sachs closes a loan, our internal teams start onboard and manage the loan. The first thing to onboard a loan is to take all financial terms in the loan contract and digitize them into a system. This contract is the rulebook for how the teams should manage the loan.</p>
-      <img class="cs2-img" src="img/Frame 55.png" alt="Loan onboarding process overview">
-      <p class="cs2-body">The process has two steps:</p>
-      <p class="cs2-body">
-        Step 1: A vendor extract financial terms from raw documents<br>
-        Step 2: Our loan team review all terms for accuracy
-      </p>
-      <img class="cs2-img" src="img/Frame 56 (1).png" alt="Two-step review process">
-      <p class="cs2-body-full">The challenges we face are:</p>
-      <div class="cs2-challenge-row">
-        <div class="cs2-challenge-item">
-          <h5 class="cs2-challenge-title">Vendor dependency</h5>
-          <p class="cs2-challenge-desc">Our platform now is a container to display these financial terms but has no intelligence to extract financial terms. We rely on vendor which is slow, expensive and error-prone</p>
+        <!-- Jump to design -->
+        <div>
+          <a href="#design" class="pf-btn pf-btn--ghost">
+            Jump to design solution
+            <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
-        <div class="cs2-challenge-item">
-          <h5 class="cs2-challenge-title">Manual review</h5>
-          <p class="cs2-challenge-desc">The review team had to manually cross-check hundreds of terms against raw legal documents, running 10 days late because of this labor intense process and sheer volume of loans.</p>
+
+      </section>
+
+      <!-- ── 02 Background ─────────────────────────────────── -->
+      <section id="background" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[01 Background]</h2>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Business Background</h3>
+          <p class="cs2-body">Goldman Sachs is a global bank with over 100 years of trusted experience. Large-scale commercial loans are one of its core revenue products, generating billions of dollars annually.</p>
         </div>
-      </div>
-    </section>
 
-    <!-- ── Problem Space ── -->
-    <section class="cs2-section">
-      <div class="cs2-headline">
-        <p class="cs2-overline">Problem space</p>
-        <h2 class="cs2-section-heading"><em class="cs2-accent">Locating hundreds of rules</em> in the hundred-page-long rulebook is difficult</h2>
-      </div>
-      <p class="cs2-body">I facilitated user sessions to identify the key efficiency and risk gaps and gathered metrics to understand the size of the problem.</p>
-      <p class="cs2-body">Key insights:</p>
-      <div class="cs2-insights-grid">
-        <ul class="cs2-insights-list">
-          <li class="cs2-insight-item">
-            <h5 class="cs2-insight-title">Biggest efficiency gap</h5>
-            <p class="cs2-insight-desc">Reviewers spent 60% of their time just locating the right terms in hundred-page contracts.</p>
-          </li>
-          <li class="cs2-insight-item">
-            <h5 class="cs2-insight-title">Biggest risk gap</h5>
-            <p class="cs2-insight-desc">No error prevention or system checks for users to rely on.</p>
-          </li>
-          <li class="cs2-insight-item">
-            <h5 class="cs2-insight-title">A new concern</h5>
-            <p class="cs2-insight-desc">How would users trust that AI interpreted terms correctly?</p>
-          </li>
-        </ul>
-      </div>
-      <img class="cs2-img" src="img/Frame 57.png" alt="User research findings">
-      <p class="cs2-body-full">Metrics that tells why current experience is so painful:</p>
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Business and Stakeholder Problems</h3>
+          <p class="cs2-body">When a loan closes, an internal data team had to work with a vendor to extract and review hundreds of data points from 100+ page loan documents. This work was manual and error-prone — one wrong number could trigger millions in incorrect payments, creating significant liability and financial risk.</p>
+        </div>
 
-      <!-- KPI cards -->
-      <div class="kpi-row">
-        <div class="kpi-card">
-          <p class="kpi-number">~500</p>
-          <div>
-            <p class="kpi-label">Data fields to review</p>
-            <p class="kpi-sublabel">Per process</p>
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">My Role</h3>
+          <p class="cs2-body">After leading end-to-end design across three platform apps and building a reputation for solving complex problems, our head PM asked me to lead this project — and I took full ownership, driving research, strategy, design, and stakeholder alignment from start to delivery.</p>
+        </div>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">My Approach</h3>
+          <p class="cs2-body">Our app had an MVP for this problem, but it didn't fully solve it. With the company's AI-first strategy emerging, I saw an opportunity to use AI to drive better business outcomes and a better user experience.</p>
+          <p class="cs2-body">I built a UX research plan to uncover unmet needs and define success metrics, drove the end-to-end product vision and design, and partnered with cross-functional teams to prioritize phased delivery.</p>
+        </div>
+
+      </section>
+
+      <!-- ── 03 Research ────────────────────────────────────── -->
+      <section id="research" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[02 Uncover Current Experience Gaps and User Needs]</h2>
+
+        <!-- Workflow audit -->
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Workflow Audit</h3>
+          <p class="cs2-body">To uncover unaddressed user needs, I led a workflow audit of the current experience with stakeholders and users — mapping every person, tool, and process involved in loan data review — and produced a service blueprint to share the insights with the team.</p>
+          <div class="pf-switcher" role="tablist" aria-label="Workflow audit views">
+            <div class="pf-switcher-thumb"></div>
+            <button class="is-active" role="tab" aria-selected="true" data-tab-group="audit" data-tab-target="audit-blueprint">Service blueprint</button>
+            <button role="tab" aria-selected="false" data-tab-group="audit" data-tab-target="audit-problems">Audit problem summary</button>
+          </div>
+          <div id="audit-blueprint" class="cs2-tab-panel" role="tabpanel">
+            <img src="img/ai-case-study/ai-casestudy-service-blueprint.png" alt="Service blueprint showing all people, tools, and processes involved in loan data review" class="cs2-img">
+          </div>
+          <div id="audit-problems" class="cs2-tab-panel" role="tabpanel" hidden>
+            <img src="img/ai-case-study/ai-casestudy-old-workflow-and-problem.png" alt="Old workflow and problem summary from workflow audit" class="cs2-img">
           </div>
         </div>
-        <div class="kpi-card">
-          <p class="kpi-number">7+</p>
-          <div>
-            <p class="kpi-label">Hours review time</p>
-            <p class="kpi-sublabel">Across two + rounds</p>
+
+        <!-- User insights -->
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">User Insights</h3>
+          <p class="cs2-body">User interviews surfaced critical needs that shaped design priorities and KPI targets:</p>
+          <div class="cs2-insights-layout">
+            <figure class="cs2-insights-figure">
+              <img src="img/ai-case-study/Illustration-user-review-loan-data.png" alt="Illustration of how users previously reviewed loan data" class="cs2-img">
+              <figcaption class="cs2-img-caption">Illustration of how users previously reviewed loan data</figcaption>
+            </figure>
+            <div class="cs2-insight-grid">
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">Longest wait time</span>
+              <p class="cs2-insight-desc">Users waited 24 hrs on a 3rd-party vendor to extract data from loan documents</p>
+            </div>
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">Biggest efficiency gap</span>
+              <p class="cs2-insight-desc">Users spent 60% of their time locating data within 300–500-page loan documents — each review took 2 people, 3.5 hours each, across 100–600 data points</p>
+            </div>
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">Biggest risk gap</span>
+              <p class="cs2-insight-desc">With no system checks to catch errors, reviews relied entirely on human knowledge and judgment</p>
+            </div>
+            <div class="cs2-insight-card">
+              <span class="cs2-insight-label">Biggest workflow pain</span>
+              <p class="cs2-insight-desc">No full ownership — when users reviewed vendor extracted data and didn't agree, any edit bounced between users and engineers</p>
+            </div>
+          </div>
           </div>
         </div>
-        <div class="kpi-card">
-          <p class="kpi-number">24</p>
-          <div>
-            <p class="kpi-label">Hours wait time</p>
-            <p class="kpi-sublabel">On vendor</p>
+
+        <!-- User concerns with AI -->
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">User Concerns With AI</h3>
+          <p class="cs2-body">With a clear picture of the problem and user needs, AI felt like a natural fit. To validate this, I asked users how they'd feel about an AI-driven approach — and a new concern emerged:</p>
+          <blockquote class="cs2-quote">
+            <p class="cs2-quote-text">"I can't imagine what my workflow would be like with AI. How do I know if it's right? Will I end up doing more work correcting it?"</p>
+          </blockquote>
+        </div>
+
+      </section>
+
+      <!-- ── 04 Strategy ───────────────────────────────────── -->
+      <section id="strategy" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[03 Strategy]</h2>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Hypothesis</h3>
+          <div class="cs2-hypothesis">
+            <p class="cs2-hypothesis-text">If we design an AI-first loan data review product that users trust, we can cut manual review time and generate meaningful cost savings.</p>
           </div>
         </div>
-        <div class="kpi-card">
-          <p class="kpi-number">10</p>
-          <div>
-            <p class="kpi-label">Days</p>
-            <p class="kpi-sublabel">Consistent delay</p>
+
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">New Workflow and Product Strategy</h3>
+          <p class="cs2-body">I led cross-functional workshops with PM, engineering, legal, and user SMEs to align on product vision and requirements: AI would replace the vendor for data extraction, while humans would remain in the loop to review AI output — both a best practice and a regulatory requirement.</p>
+          <img src="img/ai-case-study/a-casestudy-before-after.png" alt="Before and after workflow comparison showing the new AI-powered process" class="cs2-img">
+        </div>
+
+      </section>
+
+      <!-- ── 05 Design solutions ────────────────────────── -->
+      <section id="design" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[04 Design Solutions]</h2>
+
+        <!-- Design principles -->
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Design Principles</h3>
+          <p class="cs2-body">Four goals served as design principles that guided design decisions I made:</p>
+          <div class="cs2-principles-grid">
+            <div class="cs2-principle-card">
+              <div class="cs2-principle-diamond"></div>
+              <p class="cs2-principle-text">Exception-based human oversight — user attention reserved for exceptions</p>
+            </div>
+            <div class="cs2-principle-card">
+              <div class="cs2-principle-diamond"></div>
+              <p class="cs2-principle-text">AI trust — show evidence when AI is confident, not just when it's unsure</p>
+            </div>
+            <div class="cs2-principle-card">
+              <div class="cs2-principle-diamond"></div>
+              <p class="cs2-principle-text">Efficiency vs. risk — fast and thorough</p>
+            </div>
+            <div class="cs2-principle-card">
+              <div class="cs2-principle-diamond"></div>
+              <p class="cs2-principle-text">Full ownership — users control end-to-end, with minimal dependencies</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ── Design the Vision ── -->
-    <section class="cs2-section" style="padding-bottom: 32px;">
-      <div class="cs2-headline">
-        <p class="cs2-overline">Design the vision</p>
-        <h2 class="cs2-section-heading"><em class="cs2-accent">Exception-based</em> human audit</h2>
-      </div>
-      <p class="cs2-body">As the design owner, I owned end-to-end design of two interconnected challenges — replacing the vendor with AI extraction, and redesigning the human review experience around it.</p>
-      <p class="cs2-body" style="font-weight:600;">Challenge 1: Introducing AI extraction</p>
-      <p class="cs2-body">Core design questions:</p>
-      <ul class="cs2-body-list">
-        <li>How to surface AI output?</li>
-        <li>What does it look like when AI is confident vs. uncertain?</li>
-        <li>How does AI hand off to a human reviewer in a way that builds trust?</li>
-      </ul>
-      <p class="cs2-body">I experimented two directions, and landed on <strong>Direction 2 for its strategic fit for other use cases across our platform.</strong></p>
-    </section>
-
-    <!-- Full-width: AI direction exploration -->
-    <div class="cs2-fullwidth-img">
-      <img src="img/Frame 58 (1).png" alt="AI extraction direction exploration">
-    </div>
-
-    <!-- ── Challenge 2 text ── -->
-    <section class="cs2-section" style="padding-top: 32px; padding-bottom: 32px;">
-      <p class="cs2-body" style="font-weight:600;">Challenge 2: Human review experience</p>
-      <p class="cs2-body">Core design questions:</p>
-      <ul class="cs2-body-list">
-        <li>How do we eliminate the biggest pain — scrolling through hundreds of pages to find one source?</li>
-        <li>What tools support reviewers without replacing their judgment?</li>
-        <li>How can reviewers override AI output easily and move through review fast without sacrificing accuracy?</li>
-      </ul>
-      <p class="cs2-body">Here's a overview of key design decisions:</p>
-    </section>
-
-    <!-- Full-width: Feature breakdown -->
-    <div class="cs2-fullwidth-img">
-      <img src="img/Frame 59.png" alt="Key design decisions for human review experience">
-    </div>
-
-    <!-- ── Impact ── -->
-    <section class="cs2-section">
-      <div class="cs2-headline" style="max-width:100%;">
-        <h2 class="cs2-section-heading">Impact</h2>
-      </div>
-
-      <!-- Blue cards: Phased Delivery - Measured -->
-      <div class="impact-row">
-        <div class="impact-card-new impact-card-new--blue">
-          <p class="impact-overline">PHASED DELIVERY - MEASURED</p>
-          <p class="impact-number-new">98%</p>
-          <p class="impact-label-new">Decrease on wait time</p>
+        <!-- Key feature designs intro -->
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Key Feature Designs</h3>
+          <p class="cs2-body">With the new workflow defined, I dove into designing each part of the experience — working closely with engineering to understand how the current solution was built, where it could be enhanced next, and how it fit into the strategic platform direction.</p>
         </div>
-        <div class="impact-card-new impact-card-new--blue">
-          <p class="impact-overline">PHASED DELIVERY - MEASURED</p>
-          <p class="impact-number-new">40%</p>
-          <p class="impact-label-new">Decrease on review time</p>
-        </div>
-      </div>
 
-      <!-- Green cards: Full Vision - Projected -->
-      <div class="impact-row">
-        <div class="impact-card-new impact-card-new--green">
-          <p class="impact-overline">FULL VISION - PROJECTED</p>
-          <p class="impact-number-new">10K+</p>
-          <p class="impact-label-new">Hours saved annually</p>
+        <!-- Design 1 -->
+        <div class="cs2-pillar">
+          <div class="cs2-pillar-header">
+            <span class="cs2-pillar-num">Design 1 · New feature</span>
+            <h3 class="cs2-pillar-title">AI Extraction Experience</h3>
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Summary</span>
+              <p class="cs2-field-body">Replaced the 24-hour wait for vendor-extracted data with an integrated step where users now upload loan documents and AI extracts the data in 15 minutes.</p>
+            </div>
+          </div>
+          <div class="cs2-video-wrap">
+            <video muted playsinline preload="metadata" style="width: 100%; display: block;">
+              <source src="img/ai-case-study/ai-extraction.mp4" type="video/mp4">
+            </video>
+            <button class="cs2-video-btn" aria-label="Play/Pause">
+              <svg class="cs2-video-icon-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <svg class="cs2-video-icon-pause" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Business enablement</span>
+              <p class="cs2-field-body">Eliminated vendor wait time and gave users full ownership of the process — cutting millions in vendor costs and improving turnaround time.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Behind the scene</span>
+              <p class="cs2-field-body">A data model defines what AI extracts and how it's organized in the UI.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Next in platform</span>
+              <p class="cs2-field-body">A centralized document system that auto-pulls relevant loan documents — removing the manual upload step entirely.</p>
+            </div>
+          </div>
         </div>
-        <div class="impact-card-new impact-card-new--green">
-          <p class="impact-overline">FULL VISION - PROJECTED</p>
-          <p class="impact-number-new">92%</p>
-          <p class="impact-label-new">Decrease on review time</p>
-        </div>
-        <div class="impact-card-new impact-card-new--green">
-          <p class="impact-overline">FULL VISION - PROJECTED</p>
-          <p class="impact-number-new">$600K+</p>
-          <p class="impact-label-new">Cost saving annually</p>
-        </div>
-      </div>
 
-      <!-- Dark full-width card -->
-      <div class="impact-row">
-        <div class="impact-card-new impact-card-new--dark">
-          <p class="impact-overline">FIRST</p>
-          <p class="impact-number-new impact-number-new--large">Across platform AI pattern</p>
-          <p class="impact-label-new">For AI human interaction on AI extraction output</p>
+        <!-- Design 2 -->
+        <div class="cs2-pillar">
+          <div class="cs2-pillar-header">
+            <span class="cs2-pillar-num">Design 2 · Feature redesign</span>
+            <h3 class="cs2-pillar-title">Surface AI Output So Users Can Verify</h3>
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Summary</span>
+              <p class="cs2-field-body">Previously, users only saw vendor-extracted data in the app — to verify it, they had to open the original loan documents separately and hunt for the matching excerpt. Now each value displays inline with its source citation, AI's reasoning, and a confidence signal — so users can verify in seconds without switching context, and over time, trust AI enough to skip no-issue data.</p>
+            </div>
+          </div>
+          <div class="pf-switcher" role="tablist" aria-label="Before and after comparison">
+            <div class="pf-switcher-thumb"></div>
+            <button class="is-active" role="tab" aria-selected="true" data-tab-group="design2" data-tab-target="design2-prev">Now</button>
+            <button role="tab" aria-selected="false" data-tab-group="design2" data-tab-target="design2-now">Before</button>
+          </div>
+          <div id="design2-prev" class="cs2-tab-panel" role="tabpanel">
+            <div class="cs2-video-wrap">
+              <video muted playsinline preload="metadata" style="width: 100%; display: block;">
+                <source src="img/ai-case-study/ai-output-display.mp4" type="video/mp4">
+              </video>
+              <button class="cs2-video-btn" aria-label="Play/Pause">
+                <svg class="cs2-video-icon-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg class="cs2-video-icon-pause" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="design2-now" class="cs2-tab-panel" role="tabpanel" hidden>
+            <img src="img/ai-case-study/extraction-review-before.png" alt="Before users only saw vendor-extracted data in the app without no explanation of how it landed on the result" class="cs2-img">
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Business enablement</span>
+              <p class="cs2-field-body">Sped up verification while strengthening error prevention — letting this critical process run on time with higher accuracy, boosting efficiency and reducing risk for the business.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Behind the scene</span>
+              <p class="cs2-field-body">AI extracts each value three times. If all three match and cite a source in the loan document, no issue is flagged. Any mismatch triggers a human review flag.</p>
+            </div>
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Next in platform</span>
+              <p class="cs2-field-body">Stronger validation logic, and rolling this reusable output pattern across other AI tools on the platform.</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
 
-  </div><!-- /cs2-sections-wrap -->
+        <!-- Design 3 -->
+        <div class="cs2-pillar">
+          <div class="cs2-pillar-header">
+            <span class="cs2-pillar-num">Design 3 · Feature redesign</span>
+            <h3 class="cs2-pillar-title">Speed Up Review Without Hurting Accuracy</h3>
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Summary</span>
+              <p class="cs2-field-body">Scanning hundreds of data points across hundreds of pages is exhausting and introduces risk. To reduce fatigue, I introduced smart filters and quick navigation, so now users jump straight to AI-flagged exceptions first, then sweep other sections as needed, catching the biggest risks while attention is sharpest.</p>
+            </div>
+          </div>
+          <div class="cs2-video-wrap">
+            <video muted playsinline preload="metadata" style="width: 100%; display: block;">
+              <source src="img/ai-case-study/speedup-review-exception.mp4" type="video/mp4">
+            </video>
+            <button class="cs2-video-btn" aria-label="Play/Pause">
+              <svg class="cs2-video-icon-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <svg class="cs2-video-icon-pause" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+          </div>
+        </div>
 
-  <!-- ── Footer ───────────────────────────────────────── -->
+        <!-- Design 4 -->
+        <div class="cs2-pillar">
+          <div class="cs2-pillar-header">
+            <span class="cs2-pillar-num">Design 4 · Feature redesign</span>
+            <h3 class="cs2-pillar-title">Full Ownership of the Review</h3>
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Summary</span>
+              <p class="cs2-field-body">Previously, changing any extracted data meant going back to engineers to edit it from the backend — users simply had to wait, which delayed completion. Now users have full edit access in the UI: they verify AI flags, override any value or citation, and leave a reason — entirely without external dependencies.</p>
+            </div>
+          </div>
+          <div class="pf-switcher" role="tablist" aria-label="Before and after comparison">
+            <div class="pf-switcher-thumb"></div>
+            <button class="is-active" role="tab" aria-selected="true" data-tab-group="design4" data-tab-target="design4-now">Now</button>
+            <button role="tab" aria-selected="false" data-tab-group="design4" data-tab-target="design4-before">Before</button>
+          </div>
+          <div id="design4-now" class="cs2-tab-panel" role="tabpanel">
+            <div class="cs2-video-wrap">
+              <video muted playsinline preload="metadata" style="width: 100%; display: block;">
+                <source src="img/ai-case-study/full-ownership-edit.mp4" type="video/mp4">
+              </video>
+              <button class="cs2-video-btn" aria-label="Play/Pause">
+                <svg class="cs2-video-icon-play" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg class="cs2-video-icon-pause" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+            </div>
+          </div>
+          <div id="design4-before" class="cs2-tab-panel" role="tabpanel" hidden>
+            <img src="img/ai-case-study/read-only-before.png" alt="Before: read-only view with no edit access in the UI" class="cs2-img">
+          </div>
+          <div class="cs2-pillar-fields">
+            <div class="cs2-pillar-field">
+              <span class="cs2-field-label">Behind the scene</span>
+              <p class="cs2-field-body">Every loan document returns a different data shape, so the UI builds itself dynamically from the schema. No two reviews look the same, but the structure stays consistent so users can anticipate it.</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ── 06 Outcome ────────────────────────────────────── -->
+      <section id="outcome" class="cs2-section">
+
+        <h2 class="cs2-section-heading">[05 Outcome and Next Step]</h2>
+
+        <p class="cs2-body">Phase 1 launched with three features: AI-powered extraction, inline source citations for extracted data, and full edit access in the UI.</p>
+
+        <!-- Phase 1 outcome -->
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Phase 1 Outcome</h3>
+          <div class="cs2-metric-rows">
+            <div class="cs2-metric-row">
+              <span class="cs2-metric-label">Wait time reduction</span>
+              <div class="cs2-metric-value">
+                <span class="cs2-metric-before">24hrs on vendor extraction</span>
+                <span class="cs2-metric-after">15–30 mins on AI extraction</span>
+              </div>
+            </div>
+            <div class="cs2-metric-row">
+              <span class="cs2-metric-label">Review time reduction</span>
+              <div class="cs2-metric-value">
+                <span class="cs2-metric-after">40% decrease</span>
+              </div>
+            </div>
+            <div class="cs2-metric-row">
+              <span class="cs2-metric-label">Extraction accuracy</span>
+              <div class="cs2-metric-value">
+                <span class="cs2-metric-before">90% vendor accuracy</span>
+                <span class="cs2-metric-after">98% AI accuracy</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project impact -->
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Project Impact</h3>
+          <div class="cs2-impact-grid">
+            <div class="cs2-impact-card">
+              <span class="cs2-impact-val">$600K+</span>
+              <p class="cs2-impact-desc">In business cost savings</p>
+              <span class="cs2-impact-sub">By eliminating the vendor service</span>
+            </div>
+            <div class="cs2-impact-card">
+              <span class="cs2-impact-val">92%</span>
+              <p class="cs2-impact-desc">Reduction in review time</p>
+              <span class="cs2-impact-sub">When users review only the items AI flags as issues</span>
+            </div>
+            <div class="cs2-impact-card">
+              <span class="cs2-impact-val">10,000+</span>
+              <p class="cs2-impact-desc">Hours saved per year</p>
+              <span class="cs2-impact-sub">With the current volume of new loan business</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Platform pattern -->
+        <div class="cs2-sub-group">
+          <h3 class="cs2-sub-heading">Established Platform-Wide Design Pattern</h3>
+          <p class="cs2-body">While working on this project, the business began exploring a broader strategic platform that would integrate our app with other loan-related applications. So while designing the AI citation experience, I stress-tested the UI pattern against use cases from other applications — ensuring it could become a reusable pattern across the strategic platform.</p>
+        </div>
+
+      </section>
+
+    </main>
+  </div><!-- /pf-shell -->
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
   <footer class="site-footer">
-    <div class="header-col-left">
-      <span class="header-name">© 2026 · Designed in Figma, built with Claude Code + Figma MCP, deployed on Github.</span>
-    </div>
-    <div class="header-col-right">
-      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="header-link"><img src="img/InBug-Black.png"></a>
-      <a href="https://github.com/yiranzhu25" target="_blank" class="header-link"><img src="img/GitHub_Invertocat_Black.png"></a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link"><img src="img/article_person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
-      <a href="#" class="header-link copy-email" data-email="yiran.jour@gmail.com">
-        <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
+    <span class="footer-name">© 2026 · Design and built with Claude, deployed on Github </span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="intro-social-link" aria-label="LinkedIn">
+        <img src="img/InBug-Black.png" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/yiranzhu25" target="_blank" class="intro-social-link" aria-label="GitHub">
+        <img src="img/GitHub_Invertocat_Black.png" alt="GitHub">
+      </a>
+      <a href="#" class="intro-social-link copy-email" data-email="yiran.jour@gmail.com" aria-label="Email">
+        <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Email">
+      </a>
     </div>
   </footer>
 
+  <script src="main.js"></script>
   <script>
-    // ── Contact dropdown ────────────────────────────────
-    var contactToggle   = document.getElementById('contact-toggle');
-    var contactDropdown = document.getElementById('contact-dropdown');
-    if (contactToggle && contactDropdown) {
-      contactToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = contactDropdown.classList.toggle('open');
-        contactToggle.setAttribute('aria-expanded', open);
-        contactDropdown.setAttribute('aria-hidden', !open);
-      });
-      document.addEventListener('click', function() {
-        contactDropdown.classList.remove('open');
-        contactToggle.setAttribute('aria-expanded', 'false');
-        contactDropdown.setAttribute('aria-hidden', 'true');
-      });
-      contactDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
-    }
+  (function () {
+    document.querySelectorAll('.cs2-video-wrap').forEach(function (wrap) {
+      var video = wrap.querySelector('video');
+      var btn   = wrap.querySelector('.cs2-video-btn');
 
-    // ── Hamburger menu ──────────────────────────────────
-    var hamburgerBtn = document.getElementById('hamburger-btn');
-    var navDropdown  = document.getElementById('nav-dropdown');
-    if (hamburgerBtn && navDropdown) {
-      hamburgerBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = navDropdown.classList.toggle('open');
-        hamburgerBtn.setAttribute('aria-expanded', open);
-        navDropdown.setAttribute('aria-hidden', !open);
-      });
-      document.addEventListener('click', function() {
-        navDropdown.classList.remove('open');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-        navDropdown.setAttribute('aria-hidden', 'true');
-      });
-      navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
-    }
+      function setPlaying(playing) {
+        wrap.classList.toggle('is-playing', playing);
+      }
 
-    // ── Email copy ──────────────────────────────────────
-    document.querySelectorAll('.copy-email').forEach(function(link) {
-      var tooltip = document.createElement('span');
-      tooltip.className = 'email-tooltip';
-      tooltip.textContent = 'Copied';
-      link.appendChild(tooltip);
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var email = this.dataset.email;
-        navigator.clipboard.writeText(email).then(function() {
-          link.classList.add('copied');
-          setTimeout(function() { link.classList.remove('copied'); }, 1500);
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            video.play().then(function () { setPlaying(true); }).catch(function () {});
+          } else {
+            video.pause();
+            setPlaying(false);
+          }
         });
+      }, { threshold: 0.5 });
+      observer.observe(wrap);
+
+      btn.addEventListener('click', function () {
+        if (video.paused) {
+          video.play().then(function () { setPlaying(true); }).catch(function () {});
+        } else {
+          video.pause();
+          setPlaying(false);
+        }
+      });
+
+      video.addEventListener('ended', function () { setPlaying(false); });
+    });
+  }());
+
+  // ── Switcher thumb ────────────────────────────────────────────
+  (function () {
+    document.querySelectorAll('.pf-switcher').forEach(function (sw) {
+      var thumb = sw.querySelector('.pf-switcher-thumb');
+      var btns  = sw.querySelectorAll('button');
+
+      function moveThumb(btn) {
+        thumb.style.left  = btn.offsetLeft + 'px';
+        thumb.style.width = btn.offsetWidth + 'px';
+      }
+
+      var active = sw.querySelector('button.is-active') || btns[0];
+      moveThumb(active);
+
+      btns.forEach(function (btn) {
+        btn.addEventListener('click', function () { moveThumb(btn); });
       });
     });
-
-    // ── Accordion ───────────────────────────────────────
-    var accBtn  = document.getElementById('acc-conf-btn');
-    var accBody = document.getElementById('acc-conf-body');
-    var accIcon = accBtn ? accBtn.querySelector('.cs2-accordion-chevron') : null;
-    if (accBtn && accBody) {
-      accBtn.addEventListener('click', function() {
-        var expanded = accBtn.getAttribute('aria-expanded') === 'true';
-        accBtn.setAttribute('aria-expanded', String(!expanded));
-        accBody.hidden = expanded;
-        if (accIcon) accIcon.classList.toggle('open', !expanded);
-      });
-    }
+  }());
   </script>
 </body>
 </html>

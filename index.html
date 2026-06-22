@@ -1,833 +1,563 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
+  <script>if(!sessionStorage.getItem('pf-unlocked')){window.location.replace('password.html');}</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yiran Zhu — Product Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="portfolio design system/design-system.css">
 
-  <!-- Pipeline Animation Styles (scoped to .pipeline-root) -->
-  <style>
-    .pipeline-root * { box-sizing: border-box; margin: 0; padding: 0; }
-    .pipeline-root {
-      background: #0D0F1A;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      padding: 28px 20px;
-      width: 100%;
-      min-height: 400px;
-      overflow: hidden;
-      border-radius: 16px;;
-    }
-    .pipeline-root .wrapper { width: 100%; max-width: 1380px; display: flex; flex-direction: column; }
-    .pipeline-root .stages-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      position: relative;
-      flex: 1;
-    }
-    .pipeline-root .stage-col { display: flex; flex-direction: column; gap: 10px; min-width:120px;}
-    .pipeline-root .stage-col .card { flex: 1; }
-    .pipeline-root .team-col { display: flex; align-items: center; gap: 6px; padding: 0 2px; justify-content: center; }
-    .pipeline-root .tdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-    .pipeline-root .tdot.p { background: #7B5CF5; box-shadow: 0 0 6px rgba(123,92,245,0.65); }
-    .pipeline-root .tdot.g { background: #3EFFA0; box-shadow: 0 0 6px rgba(62,255,160,0.65); }
-    .pipeline-root .tname { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.85); }
-    .pipeline-root .stage-hdr {
-      background: #252836; border-radius: 6px; text-align: center;
-      padding: 7px 6px; font-size: 9px; font-weight: 500; color: rgba(255,255,255,0.82);
-    }
-    .pipeline-root .card {
-      background: #1A1D2E; border-radius: 11px; padding: 10px;
-      border: 1px solid rgba(255,255,255,0.065); position: relative;
-    }
-    .pipeline-root .card-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; }
-    .pipeline-root .bar-icon { width: 20px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .pipeline-root .bar-btn {
-      background: #1A1D2E; border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 12px; padding: 3px 9px; font-size: 8px;
-      font-weight: 600; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 4px;
-    }
-    .pipeline-root .s2-body { display: flex; gap: 7px; align-items: stretch; }
-    .pipeline-root .doc-panel {
-      flex: 1.35; background: #20233A; border-radius: 6px; padding: 7px 6px;
-      display: flex; flex-direction: column; gap: 3.5px;
-    }
-    .pipeline-root .dl { height: 3px; border-radius: 2px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
-    .pipeline-root .dl.f { width: 100%; }
-    .pipeline-root .dl.e { width: 85%; }
-    .pipeline-root .dl.m { width: 70%; }
-    .pipeline-root .dl.s { width: 55%; }
-    .pipeline-root .dl.hl { background: rgba(123,92,245,0.42); position: relative; overflow: hidden; }
-    .pipeline-root .dl.hl::after {
-      content: ''; position: absolute; top: 0; left: -80%; width: 50%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(160,120,255,0.72), transparent);
-      animation: pipeline-doc-sweep 2.6s ease-in-out infinite;
-    }
-    @keyframes pipeline-doc-sweep {
-      0%  { left: -80%; }
-      55% { left: 130%; }
-      100%{ left: 130%; }
-    }
-    .pipeline-root .pills-col { flex: 1; display: flex; flex-direction: column; gap: 5px; justify-content: space-around; }
-    .pipeline-root .s3-map-area { display: flex; gap: 6px; margin-bottom: 8px; align-items: flex-start; }
-    .pipeline-root .s3-col { flex: 1; display: flex; flex-direction: column; gap: 5px; }
-    .pipeline-root .s3-table-wrap { background: #20233A; border-radius: 6px; padding: 6px; }
-    .pipeline-root .s3-trow { display: flex; gap: 4px; margin-bottom: 3px; }
-    .pipeline-root .s3-trow:last-child { margin-bottom: 0; }
-    .pipeline-root .s3-th { flex:1; height:9px; border-radius:2px; background:rgba(62,255,160,0.22); }
-    .pipeline-root .s3-td { flex:1; height:7px; border-radius:2px; background:rgba(255,255,255,0.08); }
-    .pipeline-root .s4-body { padding-top: 2px; }
-    .pipeline-root .select-row { display: flex; gap: 5px; margin-bottom: 8px; }
-    .pipeline-root .select-pill {
-      flex: 1; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.13);
-      border-radius: 5px; padding: 5px 7px; font-size: 7px; font-weight: 500;
-      color: rgba(255,255,255,0.45); letter-spacing: 0.07em;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .pipeline-root .sel-arrow { opacity: 0.5; font-size: 6px; }
-    .pipeline-root .s4-pills { display: flex; flex-direction: column; gap: 5px; }
-    .pipeline-root .s5-usd-block { background: #20233A; border-radius: 6px; padding: 7px 8px; margin-bottom: 8px; }
-    .pipeline-root .usd-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
-    .pipeline-root .usd-row:last-child { margin-bottom: 0; }
-    .pipeline-root .usd-bar {
-      width: 26px; height: 10px; border-radius: 3px; background: rgba(62,255,160,0.28);
-      flex-shrink: 0; position: relative; overflow: hidden;
-    }
-    .pipeline-root .usd-bar::after {
-      content: ''; position: absolute; top: 0; left: -80%; width: 55%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(62,255,160,0.55), transparent);
-      animation: pipeline-usd-sweep 1.9s ease-in-out infinite;
-    }
-    @keyframes pipeline-usd-sweep {
-      0%  { left: -80%; }
-      65% { left: 130%; }
-      100%{ left: 130%; }
-    }
-    .pipeline-root .usd-amt { font-size: 8px; font-weight: 700; font-family: 'SF Mono', 'Fira Code', monospace; white-space: nowrap; }
-    .pipeline-root .usd-pos { color: #3EFFA0; }
-    .pipeline-root .usd-neg { color: #FF6B6B; }
-    .pipeline-root .s5-pills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 8px; }
-    .pipeline-root .s5-table-wrap { background: #20233A; border-radius: 6px; padding: 6px; }
-    .pipeline-root .s5-trow { display: flex; gap: 4px; margin-bottom: 3px; }
-    .pipeline-root .s5-trow:last-child { margin-bottom: 0; }
-    .pipeline-root .s5-th { flex:1; height:9px; border-radius:2px; background:rgba(62,255,160,0.22); }
-    .pipeline-root .s5-td { flex:1; height:7px; border-radius:2px; background:rgba(255,255,255,0.08); }
-    .pipeline-root .pill {
-      background: #FFFFFF; border-radius: 5px; padding: 5px 6px;
-      display: flex; align-items: center; gap: 5px; min-height: 20px;
-    }
-    .pipeline-root .pill.g-fill { background: rgba(62,255,160,0.13); border: 1px solid rgba(62,255,160,0.27); }
-    .pipeline-root .pill.g-fill .pill-line { background: rgba(62,255,160,0.38); }
-    .pipeline-root .pill.small { padding: 4px 5px; min-height: 17px; }
-    .pipeline-root .pdot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-    .pipeline-root .pdot.p { background: #7B5CF5; box-shadow: 0 0 4px rgba(123,92,245,0.8); }
-    .pipeline-root .pdot.g { background: #3EFFA0; box-shadow: 0 0 4px rgba(62,255,160,0.8); }
-    .pipeline-root .pill-line { flex: 1; height: 3px; border-radius: 2px; background: rgba(26,29,46,0.13); }
-    .pipeline-root .conn-svg {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 20;
-    }
-    @media (max-width: 768px) {
-      .pipeline-root { min-height: unset; }
-    }
-  </style>
+  <!-- Prevent theme flash -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('pf-theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
 </head>
 <body>
 
-  <!-- ── Header ───────────────────────────────────────── -->
-  <header class="site-header">
-    <div class="header-col-left">
-      <span class="header-name"><strong>Yiran Zhu</strong></span>
-    </div>
-
-    <div class="header-col-right">
-      <a href="index.html#work" class="header-link nav-scroll-link" data-section="work">Work</a>
-      <a href="index.html#vibe-coding" class="header-link nav-scroll-link" data-section="vibe-coding">Vibe coding</a>
-      <a href="index.html#about" class="header-link nav-scroll-link" data-section="about">About</a>
-      <div class="contact-menu-wrapper">
-        <button class="contact-toggle" id="contact-toggle" aria-expanded="false" aria-haspopup="true">Contact</button>
-        <div class="contact-dropdown" id="contact-dropdown" aria-hidden="true">
-          <a href="#" class="contact-dropdown-item copy-email" data-email="yiran.jour@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="contact-dropdown-item">LinkedIn</a>
-          <a href="https://github.com/yiranzhu25" target="_blank" class="contact-dropdown-item">Github</a>
-          <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="contact-dropdown-item">Resume</a>
-        </div>
-      </div>
-      <button class="hamburger-btn" id="hamburger-btn" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+  <!-- ── Desktop header ───────────────────────────────────── -->
+  <header class="pf-header">
+    <a href="index.html" class="pf-wordmark">
+      Yiran Zhu
+    </a>
+    <div class="pf-header-controls">
+      <nav class="pf-header-nav">
+        <a href="#work" class="pf-header-nav-link nav-scroll-link" data-section="work">Work</a>
+        <a href="#vibe-coding" class="pf-header-nav-link nav-scroll-link" data-section="vibe-coding">Vibe coding</a>
+        <a href="#about" class="pf-header-nav-link nav-scroll-link" data-section="about">About</a>
+        <a href="#" class="pf-btn pf-btn--primary pf-header-cta copy-email" data-email="yiran.jour@gmail.com">
+          <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor" style="flex-shrink:0;"><circle cx="3" cy="3" r="3"/></svg>
+          Contact
+        </a>
+      </nav>
+      <!-- Theme toggle -->
+      <button class="pf-iconbtn" id="theme-toggle" aria-label="Toggle theme">
+        <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
     </div>
-    <nav class="nav-dropdown" id="nav-dropdown" aria-hidden="true">
-      <a href="index.html#work" class="nav-dropdown-link nav-scroll-link" data-section="work">Work</a>
-      <a href="index.html#vibe-coding" class="nav-dropdown-link nav-scroll-link" data-section="vibe-coding">Vibe coding</a>
-      <a href="index.html#about" class="nav-dropdown-link nav-scroll-link" data-section="about">About</a>
-      <a href="#" class="nav-dropdown-link copy-email" data-email="yiran.jour@gmail.com">Email</a>
-      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="nav-dropdown-link">LinkedIn</a>
-      <a href="https://github.com/yiranzhu25" target="_blank" class="nav-dropdown-link">Github</a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="nav-dropdown-link">Resume</a>
-    </nav>
   </header>
 
-  <!-- ── Main content ──────────────────────────────────── -->
-  <main class="home-main">
+  <!-- ── Mobile topbar ────────────────────────────────────── -->
+  <div class="pf-topbar">
+    <a href="index.html" class="pf-wordmark">Yiran Zhu</a>
+    <div style="display:flex;align-items:center;gap:var(--space-2);">
+      <button class="pf-iconbtn" id="theme-toggle-mobile" aria-label="Toggle theme">
+        <svg id="theme-icon-sun-m" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-moon-m" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button class="pf-menu-btn" id="menu-btn" aria-expanded="false" aria-haspopup="true">
+        Menu
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
 
-    <!-- Introduction -->
-    <section class="intro-section">
-      <div class="intro-headline-group">
-        <div class="intro-greeting-row">
-          <span class="intro-greeting-name">Hi, I'm Yiran</span>
-          <img src="img/IMG_2865.JPG" alt="Yiran Zhu" class="intro-avatar">
-        </div>
-        <p class="intro-headline-sub">A product designer with 7 years of experience creating product vision that fulfills users needs and business goals.</p>
-      </div>
-      <div class="intro-body-group">
-        <p class="intro-body-text">I specialize in scaling <span class="intro-accent">enterprise systems</span>, architecting <span class="intro-accent">AI-first solutions</span> and designing <span class="intro-accent">services</span> that weave products, people and processes.</p>
-        <p class="intro-body-text">Currently leading multi-year product initiatives at Goldman Sachs</p>
-        <div class="intro-social-row">
-          <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="intro-social-link">
-            <img src="img/InBug-Black.png" alt="LinkedIn">
-          </a>
-          <a href="https://github.com/yiranzhu25" target="_blank" class="intro-social-link">
-            <img src="img/GitHub_Invertocat_Black.png" alt="GitHub">
-          </a>
-          <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="intro-social-link">
-            <img src="img/article_person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Resume">
-          </a>
-          <a href="#" class="intro-social-link copy-email" data-email="yiran.jour@gmail.com">
-            <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Email">
-          </a>
-        </div>
-      </div>
-    </section>
+  <!-- ── Mobile fullscreen dropdown ──────────────────────── -->
+  <div class="pf-dropdown" id="pf-dropdown" aria-hidden="true">
+    <div class="pf-dropdown-head">
+      <a href="index.html" class="pf-wordmark">Yiran Zhu</a>
+      <button class="pf-iconbtn" id="close-menu" aria-label="Close menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="pf-dropdown-list">
+      <a href="#work" class="pf-dropdown-link nav-scroll-link" data-section="work">
+        <span class="pf-navindex">01</span>Work
+      </a>
+      <a href="#vibe-coding" class="pf-dropdown-link nav-scroll-link" data-section="vibe-coding">
+        <span class="pf-navindex">02</span>Vibe coding
+      </a>
+      <a href="#about" class="pf-dropdown-link nav-scroll-link" data-section="about">
+        <span class="pf-navindex">03</span>About
+      </a>
+      <a href="#" class="pf-dropdown-link copy-email" data-email="yiran.jour@gmail.com">
+        <span class="pf-navindex">04</span>Contact
+      </a>
+    </div>
+  </div>
 
-    <!-- Selected Work -->
-    <section class="home-work-section" id="work">
-      <h2 class="home-section-title">Selected work</h2>
+  <!-- ── Main content ─────────────────────────────────────── -->
+  <main>
+    <div class="pf-page">
 
-      <!-- GS context -->
-      <div class="gs-context-block">
-        <img src="img/goldman-sachs-2.svg" alt="Goldman Sachs" class="gs-logo">
-        <p class="gs-context-text">At Goldman Sachs, I lead design vision and execution on a commercial loan management platform that helps teams handle loans efficiently and safely — building 0→1 product, owning 3 critical domains.</p>
-      </div>
-
-      <div class="work-entries">
-
-        <!-- ── Entry 1: AI Data Review ── -->
-        <div class="work-entry">
-          <!-- Visual: split — main thumbnail + concept prototype panel -->
-          <div class="work-visual-main-split">
-            <div class="work-visual-main-bg">
-              <img src="img/ai-data-review-case-thumb-2.png" alt="AI-powered Data Review thumbnail">
+      <!-- Introduction -->
+      <section class="pf-intro">
+        <h1 class="pf-intro-title">
+          Shaping product vision, designing AI-first experiences, and enterprise systems that scale for users and businesses
+        </h1>
+        <div class="pf-intro-bottom">
+          <div class="pf-intro-metrics">
+            <div class="pf-intro-metric">
+              <span class="pf-intro-metric-num">7</span>
+              <span class="pf-intro-metric-label">Years of experience</span>
             </div>
-            <div class="work-visual-concept-panel">
-              <div class="vibe-icon-card">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <div class="pf-intro-metric">
+              <span class="pf-intro-metric-num">6</span>
+              <span class="pf-intro-metric-label">Products shipped</span>
+            </div>
+            <div class="pf-intro-metric">
+              <span class="pf-intro-metric-num">5</span>
+              <span class="pf-intro-metric-label">Industries including finance and tech</span>
+            </div>
+          </div>
+          <div class="pf-intro-right">
+            <p class="pf-intro-desc">Senior product designer at Goldman Sachs, building a 0-to-1 AI-first platform.</p>
+            <div class="intro-social-list">
+              <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="intro-social-btn">
+                LinkedIn
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="https://github.com/yiranzhu25" target="_blank" class="intro-social-btn">
+                GitHub
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="intro-social-btn">
+                Resume
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="#" class="intro-social-btn copy-email" data-email="yiran.jour@gmail.com">
+                Email
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Selected Work -->
+      <section class="pf-section" id="work">
+        <div class="pf-section-header">
+          <div>
+            <!--<div class="pf-eyebrow">01 — Selected Work</div>-->
+            <h2 class="pf-section-title">Selected Work</h2>
+          </div>
+        </div>
+
+        <!-- GS context -->
+<!--        <div class="gs-context-block">
+          <img src="img/goldman-sachs-2.svg" alt="Goldman Sachs" class="gs-logo">
+          <p class="gs-context-text">At Goldman Sachs, I lead design vision and execution on a commercial loan management platform that helps teams handle loans efficiently and safely — building 0→1 product, owning 3 critical domains.</p>
+        </div>-->
+
+        <div class="work-entries">
+
+          <!-- Entry 1: AI Data Review -->
+          <div class="work-card-entry anim-ready">
+            <!-- Info (left) -->
+            <div class="work-entry-info">
+              <div class="pf-tags">
+                <span class="pf-tag">2025–2026</span>
+                <span class="pf-tag">AI-Human Interaction</span>
+                <span class="pf-tag">AI UX Patterns</span>
+                <span class="pf-tag pf-tag">Phase 1 Launched</span>
+              </div>
+              <h3 class="work-entry-title">Loan Data Review</h3>
+              <p class="work-entry-desc">Delivered $600k+ in annual savings for Goldman Sachs by designing a trusted, AI-powered loan data review product</p>
+              
+              <div class="pf-actions">
+                <a href="case-study-ai-data-review.html" class="pf-btn pf-btn--primary">
+                  View case study
+                  <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </div>
+            <!-- Visual (right) -->
+            <div class="work-visual-card">
+              <video src="img/ai-case-study/ai-output-display.mp4" autoplay loop muted playsinline></video>
+            </div>
+          </div>
+
+          <!-- Entry 2: Shared Task Manager (Automate) -->
+          <div class="work-card-entry anim-ready">
+            <!-- Info (left) -->
+            <div class="work-entry-info">
+              <div class="pf-tags">
+                <span class="pf-tag">2024</span>
+                <span class="pf-tag">Systems Thinking</span>
+                <span class="pf-tag">Product Architecture</span>
+                <span class="pf-tag pf-tag">Launched</span>
+              </div>
+              <h3 class="work-entry-title">Shared Task Manager</h3>
+              <p class="work-entry-desc">Collapsed a 14-day, 4-team process into one day by redesigning how cross-functional teams, tools, and data handoffs were orchestrated at Goldman Sachs</p>
+              <div class="pf-actions">
+                <a href="case-study-automate.html" class="pf-btn pf-btn--primary">
+                  View case study
+                  <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+            </div>
+            <!-- Visual (right): pipeline animation -->
+            <div class="work-visual-full">
+              <div class="pipeline-root" id="pipeline-root-home" style="pointer-events:none;user-select:none;">
+                <div class="wrapper">
+                  <div class="stages-grid" id="cards-grid">
+                    <div class="stage-col">
+                      <div class="team-col"><div class="tdot p"></div><span class="tname">Team A</span></div>
+                      <div class="stage-hdr">Stage 1: Data review</div>
+                      <div class="card" id="s2">
+                        <div class="card-bar">
+                          <div class="bar-icon"><img src="img/pdf_icon.png" width="18" height="18" alt="PDF"></div>
+                          <div class="bar-btn">Extract <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M5 0.8L6.12 3.52L9.05 3.9L6.9 5.99L7.48 9.05L5 7.6L2.52 9.05L3.1 5.99L0.95 3.9L3.88 3.52L5 0.8Z" fill="rgba(255,255,255,0.88)"/></svg></div>
+                        </div>
+                        <div class="s2-body">
+                          <div class="doc-panel" id="doc-panel">
+                            <div class="dl f"></div><div class="dl e"></div>
+                            <div class="dl hl f" id="hl0"></div><div class="dl s"></div>
+                            <div class="dl f"></div><div class="dl hl e" id="hl1"></div>
+                            <div class="dl m"></div><div class="dl f"></div>
+                            <div class="dl hl f" id="hl2"></div><div class="dl s"></div>
+                            <div class="dl e"></div><div class="dl f"></div>
+                            <div class="dl hl m" id="hl3"></div><div class="dl f"></div><div class="dl s"></div>
+                            <div class="dl f"></div><div class="dl e"></div>
+                            <div class="dl m"></div><div class="dl hl f"></div><div class="dl s"></div>
+                            <div class="dl f"></div><div class="dl e"></div>
+                            <div class="dl hl e"></div><div class="dl m"></div><div class="dl f"></div>
+                          </div>
+                          <div class="pills-col" id="s2-pills">
+                            <div class="pill" id="s2p0"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill" id="s2p1"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill" id="s2p2"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill" id="s2p3"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="stage-col">
+                      <div class="team-col"><div class="tdot g"></div><span class="tname">Team B</span></div>
+                      <div class="stage-hdr">Stage 2: Map</div>
+                      <div class="card" id="s3">
+                        <div class="card-bar">
+                          <div class="bar-icon"><img src="img/excel_icon.png" width="18" height="18" alt="Excel"></div>
+                          <div class="bar-btn">Upload ↑</div>
+                        </div>
+                        <div class="s3-map-area">
+                          <div class="s3-col" id="s3-left">
+                            <div class="pill" id="s3l0"><div class="pdot g"></div><div class="pill-line"></div></div>
+                            <div class="pill" id="s3l1"><div class="pdot g"></div><div class="pill-line"></div></div>
+                            <div class="pill" id="s3l2"><div class="pdot g"></div><div class="pill-line"></div></div>
+                            <div class="pill"><div class="pdot g"></div><div class="pill-line"></div></div>
+                            <div class="pill"><div class="pdot g"></div><div class="pill-line"></div></div>
+                          </div>
+                          <div class="s3-col" id="s3-right">
+                            <div class="pill g-fill" id="s3r0"><div class="pill-line"></div></div>
+                            <div class="pill g-fill" id="s3r1"><div class="pill-line"></div></div>
+                            <div class="pill g-fill" id="s3r2"><div class="pill-line"></div></div>
+                            <div class="pill g-fill"><div class="pill-line"></div></div>
+                            <div class="pill g-fill"><div class="pill-line"></div></div>
+                          </div>
+                        </div>
+                        <div class="s3-table-wrap" id="s3-table">
+                          <div class="s3-trow"><div class="s3-th"></div><div class="s3-th"></div><div class="s3-th"></div></div>
+                          <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
+                          <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
+                          <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
+                          <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="stage-col">
+                      <div class="team-col"><div class="tdot g"></div><span class="tname">Team B</span></div>
+                      <div class="stage-hdr">Stage 3: New set up</div>
+                      <div class="card" id="s4">
+                        <div class="s4-body">
+                          <div class="select-row">
+                            <div class="select-pill">SELECT <span class="sel-arrow">▾</span></div>
+                            <div class="select-pill">SELECT <span class="sel-arrow">▾</span></div>
+                          </div>
+                          <div class="s4-pills" id="s4-pills">
+                            <div class="pill" id="s4p0"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill" id="s4p1"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill" id="s4p2"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill" id="s4p3"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                            <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="stage-col">
+                      <div class="team-col"><div class="tdot g"></div><span class="tname">Team B Manager</span></div>
+                      <div class="stage-hdr">Stage 4: Approve all</div>
+                      <div class="card" id="s5">
+                        <div class="s5-usd-block">
+                          <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+20,000.00 USD</span></div>
+                          <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+14,394.00 USD</span></div>
+                          <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">−9,027.00 USD</span></div>
+                          <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+6,800.00 USD</span></div>
+                          <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">−3,512.00 USD</span></div>
+                        </div>
+                        <div class="s5-pills-grid" id="s5-pills">
+                          <div class="pill small" id="s5p0"><div class="pdot p"></div><div class="pill-line"></div></div>
+                          <div class="pill small" id="s5p1"><div class="pdot p"></div><div class="pill-line"></div></div>
+                          <div class="pill small" id="s5p2"><div class="pdot p"></div><div class="pill-line"></div></div>
+                          <div class="pill small" id="s5p3"><div class="pdot p"></div><div class="pill-line"></div></div>
+                          <div class="pill small"><div class="pdot p"></div><div class="pill-line"></div></div>
+                          <div class="pill small"><div class="pdot p"></div><div class="pill-line"></div></div>
+                        </div>
+                        <div class="s5-table-wrap" id="s5-table">
+                          <div class="s5-trow"><div class="s5-th"></div><div class="s5-th"></div><div class="s5-th"></div></div>
+                          <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
+                          <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
+                          <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
+                          <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
+                        </div>
+                      </div>
+                    </div>
+                    <svg class="conn-svg" id="conn-svg" xmlns="http://www.w3.org/2000/svg" data-arc-offsets="-10,0,10" data-drop-base="40" data-drop-step="8"></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entries 3 & 4: 2-col -->
+          <div class="work-grid-2col">
+
+            <!-- Design System -->
+            <div class="work-card-sm work-card-sm--featured anim-ready">
+              <div class="work-card-sm-image">
+                <img src="img/pros/pros-case-thumb.png" alt="Design System at Scale">
+              </div>
+              <div class="work-card-sm-info">
+                <div class="pf-tags">
+                  <span class="pf-tag">2019</span>
+                  <span class="pf-tag">Design System</span>
+                  <span class="pf-tag">UI Design</span>
+                </div>
+                <h3 class="work-card-sm-title">Maintain Design System at Scale</h3>
+                <p class="work-entry-desc">At <img src="img/pros-logo.png" alt="PROS" class="work-inline-logo">, I unified the enterprise user experience through a scalable design system, achieving accessibility and platform consistency to accelerate new product adoption.</p>
+                <div class="pf-actions">
+                  <a href="case-study-design-system.html" class="pf-btn pf-btn--ghost">
+                    View case study
+                    <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Restaurant -->
+            <div class="work-card-sm work-card-sm--featured anim-ready">
+              <div class="work-card-sm-image" style="background:var(--ink-950);">
+                <img id="rushable-case-thumb" src="img/rushable/rushable-case-thumb.jpg" alt="Restaurant POS &amp; Ordering">
+              </div>
+              <div class="work-card-sm-info">
+                <div class="pf-tags">
+                  <span class="pf-tag">2022</span>
+                  <span class="pf-tag">UX/UI Design</span>
+                </div>
+                <h3 class="work-card-sm-title">Restaurant POS &amp; Ordering</h3>
+                <p class="work-entry-desc">At <img src="img/f3559182-f767-9ffd-9686-4aee937437e4.png" alt="Rushable" class="work-inline-logo">, I redesigned a POS system to optimize order processing efficiency and conceptualized a zero-commission marketplace to drive restaurant discovery.</p>
+                <div class="pf-actions">
+                  <a href="case-study-restaurant.html" class="pf-btn pf-btn--ghost">
+                    View case study
+                    <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Vibe coding -->
+      <section class="pf-section" id="vibe-coding">
+        <div class="pf-section-header">
+          <div>
+            <!--<div class="pf-eyebrow">02 — Vibe Coding</div>-->
+            <h2 class="pf-section-title">Vibe Coding</h2>
+          </div>
+        </div>
+
+        <div class="vibe-cards-row">
+
+          <!-- Legal Doc AI Digitization -->
+          <div class="work-card-sm vibe-card anim-ready">
+            <div class="work-card-sm-image vibe-card-thumb">
+              <div class="vibe-icon-card-thumb">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
                   <line x1="16" y1="8" x2="2" y2="22"/>
                   <line x1="17.5" y1="15" x2="9" y2="15"/>
                 </svg>
               </div>
-              <div class="work-visual-concept-info">
-                <div class="work-visual-concept-text">
-                  <p class="work-visual-concept-title">Legal Doc AI Digitization</p>
-                  <p class="work-visual-concept-desc">A concept prototype to demo the design without disclosing business information.</p>
+            </div>
+            <div class="work-card-sm-info">
+              <div class="vibe-card-header">
+                <div class="pf-tags">
+                  <span class="pf-tag">Legal</span>
+                  <span class="pf-tag">Concept Prototype</span>
+                  <span class="pf-tag">2026</span>
                 </div>
-                <a href="https://yiranzhu25.github.io/document-concept-app" target="_blank" class="view-study-btn">
-                  View Progress
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
-                  </svg>
+                <h3 class="vibe-card-title">Legal Doc AI Digitization</h3>
+              </div>
+              <p class="vibe-card-desc">A concept prototype to demo the AI data review case study design without disclosing business information.</p>
+              <div class="pf-actions">
+                <a href="https://yiranzhu25.github.io/document-concept-app" target="_blank" class="pf-btn pf-btn--ghost">
+                  View progress
+                  <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg>
                 </a>
               </div>
             </div>
           </div>
-          <!-- Text info below visual -->
-          <div class="work-entry-info">
-            <p class="work-meta-tags">
-              <span class="work-meta-lock"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="none"><path d="M15.0002 7.08333H14.1668V5.41667C14.1668 3.11667 12.3002 1.25 10.0002 1.25C7.70016 1.25 5.8335 3.11667 5.8335 5.41667V7.08333H5.00016C4.0835 7.08333 3.3335 7.83333 3.3335 8.75V17.0833C3.3335 18 4.0835 18.75 5.00016 18.75H15.0002C15.9168 18.75 16.6668 18 16.6668 17.0833V8.75C16.6668 7.83333 15.9168 7.08333 15.0002 7.08333ZM7.50016 5.41667C7.50016 4.03333 8.61683 2.91667 10.0002 2.91667C11.3835 2.91667 12.5002 4.03333 12.5002 5.41667V7.08333H7.50016V5.41667ZM15.0002 17.0833H5.00016V8.75H15.0002V17.0833ZM10.0002 14.5833C10.9168 14.5833 11.6668 13.8333 11.6668 12.9167C11.6668 12 10.9168 11.25 10.0002 11.25C9.0835 11.25 8.3335 12 8.3335 12.9167C8.3335 13.8333 9.0835 14.5833 10.0002 14.5833Z" fill="#6B7280"/></svg></span>
-              2025-2026 · AI-Human Interaction · Reusable UX Patterns
-            </p>
-            <div class="work-title-row">
-              <h3 class="work-entry-title">AI-powered Data Review</h3>
-              <span class="work-badge">Phase 1 Launched</span>
-            </div>
-            <p class="work-entry-desc">Designed a feature where users review, correct, and approve data extracted by AI — cutting a 7-hour manual process down to 30 minutes.</p>
-            <a href="password-ai-data-review.html" class="btn-dark">
-              View Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#fff"/>
-              </svg>
-            </a>
-          </div>
-        </div>
 
-        <!-- ── Entry 2: Automate ── -->
-        <div class="work-entry">
-          <!-- Visual: pipeline animation (visual first per Figma) -->
-          <div class="work-visual-full" style="pointer-events:none; user-select:none;">
-            <div style="display:flex; justify-content:flex-end; align-items:center; gap:4px; padding-right:8px; margin-bottom:6px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17" fill="none" style="flex-shrink:0;">
-                <path d="M0 17V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H14C14.55 0 15.0208 0.195833 15.4125 0.5875C15.8042 0.979167 16 1.45 16 2V7.075C15.8333 7.04167 15.6667 7.02083 15.5 7.0125C15.3333 7.00417 15.1667 7 15 7C14.8333 7 14.6667 7.00417 14.5 7.0125C14.3333 7.02083 14.1667 7.04167 14 7.075V2H2V12H9.075C9.04167 12.1667 9.02083 12.3333 9.0125 12.5C9.00417 12.6667 9 12.8333 9 13C9 13.1667 9.00417 13.3333 9.0125 13.5C9.02083 13.6667 9.04167 13.8333 9.075 14H3L0 17ZM4 6H12V4H4V6ZM4 10H9V8H4V10Z" fill="#9CA3AF"/>
-                <path d="M12.6667 15.25L9.91667 12.5L12.6667 9.75L13.3198 10.4031L11.2115 12.5115L13.3083 14.6083L12.6667 15.25ZM16.3333 15.25L15.6802 14.5969L17.7885 12.4885L15.6917 10.3917L16.3333 9.75L19.0833 12.5L16.3333 15.25Z" fill="#9CA3AF"/>
-              </svg>
-              <span style="font-family:'Inter',sans-serif; font-size:14px; font-weight:400; color:#9CA3AF; white-space:nowrap; line-height:1.4;">Vibe coded animation</span>
-            </div>
-            <div class="pipeline-root" id="pipeline-root-home">
-              <div class="wrapper">
-                <div class="stages-grid" id="cards-grid">
-                  <div class="stage-col">
-                    <div class="team-col"><div class="tdot p"></div><span class="tname">Team A</span></div>
-                    <div class="stage-hdr">Stage 1: Data review</div>
-                    <div class="card" id="s2">
-                      <div class="card-bar">
-                        <div class="bar-icon"><img src="img/pdf_icon.png" width="18" height="18" alt="PDF"></div>
-                        <div class="bar-btn">Extract <svg width="8" height="8" viewBox="0 0 10 10" fill="none"><path d="M5 0.8L6.12 3.52L9.05 3.9L6.9 5.99L7.48 9.05L5 7.6L2.52 9.05L3.1 5.99L0.95 3.9L3.88 3.52L5 0.8Z" fill="rgba(255,255,255,0.88)"/></svg></div>
-                      </div>
-                      <div class="s2-body">
-                        <div class="doc-panel" id="doc-panel">
-                          <div class="dl f"></div><div class="dl e"></div>
-                          <div class="dl hl f" id="hl0"></div><div class="dl s"></div>
-                          <div class="dl f"></div><div class="dl hl e" id="hl1"></div>
-                          <div class="dl m"></div><div class="dl f"></div>
-                          <div class="dl hl f" id="hl2"></div><div class="dl s"></div>
-                          <div class="dl e"></div><div class="dl f"></div>
-                          <div class="dl hl m" id="hl3"></div><div class="dl f"></div><div class="dl s"></div>
-                          <div class="dl f"></div><div class="dl e"></div>
-                          <div class="dl m"></div><div class="dl hl f"></div><div class="dl s"></div>
-                          <div class="dl f"></div><div class="dl e"></div>
-                          <div class="dl hl e"></div><div class="dl m"></div><div class="dl f"></div>
-                        </div>
-                        <div class="pills-col" id="s2-pills">
-                          <div class="pill" id="s2p0"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill" id="s2p1"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill" id="s2p2"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill" id="s2p3"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="stage-col">
-                    <div class="team-col"><div class="tdot g"></div><span class="tname">Team B</span></div>
-                    <div class="stage-hdr">Stage 2: Map</div>
-                    <div class="card" id="s3">
-                      <div class="card-bar">
-                        <div class="bar-icon"><img src="img/excel_icon.png" width="18" height="18" alt="Excel"></div>
-                        <div class="bar-btn">Upload ↑</div>
-                      </div>
-                      <div class="s3-map-area">
-                        <div class="s3-col" id="s3-left">
-                          <div class="pill" id="s3l0"><div class="pdot g"></div><div class="pill-line"></div></div>
-                          <div class="pill" id="s3l1"><div class="pdot g"></div><div class="pill-line"></div></div>
-                          <div class="pill" id="s3l2"><div class="pdot g"></div><div class="pill-line"></div></div>
-                          <div class="pill"><div class="pdot g"></div><div class="pill-line"></div></div>
-                          <div class="pill"><div class="pdot g"></div><div class="pill-line"></div></div>
-                        </div>
-                        <div class="s3-col" id="s3-right">
-                          <div class="pill g-fill" id="s3r0"><div class="pill-line"></div></div>
-                          <div class="pill g-fill" id="s3r1"><div class="pill-line"></div></div>
-                          <div class="pill g-fill" id="s3r2"><div class="pill-line"></div></div>
-                          <div class="pill g-fill"><div class="pill-line"></div></div>
-                          <div class="pill g-fill"><div class="pill-line"></div></div>
-                        </div>
-                      </div>
-                      <div class="s3-table-wrap" id="s3-table">
-                        <div class="s3-trow"><div class="s3-th"></div><div class="s3-th"></div><div class="s3-th"></div></div>
-                        <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
-                        <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
-                        <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
-                        <div class="s3-trow"><div class="s3-td"></div><div class="s3-td"></div><div class="s3-td"></div></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="stage-col">
-                    <div class="team-col"><div class="tdot g"></div><span class="tname">Team B</span></div>
-                    <div class="stage-hdr">Stage 3: New Set up</div>
-                    <div class="card" id="s4">
-                      <div class="s4-body">
-                        <div class="select-row">
-                          <div class="select-pill">SELECT <span class="sel-arrow">▾</span></div>
-                          <div class="select-pill">SELECT <span class="sel-arrow">▾</span></div>
-                        </div>
-                        <div class="s4-pills" id="s4-pills">
-                          <div class="pill" id="s4p0"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill" id="s4p1"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill" id="s4p2"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill" id="s4p3"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                          <div class="pill"><div class="pdot p"></div><div class="pill-line"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="stage-col">
-                    <div class="team-col"><div class="tdot g"></div><span class="tname">Team B Manager</span></div>
-                    <div class="stage-hdr">Stage 4: Approve all</div>
-                    <div class="card" id="s5">
-                      <div class="s5-usd-block">
-                        <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+20,000.00 USD</span></div>
-                        <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+14,394.00 USD</span></div>
-                        <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">−9,027.00 USD</span></div>
-                        <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-pos">+6,800.00 USD</span></div>
-                        <div class="usd-row"><div class="usd-bar"></div><span class="usd-amt usd-neg">−3,512.00 USD</span></div>
-                      </div>
-                      <div class="s5-pills-grid" id="s5-pills">
-                        <div class="pill small" id="s5p0"><div class="pdot p"></div><div class="pill-line"></div></div>
-                        <div class="pill small" id="s5p1"><div class="pdot p"></div><div class="pill-line"></div></div>
-                        <div class="pill small" id="s5p2"><div class="pdot p"></div><div class="pill-line"></div></div>
-                        <div class="pill small" id="s5p3"><div class="pdot p"></div><div class="pill-line"></div></div>
-                        <div class="pill small"><div class="pdot p"></div><div class="pill-line"></div></div>
-                        <div class="pill small"><div class="pdot p"></div><div class="pill-line"></div></div>
-                      </div>
-                      <div class="s5-table-wrap" id="s5-table">
-                        <div class="s5-trow"><div class="s5-th"></div><div class="s5-th"></div><div class="s5-th"></div></div>
-                        <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
-                        <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
-                        <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
-                        <div class="s5-trow"><div class="s5-td"></div><div class="s5-td"></div><div class="s5-td"></div></div>
-                      </div>
-                    </div>
-                  </div>
-                  <svg class="conn-svg" id="conn-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+          <!-- Personal Finance Tracking App -->
+          <div class="work-card-sm vibe-card anim-ready">
+            <div class="work-card-sm-image vibe-card-thumb">
+              <div class="vibe-icon-card-thumb">
+                <div class="vibe-finance-dot">
+                  <div class="vibe-finance-dot__outer"></div>
+                  <div class="vibe-finance-dot__mid"></div>
+                  <div class="vibe-finance-dot__inner"></div>
                 </div>
               </div>
             </div>
-          </div>
-          <!-- Text info below visual -->
-          <div class="work-entry-info">
-            <p class="work-meta-tags">2024 · Systems Thinking · Product Architect</p>
-            <div class="work-title-row">
-              <h3 class="work-entry-title">Shared Task Manager</h3>
-              <span class="work-badge">Launched</span>
-            </div>
-            <p class="work-entry-desc">Designed a guided automation workflow that unified four teams managing one complex task — replacing disconnected tools and handoffs with a single shared digital experience.</p>
-            <a href="case-study-automate.html" class="btn-dark">
-              View Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#fff"/>
-              </svg>
-            </a>
-          </div>
-        </div>
-
-        <!-- ── Entries 3 & 4: 2-col ── -->
-        <div class="work-grid-2col">
-
-          <!-- Design System -->
-          <div class="work-card-sm">
-            <div class="work-card-sm-image">
-              <img src="img/pros-case-thumb.png" alt="Design System at Scale">
-            </div>
             <div class="work-card-sm-info">
-              <div class="work-card-logo-row">
-                <img src="img/pros-logo.png" alt="PROS" class="work-card-logo">
-                <p class="work-meta-tags">2019 · Design System · UI Design</p>
+              <div class="vibe-card-header">
+                <div class="pf-tags">
+                  <span class="pf-tag">Fintech</span>
+                  <span class="pf-tag">Mobile/Web App</span>
+                  <span class="pf-tag">2026</span>
+                </div>
+                <h3 class="vibe-card-title">Personal Finance Tracking App</h3>
               </div>
-              <h3 class="work-card-sm-title">Maintain Design System at Scale</h3>
-              <p class="work-entry-desc">At PROS, I unified the enterprise user experience through a scalable design system, achieving accessibility and platform consistency to accelerate new product adoption.</p>
-              <a href="case-study-design-system.html" class="view-study-btn">
-                View Case Study
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Restaurant -->
-          <div class="work-card-sm">
-            <div class="work-card-sm-image" style="background:#00000f;">
-              <img id="rushable-case-thumb" src="img/rushable-case-thumb.png" alt="Restaurant POS & Ordering">
-            </div>
-            <div class="work-card-sm-info">
-              <div class="work-card-logo-row">
-                <img src="img/f3559182-f767-9ffd-9686-4aee937437e4.png" alt="Rushable" class="work-card-logo">
-                <p class="work-meta-tags">2022 · UX/UI Design</p>
+              <p class="vibe-card-desc">Personal project solving a pain point in my daily life, using an AI-native approach.</p>
+              <div class="pf-actions">
+                <a href="https://finance-tracker-sooty-zeta-35.vercel.app/" target="_blank" class="pf-btn pf-btn--ghost">
+                  View progress
+                  <svg class="pf-btn-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 17 17 7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </a>
               </div>
-              <h3 class="work-card-sm-title">Restaurant POS &amp; Ordering</h3>
-              <p class="work-entry-desc">At Rushable, I redesigned a POS system to optimize order processing efficiency and conceptualized a zero-commission marketplace to drive restaurant discovery.</p>
-              <a href="case-study-restaurant.html" class="view-study-btn">
-                View Case Study
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
-                </svg>
-              </a>
             </div>
           </div>
 
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Vibe coding -->
-    <section class="home-work-section" id="vibe-coding">
-      <h2 class="home-section-title">Vibe coding</h2>
-      <div class="work-grid-2col">
+      <!-- Career -->
+      <section class="pf-section" id="about">
+        <div class="career-layout">
 
-        <!-- Legal Doc AI Digitization -->
-        <div class="work-card-sm vibe-card">
-          <div class="work-card-sm-image vibe-card-thumb">
-            <div class="vibe-icon-card">
-              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
-                <line x1="16" y1="8" x2="2" y2="22"/>
-                <line x1="17.5" y1="15" x2="9" y2="15"/>
-              </svg>
-            </div>
-          </div>
-          <div class="work-card-sm-info">
-            <div class="vibe-card-header">
-              <p class="work-meta-tags">Legal · Concept Prototype · 2026</p>
-              <h3 class="vibe-card-title">Legal Doc AI Digitization</h3>
-            </div>
-            <p class="vibe-card-desc">A concept prototype to demo the AI data review case study design without disclosing business information.</p>
-            <a href="https://yiranzhu25.github.io/document-concept-app" target="_blank" class="view-study-btn">
-              View Progress
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
-              </svg>
+          <!-- Left: sticky heading -->
+          <div class="career-left">
+            <!--<div class="pf-eyebrow" style="margin-bottom:var(--space-4);">[03 Career]</div>-->
+          <!--  <h2 class="career-heading">Where I've Been <span class="career-heading-em">Professionally</span></h2>-->
+            <h2 class="career-heading">Where I've Been Professionally</h2>
+
+            <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="pf-btn pf-btn--ghost career-resume-btn">
+              Download resume
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
           </div>
-        </div>
 
-        <!-- Personal Finance Tracking App -->
-        <div class="work-card-sm vibe-card">
-          <div class="work-card-sm-image vibe-card-thumb">
-            <div class="vibe-icon-card">
-              <div class="vibe-finance-dot">
-                <div class="vibe-finance-dot__outer"></div>
-                <div class="vibe-finance-dot__mid"></div>
-                <div class="vibe-finance-dot__inner"></div>
+          <!-- Right: numbered cards -->
+          <div class="career-cards">
+
+            <div class="career-card">
+              <div class="career-card-num">2023 – Now</div>
+              <div class="career-card-body">
+                <h3 class="career-card-title">Senior Product Designer</h3>
+                <span class="career-card-meta">Goldman Sachs</span>
+                <p class="career-card-desc">Re-imagining an AI-powered loan platform to simplify convoluted operational processes, reduce business cost, and mitigate risk. Led core product areas from vision to execution.</p>
               </div>
             </div>
-          </div>
-          <div class="work-card-sm-info">
-            <div class="vibe-card-header">
-              <p class="work-meta-tags">Fintech · Mobile/Web App · 2026</p>
-              <h3 class="vibe-card-title">Personal Finance Tracking App</h3>
+
+            <div class="career-card">
+              <div class="career-card-num">2022 – 2023</div>
+              <div class="career-card-body">
+                <h3 class="career-card-title">Product Designer</h3>
+                <span class="career-card-meta">Goldman Sachs</span>
+                <p class="career-card-desc">Built automation-first platform. Owned end-to-end design process for core features.</p>
+              </div>
             </div>
-            <p class="vibe-card-desc">Personal project solving a pain point in my daily life, using AI-native approach.</p>
-            <a href="https://finance-tracker-sooty-zeta-35.vercel.app/" target="_blank" class="view-study-btn">
-              View Progress
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M3.03841 7.58334H9.55425L6.70758 10.43C6.48008 10.6575 6.48008 11.0308 6.70758 11.2583C6.93508 11.4858 7.30258 11.4858 7.53008 11.2583L11.3742 7.41417C11.6017 7.18667 11.6017 6.81917 11.3742 6.59167L7.53591 2.74167C7.30841 2.51417 6.94091 2.51417 6.71341 2.74167C6.48591 2.96917 6.48591 3.33667 6.71341 3.56417L9.55425 6.41667H3.03841C2.71758 6.41667 2.45508 6.67917 2.45508 7C2.45508 7.32084 2.71758 7.58334 3.03841 7.58334Z" fill="#302B27"/>
-              </svg>
-            </a>
+
+            <div class="career-card">
+              <div class="career-card-num">2019 – 2022</div>
+              <div class="career-card-body">
+                <h3 class="career-card-title">Freelance UX Designer</h3>
+                <span class="career-card-meta">Independent</span>
+                <p class="career-card-desc">Partnered with startups and small businesses to transform ideas into digital experiences.</p>
+              </div>
+            </div>
+
+            <div class="career-card">
+              <div class="career-card-num">2018 – 2019</div>
+              <div class="career-card-body">
+                <h3 class="career-card-title">UI Designer</h3>
+                <span class="career-card-meta">PROS</span>
+                <p class="career-card-desc">Maintained design system across multiple product lines, contributing to a strategic transition of legacy pricing tools into a modern cloud-based platform.</p>
+              </div>
+            </div>
+
+            <div class="career-card">
+              <div class="career-card-num">2015 – 2018</div>
+              <div class="career-card-body">
+                <h3 class="career-card-title">Interactive Designer</h3>
+                <span class="career-card-meta">Sun Sentinel</span>
+                <p class="career-card-desc">Designed interactive news experiences that drove audience engagement and earned local journalism awards.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Personal -->
+      <section class="pf-section">
+        <div class="pf-section-header">
+          <div>
+            <!--<div class="pf-eyebrow">04 — Personal</div>-->
+            <h2 class="pf-section-title">More About Me</h2>
           </div>
         </div>
 
-      </div>
-    </section>
-
-    <!-- Career -->
-    <section class="career-section" id="about">
-      <div class="career-header-row">
-        <h2 class="career-heading">Where I've been professionally</h2>
-        <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="download-resume-btn">
-          Download resume
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M13.5 11.25V13.5H4.5V11.25H3V13.5C3 14.325 3.675 15 4.5 15H13.5C14.325 15 15 14.325 15 13.5V11.25H13.5ZM12.75 8.25L11.6925 7.1925L9.75 9.1275V3H8.25V9.1275L6.3075 7.1925L5.25 8.25L9 12L12.75 8.25Z" fill="#302B27"/>
-          </svg>
-        </a>
-      </div>
-
-      <div class="career-entries-list">
-
-        <div class="career-entry">
-          <div></div>
-          <div class="career-year">2023 – Now</div>
-          <div class="career-content">
-            <div class="career-role">Senior Product Designer</div>
-            <div class="career-company">Goldman Sachs</div>
-            <div class="career-desc">Re-imaging a AI-powered loan platform to simplify convoluted operational processes, reduce business cost, and mitigate risk. Led core product areas from vision to execution.</div>
+        <div class="personal-card">
+          <div class="personal-card-photo-wrap">
+            <img src="img/photo-me.JPG" alt="Yiran Zhu" class="personal-card-photo">
+          </div>
+          <div class="personal-card-text">
+            <p class="personal-stmt personal-stmt--bold">I'm most at home in problems that don't make sense yet, where the shape of the product has to be figured out, not just designed.</p>
+            <p class="personal-stmt personal-stmt--bold">My background in journalism taught me how to break down complexity, ask better questions, and connect dots across disciplines. It's also why I care about bringing people along — aligning teams, not just outputs.</p>
+            <p class="personal-stmt personal-stmt--muted">Outside of work, I spend time traveling with my family — navigating new places, cultures, and the occasional logistical puzzle.</p>
           </div>
         </div>
+      </section>
 
-        <div class="career-entry">
-          <div></div>
-          <div class="career-year">2022 – 2023</div>
-          <div class="career-content">
-            <div class="career-role">Product Designer</div>
-            <div class="career-company">Goldman Sachs</div>
-            <div class="career-desc">Built automation-first platform. Owned end-to-end design process for core features.</div>
-          </div>
-        </div>
-
-        <div class="career-entry">
-          <div></div>
-          <div class="career-year">2019 – 2022</div>
-          <div class="career-content">
-            <div class="career-role">Freelance UX Designer</div>
-            <div class="career-desc">Partnered with startups and small businesses to transform ideas into digital experience.</div>
-          </div>
-        </div>
-
-        <div class="career-entry">
-          <div></div>
-          <div class="career-year">2018 – 2019</div>
-          <div class="career-content">
-            <div class="career-role">UI Designer</div>
-            <div class="career-company">PROS</div>
-            <div class="career-desc">Maintained design system across multiple product lines, contributing to a strategic transition of legacy pricing tools into a modern cloud-based platform.</div>
-          </div>
-        </div>
-
-        <div class="career-entry">
-          <div></div>
-          <div class="career-year">2015 – 2018</div>
-          <div class="career-content">
-            <div class="career-role">Interactive Designer</div>
-            <div class="career-company">Sun Sentinel</div>
-            <div class="career-desc">Designed interactive news experiences that drove audience engagement and earned local journalism awards.</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Personal -->
-    <section class="personal-section">
-      <h2 class="personal-heading">More about me</h2>
-
-      <div class="personal-grid">
-        <div class="personal-photo-col">
-          <img src="img/photo-me.JPG" alt="Yiran Zhu" class="personal-photo">
-        </div>
-        <div class="personal-text-col">
-          <p>I’m most at home in problems that don’t make sense yet, where the shape of the product has to be figured out, not just designed.</p>
-          <p>My background in journalism taught me how to break down complexity, ask better questions, and connect dots across disciplines. It’s also why I care about bringing people along—aligning teams, not just outputs.</p>
-          <p>Outside of work, I spend time traveling with my family—navigating new places, cultures, and the occasional logistical puzzle.</p>
-        </div>
-      </div>
-    </section>
-
+    </div><!-- /.pf-page -->
   </main>
 
   <!-- ── Footer ───────────────────────────────────────── -->
   <footer class="site-footer">
-    <div class="header-col-left">
-      <span class="header-name">© 2026 · Designed in Figma, built with Claude Code + Figma MCP, deployed on Github.</span>
-    </div>
-    <div class="header-col-right">
-      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="header-link"><img src="img/InBug-Black.png"></a>
-      <a href="https://github.com/yiranzhu25" target="_blank" class="header-link"><img src="img/GitHub_Invertocat_Black.png"></a>
-      <a href="Yiran_Zhu_Senior_Product_Designer_Resume.pdf" target="_blank" class="header-link"><img src="img/article_person_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
-
-      <a href="#" class="header-link header-link-bold copy-email" data-email="yiran.jour@gmail.com">
-        <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg"></a>
+    <span class="footer-name">© 2026 · Design and built with Claude, deployed on Github </span>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/yiranzhu/" target="_blank" class="intro-social-link" aria-label="LinkedIn">
+        <img src="img/InBug-Black.png" alt="LinkedIn">
+      </a>
+      <a href="https://github.com/yiranzhu25" target="_blank" class="intro-social-link" aria-label="GitHub">
+        <img src="img/GitHub_Invertocat_Black.png" alt="GitHub">
+      </a>
+      <a href="#" class="intro-social-link copy-email" data-email="yiran.jour@gmail.com" aria-label="Email">
+        <img src="img/mail_24dp_1F1F1F_FILL0_wght400_GRAD0_opsz24.svg" alt="Email">
+      </a>
     </div>
   </footer>
 
-  <!-- Pipeline Animation JS -->
-  <script>
-    let _animEl  = null;
-    let _animCSS = '';
-    let _uid     = 0;
-    const PURPLE = '#9747FF';
-    const GREEN  = '#3EFFA0';
-
-    function buildLines() {
-      if (_animEl) _animEl.remove();
-      _animEl  = document.createElement('style');
-      document.head.appendChild(_animEl);
-      _animCSS = '';
-      _uid     = 0;
-
-      const svg  = document.getElementById('conn-svg');
-      const grid = document.getElementById('cards-grid');
-      if (!svg || !grid) return;
-      const gr = grid.getBoundingClientRect();
-      svg.innerHTML = '';
-
-      const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-      defs.innerHTML = `
-        <filter id="glow-p" x="-200%" y="-200%" width="500%" height="500%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <filter id="glow-g" x="-200%" y="-200%" width="500%" height="500%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="1.8" result="blur"/>
-          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>`;
-      svg.appendChild(defs);
-
-      function R(el) {
-        const b = el.getBoundingClientRect();
-        return { l: b.left-gr.left, t: b.top-gr.top, r: b.right-gr.left, b: b.bottom-gr.top,
-                 cx: b.left-gr.left+b.width/2, cy: b.top-gr.top+b.height/2 };
-      }
-      function mkPath(d, stroke, opacity, extra) {
-        const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        p.setAttribute('d', d); p.setAttribute('stroke', stroke);
-        p.setAttribute('stroke-width', '1'); p.setAttribute('fill', 'none');
-        p.setAttribute('stroke-opacity', opacity);
-        if (extra) Object.entries(extra).forEach(([k,v]) => p.setAttribute(k,v));
-        return p;
-      }
-      function drawLine(d, x1, y1, color, filterId, duration, delay, addStartDot) {
-        svg.appendChild(mkPath(d, color, '0.25'));
-        const pulse = mkPath(d, color, '1', { 'stroke-linecap':'round', 'filter':`url(#${filterId})` });
-        svg.appendChild(pulse);
-        const len = pulse.getTotalLength() || 200;
-        const seg = Math.max(18, Math.min(55, len * 0.18));
-        pulse.setAttribute('stroke-dasharray', `${seg} ${len+1}`);
-        const name = `p${++_uid}`;
-        _animCSS += `@keyframes ${name}{from{stroke-dashoffset:${(len+seg).toFixed(1)}}to{stroke-dashoffset:0}}`;
-        pulse.style.animation = `${name} ${duration}s ${delay}s linear infinite`;
-        if (addStartDot) {
-          const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-          dot.setAttribute('cx', x1); dot.setAttribute('cy', y1); dot.setAttribute('r', '2.5');
-          dot.setAttribute('fill', color); dot.setAttribute('opacity', '0.55');
-          svg.appendChild(dot);
-        }
-      }
-      function hBez(x1, y1, x2, y2, color, fId, dur, dly, dot) {
-        const cp = (x2-x1)*0.5;
-        drawLine(`M${x1} ${y1} C${x1+cp} ${y1},${x2-cp} ${y2},${x2} ${y2}`, x1, y1, color, fId, dur, dly, dot);
-      }
-      function topArc(x1, y1, x2, y2, apex, color, fId, dur, dly) {
-        drawLine(`M${x1} ${y1} C${x1} ${apex},${x2} ${apex},${x2} ${y2}`, x1, y1, color, fId, dur, dly, true);
-      }
-
-      const hls  = [0,1,2,3].map(i => document.getElementById('hl'+i));
-      const s2ps = [0,1,2,3].map(i => document.getElementById('s2p'+i));
-      hls.forEach((hl,i) => {
-        if (!hl || !s2ps[i]) return;
-        const h = R(hl), p = R(s2ps[i]);
-        hBez(h.r, h.cy, p.l, p.cy, PURPLE, 'glow-p', 0.9, i*0.18, false);
-      });
-
-      const s3ls = [0,1,2].map(i => document.getElementById('s3l'+i));
-      const s3rs = [0,1,2].map(i => document.getElementById('s3r'+i));
-      s3ls.forEach((lEl,i) => {
-        if (!lEl || !s3rs[i]) return;
-        const l = R(lEl), rv = R(s3rs[i]);
-        hBez(l.r, l.cy, rv.l, rv.cy, GREEN, 'glow-g', 0.75, i*0.12, false);
-      });
-
-      const s4ps = [0,1,2,3].map(i => document.getElementById('s4p'+i));
-      s2ps.forEach((pEl,i) => {
-        if (!pEl || !s4ps[i]) return;
-        const p = R(pEl), t = R(s4ps[i]);
-        topArc(p.r, p.cy, t.l, t.cy, -(42+i*10), PURPLE, 'glow-p', 2.0, i*0.28);
-      });
-
-      const s5ps = [0,1,2,3].map(i => document.getElementById('s5p'+i));
-      s4ps.forEach((pEl,i) => {
-        if (!pEl || !s5ps[i]) return;
-        const p = R(pEl), t = R(s5ps[i]);
-        hBez(p.r, p.cy, t.l, t.cy, PURPLE, 'glow-p', 1.4, i*0.18, true);
-      });
-
-      const s3t = document.getElementById('s3-table');
-      const s5t = document.getElementById('s5-table');
-      if (s3t && s5t) {
-        const st = R(s3t), sv = R(s5t);
-        [-10, 0, 10].forEach((off,i) => {
-          const x1=st.cx+off, y1=st.b, x2=sv.cx+off, y2=sv.b;
-          const drop = 40+i*8;
-          drawLine(`M${x1} ${y1} C${x1} ${y1+drop},${x2} ${y2+drop},${x2} ${y2}`, x1, y1, GREEN, 'glow-g', 2.0, i*0.15, true);
-        });
-      }
-
-      _animEl.textContent = _animCSS;
-    }
-
-    window.addEventListener('load', buildLines);
-    window.addEventListener('resize', () => {
-      clearTimeout(window._rt);
-      window._rt = setTimeout(buildLines, 90);
-    });
-  </script>
-  <script>
-    // ── Contact dropdown ────────────────────────────────────────
-    var contactToggle   = document.getElementById('contact-toggle');
-    var contactDropdown = document.getElementById('contact-dropdown');
-    if (contactToggle && contactDropdown) {
-      contactToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = contactDropdown.classList.toggle('open');
-        contactToggle.setAttribute('aria-expanded', open);
-        contactDropdown.setAttribute('aria-hidden', !open);
-      });
-      document.addEventListener('click', function() {
-        contactDropdown.classList.remove('open');
-        contactToggle.setAttribute('aria-expanded', 'false');
-        contactDropdown.setAttribute('aria-hidden', 'true');
-      });
-      contactDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
-    }
-
-    // ── Hamburger menu ──────────────────────────────────────────
-    var hamburgerBtn = document.getElementById('hamburger-btn');
-    var navDropdown  = document.getElementById('nav-dropdown');
-    if (hamburgerBtn && navDropdown) {
-      hamburgerBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var open = navDropdown.classList.toggle('open');
-        hamburgerBtn.setAttribute('aria-expanded', open);
-        navDropdown.setAttribute('aria-hidden', !open);
-      });
-      document.addEventListener('click', function() {
-        navDropdown.classList.remove('open');
-        hamburgerBtn.setAttribute('aria-expanded', 'false');
-        navDropdown.setAttribute('aria-hidden', 'true');
-      });
-      navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
-    }
-
-    // ── Work / About smooth scroll + active state ────────────────
-    var isHomepage = window.location.pathname === '/' ||
-                     window.location.pathname.endsWith('/index.html') ||
-                     window.location.pathname.endsWith('/');
-    function setActiveLink(section) {
-      document.querySelectorAll('.nav-scroll-link').forEach(function(l) {
-        l.classList.toggle('header-link--active', l.dataset.section === section);
-      });
-    }
-    document.querySelectorAll('.nav-scroll-link').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        var section = this.dataset.section;
-        if (isHomepage) {
-          e.preventDefault();
-          var target = document.getElementById(section);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-          setActiveLink(section);
-        }
-        // Close dropdown if open
-        if (navDropdown) {
-          navDropdown.classList.remove('open');
-          if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-
-    document.querySelectorAll('.copy-email').forEach(function(link) {
-      var tooltip = document.createElement('span');
-      tooltip.className = 'email-tooltip';
-      tooltip.textContent = 'Copied';
-      link.appendChild(tooltip);
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var email = this.dataset.email;
-        navigator.clipboard.writeText(email).then(function() {
-          link.classList.add('copied');
-          setTimeout(function() { link.classList.remove('copied'); }, 1500);
-        });
-      });
-    });
-  </script>
-  <script src="animations.js"></script>
+  <!-- Pipeline animation JS -->
+  <script src="pipeline.js"></script>
+  <script src="main.js"></script>
+    <script src="animations.js"></script>
 </body>
 </html>
